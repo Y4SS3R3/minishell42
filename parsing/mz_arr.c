@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:28 by mzouine           #+#    #+#             */
-/*   Updated: 2024/06/10 10:47:57 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:36:35 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	**mz_addstring(char **org, char *s, int size)
 	int		i;
 
 	i = 0;
-	new = malloc((size + 1 + 1) * sizeof(char *));
+	new =ft_calloc((size + 1 + 1) * sizeof(char *), 1);
 	if (!new)
 		return (NULL);
 	while (i < size)
@@ -73,7 +73,7 @@ static char	**mz_addarray(char **org, char **arr, int size)
 
 	i = 0;
 	size_2 = mz_arr_counter(arr);
-	new = malloc((size + size_2 + 1) * sizeof(char *));
+	new = ft_calloc((size + size_2 + 1) * sizeof(char *), 1);
 	while (i < size)
 	{
 		new[i] = org[i];

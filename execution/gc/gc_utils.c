@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:44:17 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/06/10 10:23:08 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:34:36 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_trash	*gc_new(void *address)
 {
 	t_trash	*new;
 
-	new = malloc(sizeof(t_trash));
+	new = ft_calloc(sizeof(t_trash), 1);
 	if (!new)
 		return (new);
 	new->to_free = address;

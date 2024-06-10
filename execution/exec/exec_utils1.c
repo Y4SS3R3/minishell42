@@ -6,11 +6,18 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:52:23 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/06/10 10:32:30 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/06/10 12:48:27 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void print_2d_array(char **arr)
+{
+	int i = 0;
+	while (arr[i])
+		printf("[%s]\n", arr[i++]);
+}
 
 void	ft_exec(t_token *token, t_shell *data)
 {
@@ -21,6 +28,8 @@ void	ft_exec(t_token *token, t_shell *data)
 	if (data->to_close != -1)
 		close(data->to_close);
 	token->cmd = check_command(token->cmd, data->paths);
+	print_2d_array(token->args);
+	printf("PATH => %s\n", token->cmd);
 	if (token->cmd == NULL)
 		token->cmd = tmp;
 	execve(token->cmd, token->args, data->envp);

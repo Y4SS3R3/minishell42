@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 13:34:22 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/06/10 10:24:31 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:41:43 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**ft_split(char const *s, char c)
 	words = words_count(s, c);
 	result = NULL;
 	j = 0;
-	result = (char **)malloc((words + 1) * sizeof(char *));
+	result = (char **)ft_calloc((words + 1) * sizeof(char *), 1);
 	if (result == NULL)
 		return (NULL);
 	while (*s && words--)
@@ -99,7 +99,7 @@ char	*ft_strdup(const char *s1)
 
 	tmp = NULL;
 	size1 = ft_strlen(s1) + 1;
-	tmp = (char *)malloc(size1);
+	tmp = (char *)ft_calloc(size1, 1);
 	if (tmp == NULL)
 		return (NULL);
 	return (ft_memcpy(tmp, s1, size1));
@@ -118,7 +118,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 		len = ft_strlen(&s[start]);
 	i = 0;
 	result = NULL;
-	result = (char *)malloc(len + 1);
+	result = (char *)ft_calloc(len + 1, 1);
 	if (result == NULL)
 		return (NULL);
 	while (i < len)

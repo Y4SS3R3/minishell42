@@ -24,10 +24,6 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <sys/wait.h>
-# include "./execution/tree/tree.h"
-# include "./execution/gc/gc.h"
-# include "./execution/exec/exec.h"
-# include "./parsing/mahmoud.h"
 
 enum e_token
 {
@@ -54,6 +50,9 @@ enum e_token
 typedef struct s_token	t_token;
 typedef struct s_trash	t_trash;
 typedef struct s_shell	t_shell;
+typedef struct s_redir	t_redir;
+typedef struct s_tree	t_tree;
+typedef struct s_list	t_list;
 
 typedef struct s_redir
 {
@@ -114,18 +113,16 @@ typedef struct s_list
 	int 			nature;
     int				quote;
 	int				d_quote;
-}
+} t_list;
 
 void	putstr_fd(char *msg, int fd);
 void	lst_free(t_token *head);
 int		get_length(char **array);
-void	infix_to_postfix(t_token *infix,
-			t_token **exp, t_token **stack, t_shell *data);
 char	*check_command(char *command, char **paths);
 void	dup2_plus(int old, int new, t_shell *data);
 void	error_protocole(char *msg, t_shell *data, int exit_s);
 size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin(char const *s1, char const *s2);
 void	check_env(t_shell *data, char **env);
 char	**ft_split(char const *s, char c);
 void	check_potential_path(t_shell *data);
@@ -186,11 +183,9 @@ int		make_dollar(t_list **head, char *s, int i);
 int		make_o_par(t_list **head, char *s, int i);
 int		make_c_par(t_list **head, char *s, int i);
 int		make_star(t_list **head, char *s, int i);
-t_token *mz_last_scan(t_list *head);
+t_token	*mz_last_scan(t_list *head);
 void	mz_make_special(t_token **list, t_list **head);
 void	mz_make_cmd(t_token **list, t_list **head);
 char	**mz_arr(char **org, char **arr, char *s, int flag);
-
-
 
 #endif

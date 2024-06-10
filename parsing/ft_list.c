@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:33:34 by mzouine           #+#    #+#             */
-/*   Updated: 2024/06/10 10:47:12 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:36:15 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_list	*mz_lstnew(char *content)
 {
 	t_list	*new;
 
-	new = malloc(sizeof(t_list));
+	new = ft_calloc(sizeof(t_list), 1);
 	if (!new)
 		return (NULL);
 	new -> s = ft_strdup(content);

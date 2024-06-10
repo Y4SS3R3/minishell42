@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:06:36 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/06/10 10:23:44 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:34:52 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*malloc_plus(size_t size, t_shell *data)
 	void	*ret;
 	t_trash	*new;
 
-	ret = malloc(size);
+	ret = ft_calloc(size, 1);
 	if (ret)
 	{
 		new = gc_new(ret);

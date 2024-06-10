@@ -35,7 +35,7 @@ static char	**mz_addstring(char **org, char *s, int size)
 	int		i;
 
 	i = 0;
-	new = malloc((size + 1 + 1) * sizeof(char *));
+	new = ft_calloc((size + 1 + 1) * sizeof(char *), 1);
 	if (!new)
 		return (NULL);
 	while (i < size)
@@ -60,7 +60,7 @@ static char	**mz_addarray(char **org, char **arr, int size)
 
 	i = 0;
 	size_2 = mz_arr_counter(arr);
-	new = malloc((size + size_2 + 1) * sizeof(char *));
+	new = ft_calloc((size + size_2 + 1) * sizeof(char *), 1);
 	while (i < size)
 	{
 		new[i] = org[i];

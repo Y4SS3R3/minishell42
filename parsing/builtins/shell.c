@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 05:42:09 by mzouine           #+#    #+#             */
-/*   Updated: 2024/06/10 10:57:03 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:37:04 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	mz_is_com(char *s, int *n)
 	i = 0;
 	while (s[i] != 32 && s[i])            // OR ANY OTHER SPACE SHIT !!!!
 		i++;
-	tmp = malloc(i + 1);
+	tmp = ft_calloc(i + 1, 1);
 	if (!tmp)
 		return (NULL);
 	*n = i;

@@ -6,7 +6,7 @@
 #    By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 09:40:06 by mzouine           #+#    #+#              #
-#    Updated: 2024/06/10 10:54:16 by ymassiou         ###   ########.fr        #
+#    Updated: 2024/06/10 11:13:00 by ymassiou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,10 @@ SRC = parsing/env_parse.c \
 		parsing/mz_make_special.c\
 		parsing/lexer_utils2.c \
 		parsing/mz_parser.c \
-		minishell.c \
 		parsing/mz_checker.c \
 		parsing/mz_last_scan.c\
 		parsing/mz_split.c \
 		parsing/mz_arr.c \
-		execution/general_utils/utils1.c \
 		execution/exec/operands.c \
 		execution/exec/pipeline.c \
 		execution/gc/gc_utils.c \

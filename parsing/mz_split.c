@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:39:42 by mzouine           #+#    #+#             */
-/*   Updated: 2024/06/10 10:47:57 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:36:54 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*mz_word_finder(const char *s, char c, int *word)
 	i = *word;
 	while (s[*word] && s[*word] != c)
 		(*word)++;
-	str = malloc((*word - i) + 1);
+	str = ft_calloc((*word - i) + 1, 1);
 	if (!str)
 		return (NULL);
 	j = 0;
@@ -82,7 +82,7 @@ char	**mz_split(char const *s, char c)
 		return (NULL);
 	word = 0;
 	i = 0;
-	final = malloc((mz_word_count(s, c) + 1) * sizeof(char *));
+	final = ft_calloc((mz_word_count(s, c) + 1) * sizeof(char *), 1);
 	if (!final)
 		return (NULL);
 	while (i < mz_word_count(s, c))

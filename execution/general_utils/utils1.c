@@ -12,30 +12,29 @@
 
 #include "../../minishell.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
-	size_t	j;
-	char	*str;
+	unsigned int	i;
+	unsigned int	j;
+	char			*final;
 
-	if (s1 == NULL && s2 == NULL)
+	if (!s1 && !s2)
 		return (NULL);
-	if (s1 == NULL)
-		return (ft_strdup(""));
-	if (s2 == NULL)
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
 		return (ft_strdup(s1));
-	str = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
-	if (str == NULL)
-		return (NULL);
 	i = -1;
 	j = 0;
-	if (s1)
-		while (s1[++i] != '\0')
-			str[i] = s1[i];
-	while (s2[j] != '\0')
-		str[i++] = s2[j++];
-	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	return (str);
+	final = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
+	if (!final)
+		return (NULL);
+	while (s1[++i])
+		final[i] = s1[i];
+	while (s2[j])
+		final[i++] = s2[j++];
+	final[i] = '\0';
+	return (final);
 }
 
 void	*ft_free(char **to_free, size_t elements, int flag)
