@@ -61,3 +61,9 @@ bash-3.2$ echo $a
 
 bash-3.2$ (&)
 bash: syntax error near unexpected token `&'
+
+
+bash-3.2$ "'"'"'""
+bash: '": command not found
+
+whenever you find a closed " (with its equivalent not the one next to it) you just ad nothing to the command

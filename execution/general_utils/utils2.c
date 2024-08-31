@@ -32,6 +32,7 @@ t_token	*token_clone(t_token *token, t_shell *data)
 	head->cmd = token->cmd;
 	head->args = token->args;
 	head->nature = token->nature;
+	head->join = token->join;
 	head->next = NULL;
 	head->previous = NULL;
 	head->right = token->right;
