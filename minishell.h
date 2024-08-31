@@ -366,7 +366,7 @@ void	ctrl_c_heredoc(int sig);
 void	ctrl_d(t_shell *data);
 void	update_pwd(char *currpwd, t_shell *data);
 int		cd_home(t_shell *data);
-void	join_chdir(char *currpwd, char *path, t_shell *data);
+char	*join_chdir(char *currpwd, char *path, t_shell *data);
 void	cd_custompath(char *path, char *oldpwd, t_shell *data);
 t_trash	*gc_new(void *address, t_shell *data);
 void	handle_builtin(t_token *root, t_shell *data);
