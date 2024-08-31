@@ -22,6 +22,19 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	while ((*s1 || *s2) && n)
+	{
+		if (*s1 != *s2)
+			return ((unsigned char)*s1 - (unsigned char)*s2);
+		s1++;
+		s2++;
+		n--;
+	}
+	return (0);
+}
+
 size_t	ft_strcmp(char *s1, char *s2)
 {
 	size_t	i;

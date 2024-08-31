@@ -14,7 +14,9 @@
 
 t_trash	*gc_last(t_trash *head)
 {
-	while (head->next)
+	if (head == NULL)
+		return (NULL);
+	while (head->next != NULL)
 		head = head->next;
 	return (head);
 }
@@ -25,41 +27,50 @@ void	gc_add(t_trash **head, t_trash *new)
 
 	if (!new)
 		return ;
-	if (!head)
+	if (*head == NULL)
 		*head = new;
 	else
 	{
 		last = gc_last(*head);
-		last->next = new;
+		if (last)
+			last->next = new;
 	}
 }
 
-t_trash	*gc_new(void *address)
+t_trash	*gc_new(void *address, t_shell *data)
 {
 	t_trash	*new;
 
-	new = ft_calloc(sizeof(t_trash), 1);
+	new = malloc(sizeof(t_trash));
 	if (!new)
-		return (new);
+	{
+		data->free_it = 0;
+		free_command(data, NULL);
+		free_programm(data);
+		exit(MALLOC_FAILURE);
+	}
 	new->to_free = address;
+	new->freed = 0;
 	new->next = NULL;
 	return (new);
 }
 
-void	gc_free(t_shell *data)
+void	gc_free(t_shell *data, int mode)
 {
 	t_trash	*head;
 
-	head = data->gc;
+	if (mode == LOOP)
+		head = data->l_gc;
+	else
+		head = data->g_gc;
 	while (head)
 	{
-		free(head->to_free);
-		head = head->next;
-	}
-	head = data->gc;
-	while (head)
-	{
-		free(head);
+		if (!head->freed && head->to_free)
+		{
+			free(head->to_free);
+			head->to_free = NULL;
+			head->freed = 1;
+		}
 		head = head->next;
 	}
 }

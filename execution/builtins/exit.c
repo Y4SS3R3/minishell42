@@ -1,0 +1,107 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/03 00:33:51 by mzouine           #+#    #+#             */
+/*   Updated: 2024/06/10 10:56:55 by ymassiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../minishell.h"
+
+static int	words_count1(const char *s)
+{
+	size_t	i;
+	size_t	count;
+
+	i = 0;
+	count = 0;
+	while (s[i])
+	{
+		if ((s[i] != ' ' && s[i] != '\t')
+			&& (s[i + 1] == 0 || s[i + 1] == ' ' || s[i + 1] == '\t'))
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+static void	nmr_arg_req(char *arg)
+{
+	putstr_fd("exit\n", 2);
+	putstr_fd("starshell: exit: ", 2);
+	putstr_fd(arg, 2);
+	putstr_fd(": numeric argument required\n", 2);
+	exit (255);
+}
+
+static int	single_args(char **av)
+{
+	int	exit_st;
+	int	j;
+	int	i;
+
+	j = 0;
+	i = 0;
+	if (words_count1(av[0]) != 1)
+		nmr_arg_req(av[0]);
+	while (av[0][j] && (av[0][j] == ' ' || av[0][j] == '\t'))
+		j++;
+	i = j;
+	if (av[0][j] == '+' || av[0][j] == '-')
+		j++;
+	while (av[0][j] && !(av[0][j] == ' ' || av[0][j] == '\t'))
+	{
+		if (!(av[0][j] >= '0' && av[0][j] <= '9'))
+			nmr_arg_req(av[0]);
+		j++;
+	}
+	exit_st = ft_atoi(&av[0][i]);
+	printf("exit\n");
+	exit(exit_st);
+}
+
+static int	multiple_args(char **av)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (av[0][j])
+	{
+		if (av[0][j] >= '0' && av[0][j] <= '9')
+			nmr_arg_req("");
+		j++;
+	}
+	while (av[i])
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			if (!(av[i][j] >= '0' && av[i][j] <= '9'))
+				nmr_arg_req(av[i]);
+			j++;
+		}
+		i++;
+	}
+	putstr_fd("starshell: exit: too many arguments\n", 2);
+	return (1);
+}
+
+int	exit_cmd(int ac, char **av, t_shell *data)
+{
+	if (ac == 0)
+	{
+		printf("exit\n");
+		exit(data->status);
+	}
+	else if (ac == 1)
+		return (single_args(av));
+	else
+		return (multiple_args(av));
+	return (0);
+}

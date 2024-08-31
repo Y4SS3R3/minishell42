@@ -6,42 +6,94 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 13:34:22 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/06/10 11:41:43 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/06/11 10:54:51 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static char	*gen_word(const char *s, char c)
+static int	nbrlen(long n)
+{
+	int	count;
+
+	count = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
+	{
+		count++;
+		n = -n;
+	}
+	while (n)
+	{
+		count++;
+		n /= 10;
+	}
+	return (count);
+}
+
+static char	*allocate(int len, int mode, t_shell *data)
+{
+	char	*allocated;
+
+	allocated = NULL;
+	if (mode == GLOBAL)
+		allocated = malloc_p(len + 1, data->g_gc, data);
+	else if (mode == LOOP)
+		allocated = malloc_p(len + 1, data->l_gc, data);
+	else
+		allocated = malloc(len + 1);
+	if (allocated == NULL)
+		return (NULL);
+	return (allocated);
+}
+
+char	*ft_itoa(int n, int mode, t_shell *data)
+{
+	int		len;
+	long	ntmp;
+	char	*result;
+	int		i;
+
+	ntmp = n;
+	i = 0;
+	len = nbrlen(ntmp);
+	result = allocate(len, mode, data);
+	if (result == NULL)
+		return (NULL);
+	if (ntmp < 0)
+	{
+		result[i] = '-';
+		i++;
+		ntmp = -ntmp;
+	}
+	result[len--] = 0;
+	while (len >= i)
+	{
+		result[len--] = (ntmp % 10) + 48;
+		ntmp /= 10;
+	}
+	return (result);
+}
+
+static char	*gen_word(char *s, char c, t_shell *data)
 {
 	size_t	i;
 	char	*result;
+	t_sub	info;
 
 	result = NULL;
 	i = 0;
 	while (s[i] && s[i] != c)
 		i++;
-	result = ft_substr(s, 0, i);
+	info.s = s;
+	info.start = 0;
+	info.len = i;
+	result = ft_substr_s(&info, GLOBAL, data);
 	return (result);
 }
 
-static int	words_count(const char *s, char c)
-{
-	size_t	i;
-	size_t	count;
-
-	i = 0;
-	count = 0;
-	while (s[i])
-	{
-		if (s[i] != c && (s[i + 1] == 0 || s[i + 1] == c))
-			count++;
-		i++;
-	}
-	return (count);
-}
-
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c, int mode, t_shell *data)
 {
 	size_t	words;
 	char	**result;
@@ -52,14 +104,12 @@ char	**ft_split(char const *s, char c)
 	words = words_count(s, c);
 	result = NULL;
 	j = 0;
-	result = (char **)ft_calloc((words + 1) * sizeof(char *), 1);
-	if (result == NULL)
-		return (NULL);
+	result = which_malloc(mode, (words + 1) * sizeof(char *), data);
 	while (*s && words--)
 	{
 		while (*s == c && *s)
 			s++;
-		result[j] = gen_word(s, c);
+		result[j] = gen_word(s, c, data);
 		if (result[j] == NULL)
 			return (ft_free(result, j, 0));
 		j++;
@@ -68,126 +118,4 @@ char	**ft_split(char const *s, char c)
 	}
 	result[j] = 0;
 	return (result);
-}
-
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	if (len == 0 && haystack == NULL)
-		return (NULL);
-	if (needle[i] == 0)
-		return ((char *)haystack);
-	while (haystack[i] && i < len)
-	{
-		j = 0;
-		while (needle[j] == haystack[i + j] && i + j < len && haystack[i + j])
-			j++;
-		if (needle[j] == 0)
-			return ((char *)&haystack[i]);
-		i++;
-	}
-	return (NULL);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	size_t	size1;
-	char	*tmp;
-
-	tmp = NULL;
-	size1 = ft_strlen(s1) + 1;
-	tmp = (char *)ft_calloc(size1, 1);
-	if (tmp == NULL)
-		return (NULL);
-	return (ft_memcpy(tmp, s1, size1));
-}
-
-char	*ft_substr(const char *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	char	*result;
-
-	if (s == NULL)
-		return (NULL);
-	if (start > ft_strlen(s))
-		return ((char *)ft_calloc(1, 1));
-	if (len > ft_strlen(&s[start]))
-		len = ft_strlen(&s[start]);
-	i = 0;
-	result = NULL;
-	result = (char *)ft_calloc(len + 1, 1);
-	if (result == NULL)
-		return (NULL);
-	while (i < len)
-	{
-		result[i] = s[start + i];
-		i++;
-	}
-	result[len] = 0;
-	return (result);
-}
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	size_t			i;
-	unsigned char	*tmpd;
-	unsigned char	*tmps;
-
-	if (src == NULL && dst == NULL)
-		return (dst);
-	i = 0;
-	tmpd = (unsigned char *)dst;
-	tmps = (unsigned char *)src;
-	while (i < n)
-	{
-		tmpd[i] = tmps[i];
-		i++;
-	}
-	return (dst);
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*result;
-
-	result = NULL;
-	if ((count * size) > SIZE_T_MAX)
-		return (NULL);
-	result = malloc(count * size);
-	if (result == NULL)
-		return (NULL);
-	return (ft_memset(result, 0, count * size));
-}
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	size_t			i;
-	unsigned char	*tmp;
-
-	tmp = (unsigned char *)b;
-	i = 0;
-	while (i < len)
-		tmp[i++] = (unsigned char)c;
-	return (b);
-}
-
-char	*ft_strchr(const char *haystack, int needle)
-{
-	size_t	i;
-
-	i = 0;
-	if (haystack == NULL)
-		return (NULL);
-	while (haystack[i])
-	{
-		if (haystack[i] == (char)needle)
-			return ((char *)&haystack[i]);
-		i++;
-	}
-	if (haystack[i] == (char)needle)
-		return ((char *)&haystack[i]);
-	return (NULL);
 }

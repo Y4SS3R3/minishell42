@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 15:54:01 by mzouine           #+#    #+#             */
-/*   Updated: 2024/06/10 10:47:57 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/07/11 19:48:20 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static t_list *mz_first_scan(char *s)
 	head = NULL;
 	while (s[i])
 	{
+		if (s[i] == 32 && s[i+1] == '\0')
+			return (head);
 		if (mz_is_space(s[i]))
 			i = make_space_nd(&head, s, i);
 		else if (mz_is_special(s[i]))
@@ -34,12 +36,19 @@ static t_list *mz_first_scan(char *s)
 t_token	*mz_parser(char *s)
 {
 	t_list	*head;
-	t_list	*tmp;
 	t_token	*list;
 
+	s = mz_joiner(s);
 	head = mz_first_scan(s);
-	tmp = head;
+	// while (tmp)
+	// {
+	// 	printf("%s---> %i\n", tmp->s, tmp->nature);
+	// 	tmp = tmp->next;
+	// }
+	// exit(0);/////////
+	// mz_syntax(tmp);
 	// here should be the second scan for syntax errors!
 	list = mz_last_scan(head);
+	mz_splitter(list);
 	return (list);
 }

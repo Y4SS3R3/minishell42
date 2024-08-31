@@ -5,29 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 20:45:44 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/06/10 10:23:28 by ymassiou         ###   ########.fr       */
+/*   Created: 2024/08/29 14:46:08 by ymassiou          #+#    #+#             */
+/*   Updated: 2024/08/29 14:46:08 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	print_stack_s(t_token *stack)
+int	ft_tolower(int c)
 {
-	while (stack)
-	{
-		printf("%s ", stack->cmd);
-		stack = stack->next;
-	}
-	printf("\n");
+	if (c >= 'A' && c <= 'Z')
+		c += 32;
+	return (c);
 }
 
-t_token	*token_clone(t_token *token)
+t_token	*token_clone(t_token *token, t_shell *data)
 {
 	t_token	*head;
 
 	head = NULL;
-	head = (t_token *)ft_calloc(1, sizeof(t_token));
+	if (token == NULL)
+		return (NULL);
+	head = malloc_p(sizeof(t_token), data->l_gc, data);
 	if (head == NULL)
 		return (NULL);
 	head->cmd = token->cmd;
@@ -40,20 +39,27 @@ t_token	*token_clone(t_token *token)
 	return (head);
 }
 
-t_token	*ft_lstnew(char *cmd)
+t_token	*ft_lstnew(char *cmd, int mode, t_shell *data)
 {
 	t_token	*head;
 
 	head = NULL;
-	head = (t_token *)ft_calloc(1, sizeof(t_token));
+	if (mode == GLOBAL)
+		head = malloc_p(sizeof(t_token), data->g_gc, data);
+	else if (mode == LOOP)
+		head = malloc_p(sizeof(t_token), data->l_gc, data);
+	else
+		head = malloc(sizeof(t_token));
 	if (head == NULL)
 		return (NULL);
 	head->next = NULL;
 	head->previous = NULL;
-	head->cmd = cmd;
-	head->args = NULL;
 	head->right = NULL;
 	head->left = NULL;
+	head->cmd = cmd;
+	head->args = NULL;
+	head->before = NULL;
+	head->after = NULL;
 	return (head);
 }
 

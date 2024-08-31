@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:28 by mzouine           #+#    #+#             */
-/*   Updated: 2024/06/10 11:36:35 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/07/09 19:51:02 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	**mz_addstring(char **org, char *s, int size)
 	int		i;
 
 	i = 0;
-	new =ft_calloc((size + 1 + 1) * sizeof(char *), 1);
+	new = malloc((size + 1 + 1) * sizeof(char *));
 	if (!new)
 		return (NULL);
 	while (i < size)
@@ -73,7 +73,7 @@ static char	**mz_addarray(char **org, char **arr, int size)
 
 	i = 0;
 	size_2 = mz_arr_counter(arr);
-	new = ft_calloc((size + size_2 + 1) * sizeof(char *), 1);
+	new = malloc((size + size_2 + 1) * sizeof(char *));
 	while (i < size)
 	{
 		new[i] = org[i];
@@ -92,12 +92,46 @@ static char	**mz_addarray(char **org, char **arr, int size)
 	return (new);
 }
 
+static char	**ym_addstring(char **org, char *s, int size)
+{
+	char	**new;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	new =ft_calloc((size + 1 + 1) * sizeof(char *), 1);
+	if (!new)
+		return (NULL);
+	if (org == NULL)
+	{
+		new[i++] = s;
+		new[i] = NULL;
+		return (new);
+	}
+	new[i++] = s;
+	while (org[j])
+	{
+		new[i] = org[j];
+		if (!new[i])
+			return (freemem(new));
+		j++;
+		i++;
+	}
+	// if (!new[i])
+	// 	return (freemem(new));
+	new[i] = NULL;
+	return (new);
+}
+
 char	**mz_arr(char **org, char **arr, char *s, int flag) // 1 to add string, 2 to add array !
 {
 	if (flag == 1)
 		return (mz_addstring(org, s, mz_arr_counter(org)));
 	else if (flag == 2)
 		return (mz_addarray(org, arr, mz_arr_counter(org)));
+	else if (flag == 3)
+		return (ym_addstring(org, s, mz_arr_counter(org)));
 	else
 	{
 		printf("Error!\n mz_arr called with wrong flag!\n");

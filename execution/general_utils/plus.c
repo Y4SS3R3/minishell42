@@ -12,36 +12,30 @@
 
 #include "../../minishell.h"
 
-void	error_protocole(char *msg, t_shell *data, int exit_s)
-{
-	putstr_fd(msg, 2);
-	// gc_free(data);
-	// exit(exit_s);
-}
-
-void	*malloc_plus(size_t size, t_shell *data)
+void	*malloc_p(size_t size, t_trash *gc, t_shell *data)
 {
 	void	*ret;
 	t_trash	*new;
 
 	ret = ft_calloc(size, 1);
-	if (ret)
+	if (ret == NULL)
 	{
-		new = gc_new(ret);
-		// if (!new)
-		// 	gc_free(data);
-		gc_add(&data->gc, new);
+		data->free_it = 0;
+		free_command(data, NULL);
+		free_programm(data);
+		exit(MALLOC_FAILURE);
+	}
+	else
+	{
+		new = gc_new(ret, data);
+		if (!new)
+		{
+			data->free_it = 0;
+			free_command(data, NULL);
+			free_programm(data);
+			exit(MALLOC_FAILURE);
+		}
+		gc_add(&gc, new);
 	}
 	return (ret);
-}
-
-void	dup2_plus(int old, int new, t_shell *data)
-{
-	int	ret;
-
-	ret = dup2(old, new);
-	if (ret == -1)
-		error_protocole("DUP2() ERROR[01]\n", data, EXIT_FAILURE);
-	if (close (old) == -1)
-		putstr_fd("LOL",2);
 }

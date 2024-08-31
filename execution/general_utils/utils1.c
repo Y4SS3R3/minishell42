@@ -12,7 +12,20 @@
 
 #include "../../minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	*which_malloc(int mode, size_t size, t_shell *data)
+{
+	void	*buffer;
+
+	if (mode == GLOBAL)
+		buffer = malloc_p(size, data->g_gc, data);
+	else if (mode == LOOP)
+		buffer = malloc_p(size, data->l_gc, data);
+	else
+		buffer = malloc(size);
+	return (buffer);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2, int mode, t_shell *data)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -21,14 +34,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1)
-		return (ft_strdup(s2));
+		return (ft_strdup(s2, mode, data));
 	if (!s2)
-		return (ft_strdup(s1));
+		return (ft_strdup(s1, mode, data));
 	i = -1;
 	j = 0;
-	final = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
-	if (!final)
-		return (NULL);
+	final = which_malloc(mode, ft_strlen(s1) + ft_strlen(s2) + 1, data);
 	while (s1[++i])
 		final[i] = s1[i];
 	while (s2[j])
@@ -60,7 +71,6 @@ void	*ft_free(char **to_free, size_t elements, int flag)
 			i++;
 		}
 	}
-	free(to_free);
 	return (NULL);
 }
 
@@ -73,20 +83,13 @@ void	putstr_fd(char *msg, int fd)
 	}
 }
 
-void	lst_free(t_token *head)
-{
-	while (head)
-	{
-		free(head);
-		head = head->next;
-	}
-}
-
 int	get_length(char **array)
 {
 	int	i;
 
 	i = 0;
+	if (array == NULL)
+		return (i);
 	while (array[i])
 		i++;
 	return (i);

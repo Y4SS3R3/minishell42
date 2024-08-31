@@ -14,47 +14,28 @@
 
 t_redir	*last_redir(t_redir *head)
 {
-	while (head->next)
-		head = head->next;
-	return (head);
-}
+	t_redir	*current;
 
-t_redir	*token_to_redir(t_token *token)
-{
-	t_redir	*redir;
-
-	redir = ft_calloc(1, sizeof(t_redir));
-	if (!redir)
+	current = head;
+	if (current == NULL)
 		return (NULL);
-	redir->type = token->cmd;
-	redir->file = token->args[0];
-	redir->next = NULL;
-	return (redir);
+	while (current->next != NULL)
+		current = current->next;
+	return (current);
 }
 
-void	append_redir(t_redir **head, t_redir *new)
-{
-	t_redir	*last;
-
-	if (!new)
-		return ;
-	if (*head == NULL)
-		*head = new;
-	else
-	{
-		last = last_redir(*head);
-		last->next = new;
-	}
-}
-
-t_redir	*redir(t_token **input, int check1, int check2)
+t_redir	*redir(t_token **input, t_shell *data)
 {
 	t_redir	*redir;
 
 	redir = NULL;
-	while (*input && ((*input)->nature == check1 || (*input)->nature == check2))
+	while (*input && ((*input)->nature == HERE_DOC
+			|| (*input)->nature == REDIR_IN
+			|| (*input)->nature == REDIR_OUT
+			|| (*input)->nature == APPEND
+		))
 	{
-		append_redir(&redir, token_to_redir(*input));
+		append_redir(&redir, token_to_redir(*input, data));
 		*input = (*input)->next;
 	}
 	return (redir);

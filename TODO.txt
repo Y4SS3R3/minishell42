@@ -1,0 +1,87 @@
+bash-3.2$ echo *.cp
+*.cp
+bash-3.2$ echo *.c
+minishell.c test.c
+bash-3.2$ echo *.c$PWD
+*.c/Users/ymassiou/Desktop/minishell
+bash-3.2$ echo *.c"$PWD"
+*.c/Users/ymassiou/Desktop/minishell
+bash-3.2$ echo *"$PWD"
+*/Users/ymassiou/Desktop/minishell
+bash-3.2$ export a=.c
+bash-3.2$ echo *$a
+minishell.c test.c
+bash-3.2$ echo *"$a"
+minishell.c test.c
+bash-3.2$ echo *'$a'
+*$a
+bash-3.2$ echo '*'$a
+*.c
+bash-3.2$ echo '*$a'
+*$a
+bash-3.2$
+------------------------------------------------------------------------------------
+✦ starshell: exit 9223372036854775808 sdf sd dsf
+exit
+starshell: exit: too many arguments
+
+SHOULD EXIT WITH NUMERIC ARG REQUIRED
+------------------------------------------------------------------------------------
+$b$
+
+------------------------------------------------------------------------------------
+bash-3.2$ export a=ty
+bash-3.2$ env
+bash-3.2$ export a
+bash-3.2$ env
+
+a=ty should remain in the env
+------------------------------------------------------------------------------------
+bash-3.2$ cat << e | ls
+> asdas
+> d
+> as
+> d
+>
+> Makefile      execution       minishell       minishell.h     parsing
+TODO.txt        lines.txt       minishell.c     minishell.o
+------------------------------------------------------------------------------------
+bash-3.2$ export a=123
+bash-3.2$ echo $a
+123
+bash-3.2$ export a
+bash-3.2$ echo $a
+123
+bash-3.2$ export a=
+bash-3.2$ echo $a
+
+bash-3.2$ export a+=123
+bash-3.2$ echo $a
+123
+
+
+
+void	append_to_var(char **name, t_shell *data)
+{
+	int		len;
+	char	*tmp;
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = *name;
+	if (data->exapp == 1)
+	{
+		len = ft_strlen(str);
+		tmp = malloc_p(len, data->g_gc, data);
+		dprintf(2, "name 2: [%s]\n", *name);
+		while (str[i] != '+' && str[i])
+		{
+			tmp[i] = str[i];
+			i++;
+		}
+		tmp[i] = 0;
+		dprintf(2, "tmp : [%s]\n", tmp);
+		*name = tmp;
+	}
+}

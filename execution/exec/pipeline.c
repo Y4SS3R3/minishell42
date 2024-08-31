@@ -12,40 +12,15 @@
 
 #include "../../minishell.h"
 
-static int	redir_pipe(t_shell *data, t_token *token, int fd1, int fd2)
+void	pipe_line2(int read_end, int pid1, t_token *token, t_shell *data)
 {
 	int	tmp;
-	int	pid;
+	int	pid2;
 
-	tmp = dup(fd2);
-	if (tmp == -1)
-		error_protocole("DUP() ERROR[00]\n", data, EXIT_FAILURE);
-	dup2_plus(fd1, fd2, data);
-	pid = exec_child(token, data);
-	dup2_plus(tmp, fd2, data);
-	return (pid);
-}
-
-int  pipe_line(t_token *token, t_shell *data)
-{
-    int p_fd[2];
-    int pid1 = -111;
-    int pid2 = -111;
-    int tmp;
-
-	data->index++;
-	if (pipe(p_fd) == -1)
-	return (putstr_fd("ERROR IN PIPE OPENING[01]", 2), -1);
-	data->to_close = p_fd[READ];
-	tmp = dup(1);
-	dup2(p_fd[WRITE], 1);
-	close(p_fd[WRITE]);
-	pid1 = exec_child(token->left, data);
-	dup2(tmp, 1);
-	close(tmp);
 	tmp = dup(0);
-	dup2(p_fd[READ], 0);
-	close(p_fd[READ]);
+	if (!is_a_redir(token->right))
+		dup2(read_end, 0);
+	close(read_end);
 	data->to_close = -1;
 	pid2 = exec_child(token->right, data);
 	dup2(tmp, 0);
@@ -55,8 +30,28 @@ int  pipe_line(t_token *token, t_shell *data)
 	if (pid2 != -2)
 		waitpid(pid2, &data->status, 0);
 	update_status(data);
-	dup2(data->def_in, 0);
-	dup2(data->def_out, 1);
-	// data->index--;
+}
+
+int	pipe_line(t_token *token, t_shell *data)
+{
+	int	p_fd[2];
+	int	pid1;
+	int	pid2;
+	int	tmp;
+
+	data->index++;
+	pid1 = -111;
+	pid2 = -111;
+	if (pipe(p_fd) == -1)
+		return (putstr_fd("ERROR IN PIPE OPENING[01]", 2), -1);
+	data->to_close = p_fd[READ];
+	tmp = dup(1);
+	if (!is_a_redir(token->left))
+		dup2(p_fd[WRITE], 1);
+	close(p_fd[WRITE]);
+	pid1 = exec_child(token->left, data);
+	dup2(tmp, 1);
+	close(tmp);
+	pipe_line2(p_fd[READ], pid1, token, data);
 	return (-2);
 }

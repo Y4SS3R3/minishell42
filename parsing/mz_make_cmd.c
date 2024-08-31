@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_make_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:46:12 by mzouine           #+#    #+#             */
-/*   Updated: 2024/06/10 10:47:35 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/07/31 18:14:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,20 @@ static void	mz_d_quote(t_token *list, t_list **head)
 	char	*tmp;
 
 	s = NULL;
-	s = ft_strjoin(s, "\"");
+	s = ft_strjoin(s, "\"", -1, NULL);
 	(*head) = (*head)->next;
 	while ((*head) && (*head)->nature != '\"')
 	{
 		tmp = s;
-		s = ft_strjoin(s, (*head)->s);
+		s = ft_strjoin(s, (*head)->s, -1, NULL);
 		free(tmp);
 		(*head) = (*head)->next;
 	}
 	tmp = s;
-	s = ft_strjoin(s, "\"");
+	s = ft_strjoin(s, "\"", -1, NULL);
 	free(tmp);
-	(*head) = (*head)->next;
+	if (*head)
+		(*head) = (*head)->next;
 	list->args = mz_arr(list->args, NULL, s, 1);
 }
 
@@ -40,19 +41,20 @@ static void	mz_quote(t_token *list, t_list **head)
 	char	*tmp;
 
 	s = NULL;
-	s = ft_strjoin(s, "\'");
+	s = ft_strjoin(s, "\'", -1, NULL);
 	(*head) = (*head)->next;
 	while ((*head) && (*head)->nature != '\'')
 	{
 		tmp = s;
-		s = ft_strjoin(s, (*head)->s);
+		s = ft_strjoin(s, (*head)->s, -1, NULL);
 		free(tmp);
 		(*head) = (*head)->next;
 	}
 	tmp = s;
-	s = ft_strjoin(s, "\'");
+	s = ft_strjoin(s, "\'", -1, NULL);
 	free(tmp);
-	(*head) = (*head)->next;
+	if (*head)
+		(*head) = (*head)->next;
 	list->args = mz_arr(list->args, NULL, s, 1);
 }
 
@@ -67,12 +69,12 @@ static void	mz_simple(t_token *list, t_list **head)
 		tmp = s;
 		if ((*head)->nature == 32)
 		{
-			s = ft_strjoin(s, " ");
+			s = ft_strjoin(s, " ", -1, NULL);
 			while ((*head) && (*head)->nature == 32)
 				(*head) = (*head)->next;
 		}
 		if ((*head) && ((*head)->nature == -1))
-			s = ft_strjoin(s, (*head)->s);
+			s = ft_strjoin(s, (*head)->s, -1, NULL);
 		else
 			break ;
 		free(tmp);
@@ -83,27 +85,28 @@ static void	mz_simple(t_token *list, t_list **head)
 
 void	mz_make_cmd(t_token **list, t_list **head)
 {
-	char *s;
 	t_token	*new;
 
-
-	s = NULL;
-	new = ft_lstnew((*head)->s);
+	new = ft_lstnew((*head)->s, -1, NULL);
 	ft_lstadd_back(list, new, NULL);
 	new->nature = (*head)->nature;
+	new->key_d_q = (*head)->key_d_q;
+	new->key_q = (*head)->key_q;
 	(*head) = (*head)->next;
 	while ((*head))
 	{
-	while ((*head) && (*head)->nature == 32)
-		(*head) = (*head)->next;
-	if ((*head) && (*head)->nature == -1)
-		mz_simple(new, head);
-	else if ((*head) && (*head)->nature == '\'')
-		mz_quote(new, head);
-	else if ((*head) && (*head)->nature == '\"')
-		mz_d_quote(new, head);
-	else
-		break ;
+		while ((*head) && (*head)->nature == 32)
+			(*head) = (*head)->next;
+		if ((*head) && (*head)->nature == -1)
+			mz_simple(new, head);
+		else if ((*head) && (*head)->nature == '\'')
+			mz_quote(new, head);
+		else if ((*head) && (*head)->nature == '\"')
+			mz_d_quote(new, head);
+		else if ((*head) && ((*head)->nature == 60 || (*head)->nature == 62))
+			mz_make_redi(list, head);
+		else
+			break ;
 	}
 }
 

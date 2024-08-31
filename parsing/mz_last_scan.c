@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:12:44 by mzouine           #+#    #+#             */
-/*   Updated: 2024/06/10 10:47:57 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/07/09 19:44:34 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_token *mz_last_scan(t_list *head)
 {
 	t_token	*list;
+
 
 	list = NULL;
 	while (head)

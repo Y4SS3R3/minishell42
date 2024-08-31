@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:08:26 by mzouine           #+#    #+#             */
-/*   Updated: 2024/06/10 10:46:52 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/07/31 17:14:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	make_space_nd(t_list **head, char *s, int i)
 	while (mz_is_space(s[i]) && s[i])
 		i++;
 	str = ft_substr(s, n, i - n);
-	new = mz_lstnew(str);
+	new = mz_lstnew(str, -1, NULL);
 	free(str);
 	new->nature = 32;
 	mz_lstadd_back(head, new);
@@ -44,7 +44,7 @@ int	make_word_nd(t_list **head, char *s, int i)
 	while (!mz_is_space(s[i]) && !mz_is_special(s[i]) && s[i])
 		i++;
 	str = ft_substr(s, n, i - n);
-	new = mz_lstnew(str);
+	new = mz_lstnew(str, -1, NULL);
 	free(str);
 	new->nature = -1;
 	mz_lstadd_back(head, new);

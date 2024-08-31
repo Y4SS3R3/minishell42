@@ -5,101 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 17:00:38 by mzouine           #+#    #+#             */
-/*   Updated: 2024/06/10 12:43:59 by ymassiou         ###   ########.fr       */
+/*   Created: 2024/08/03 11:38:45 by ymassiou          #+#    #+#             */
+/*   Updated: 2024/08/03 11:38:45 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <unistd.h>
 
-void print2DUtil(t_token* root, int space)
+static int	repeat(t_shell *data)
 {
-    if (root == NULL)
-        return;
-    space += 10;
-    print2DUtil(root->right, space);
-    printf("\n");
-    for (int i = 10; i < space; i++)
-        printf(" ");
-    printf("%s\n", root->cmd);
-    print2DUtil(root->left, space);
-}
+	char	*line;
 
-void print2D(t_token* root)
-{
-    print2DUtil(root, 0);
-}
-
-int	main(int ac, char **av, char **env)
-{
-	char	*s;
-	t_list	*envp;
-	t_token	*linked;
-	t_token	*l;
-	t_shell data;
-
-	(void)av;
-	if (ac != 1)
-	{
-		printf("Error!\nPlease execute the program without arguments!\n");
-		return (1);
-	}
-	check_env(&data, env);
-	check_potential_path(&data);
-	envp = env_parse(env);
-	while (1)
-	{
-		s = readline("minishell:");
-		if (!s)
-		{
-			printf("Error!\nreadline returned NULL\n");
-			return (1);
-		}
-		linked = mz_parser(s);
-		l = linked;
-		data.the_tree = ft_tree(&linked, &data);
-		// print2D(data.the_tree);
-		dfs_tree(data.the_tree, &data);
-		free(s);
-
-		int i = 0;
-		// linked = l;
-		// while (linked)
-		// {
-		// 	i = 0;
-		// 	printf("\n\n%s  --> %i\n", linked->cmd, linked->nature);
-		// 	while (linked->args && linked->args[i])
-		// 	{
-		// 		printf("arg_%i ->> [%s]\n", i, linked->args[i]);
-		// 		i++;
-		// 	}
-		// 	linked = linked->next;
-		// }
-	}
+	data->exec = 1;
+	data->free_it = 1;
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, ctrl_c);
+	data->l_gc = init_l_gc(data);
+	init_path(data);
+	data->fildes = ft_strdup(".", LOOP, data);
+	line = prompt_user(data);
+	if (prompt_manage(data, line))
+		return (-1);
+	data->fork = 0;
+	close_fildes(data);
+	if (data->free_it)
+		free_command(data, line);
 	return (0);
 }
 
+int main(int ac, char **av, char **env)
+{
+	t_shell data;
+	(void)av;
 
-
-
-
-// ls -la | ( cat -e && wc -l && echo '$VAR') | grep "something i want" > outfile || < infile cat
-
-/*  !! TO FREE ENVP !!!!
-
-	t_list	*test2;
-	test2 = envp;
-	while (envp)
+	if (ac != 1 || !isatty(0))
+		return (1);
+	rl_catch_signals = 0;
+	data.g_gc = init_shell(&data, env);
+	data.l_gc = NULL;
+	init_shell_1(&data);
+	while ('Y')
 	{
-		printf("%s\n", envp->s);
-		envp = envp->next;
+		if (repeat(&data))
+			break;
 	}
-	envp = NULL;
-	while (test2)
-	{
-		envp = test2;
-		free(test2->s);
-		test2 = test2->next;
-		free(envp);
-	}
-*/
+	if (data.free_it)
+		free_programm(&data);
+	return 0;
+}

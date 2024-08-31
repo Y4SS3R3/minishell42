@@ -41,13 +41,34 @@ void	check_potential_path(t_shell *data)
 
 	res = extract_path(data->envp);
 	if (res == NULL)
-		error_protocole("PATH variable not found\n", data, 127);
-	data->paths = ft_split(res, ':');
+		data->paths = NULL;
+	data->paths = ft_split(res, ':', GLOBAL, data);
 }
 
-void	check_env(t_shell *data, char **env)
+static char	**export_base_env(t_shell *data)
 {
+	char	**new_envp;
+
+	new_envp = malloc_p(5 * sizeof(char *), data->g_gc, data);
+	if (new_envp == NULL)
+	{
+		putstr_fd("ERROR IN MALLOC[014]!\n", 2);
+		exit(EXIT_FAILURE);
+	}
+	new_envp[0] = ft_strdup("PATH=/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.",
+			GLOBAL, data);
+	new_envp[1] = ft_strdup("PWD=/Users/ymassiou", GLOBAL, data);
+	new_envp[2] = ft_strdup("SHLVL=1", GLOBAL, data);
+	new_envp[3] = ft_strdup("_=/usr/bin/env", GLOBAL, data);
+	new_envp[4] = NULL;
+	return (new_envp);
+}
+
+void	check_env(t_shell *data)
+{
+	char	**env;
+
+	env = data->envp;
 	if (*env == NULL)
-		error_protocole("Error in environment\n", data, 127);
-	data->envp = env;
+		data->envp = export_base_env(data);
 }

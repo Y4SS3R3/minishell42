@@ -12,31 +12,29 @@
 
 #include "../../minishell.h"
 
-static char	*create_path(char **paths, char *command)
+static char	*create_path(char **paths, char *command, t_shell *data)
 {
 	int		i;
 	char	*result;
-	char	*tmp;
 
 	i = 0;
 	result = NULL;
+	if (paths == NULL)
+		return (NULL);
 	while (paths[i])
 	{
-		result = ft_strjoin("/", command);
-		tmp = result;
-		result = ft_strjoin(paths[i], result);
-		free(tmp);
+		result = ft_strjoin("/", command, GLOBAL, data);
+		result = ft_strjoin(paths[i], result, GLOBAL, data);
 		if (result == NULL)
 			return (NULL);
 		if (access(result, X_OK) != -1)
 			return (result);
-		free(result);
 		i++;
 	}
 	return (NULL);
 }
 
-char	*check_command(char *command, char **paths)
+char	*check_command(char *command, char **paths, t_shell *data)
 {
 	char	*result;
 
@@ -44,14 +42,11 @@ char	*check_command(char *command, char **paths)
 		return (NULL);
 	result = NULL;
 	if (ft_strchr(command, '/') == NULL)
-		return (create_path(paths, command));
+		return (create_path(paths, command, data));
 	else
 	{
 		if (access(command, X_OK) == -1)
-		{
-			free(command);
 			return (NULL);
-		}
 		else
 			result = command;
 	}
