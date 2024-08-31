@@ -6,13 +6,13 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 15:54:01 by mzouine           #+#    #+#             */
-/*   Updated: 2024/07/11 19:48:20 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:31:27 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static t_list *mz_first_scan(char *s)
+static t_list	*mz_first_scan(char *s)
 {
 	t_list	*head;
 	int		i;
@@ -21,7 +21,7 @@ static t_list *mz_first_scan(char *s)
 	head = NULL;
 	while (s[i])
 	{
-		if (s[i] == 32 && s[i+1] == '\0')
+		if (s[i] == 32 && s[i + 1] == '\0')
 			return (head);
 		if (mz_is_space(s[i]))
 			i = make_space_nd(&head, s, i);
@@ -38,16 +38,20 @@ t_token	*mz_parser(char *s)
 	t_list	*head;
 	t_token	*list;
 
+	if (mz_syntax_err(s) == 1)
+		return (NULL);
+	if (mz_syntax_err2(s) == 1)
+		return (NULL);
 	s = mz_joiner(s);
 	head = mz_first_scan(s);
-	// while (tmp)
+	if (mz_syntax_handler(head) == -1)
+		return (NULL);
+	// while (head)
 	// {
-	// 	printf("%s---> %i\n", tmp->s, tmp->nature);
-	// 	tmp = tmp->next;
+	// 	printf("%s  --> %i", head->s, head->nature);
+	// 	head = head->next;
 	// }
-	// exit(0);/////////
-	// mz_syntax(tmp);
-	// here should be the second scan for syntax errors!
+	// exit(1);
 	list = mz_last_scan(head);
 	mz_splitter(list);
 	return (list);

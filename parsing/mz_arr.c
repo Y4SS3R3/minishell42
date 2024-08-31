@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:28 by mzouine           #+#    #+#             */
-/*   Updated: 2024/07/09 19:51:02 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:29:45 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static int	mz_arr_counter(char **org)
 	i = 0;
 	while (org[i])
 		i++;
-
 	return (i);
 }
 

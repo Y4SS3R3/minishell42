@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 16:26:56 by mzouine           #+#    #+#             */
-/*   Updated: 2024/07/09 19:44:34 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:13:44 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static char	*mz_nuller(t_token *head, int n)
 	return (arr);
 }
 
-static char ***mz_triple_init(t_token *head)
+static char	***mz_triple_init(t_token *head)
 {
-	t_token *tmp;
+	t_token	*tmp;
 	int		i;
 	char	***final;
 
@@ -66,11 +66,10 @@ static char ***mz_triple_init(t_token *head)
 		final[i] = NULL;
 		i--;
 	}
-	// final[i] = NULL;
 	return (final);
 }
 
-void mz_splitter(t_token *head)
+void	mz_splitter(t_token *head)
 {
 	t_token	*tmp;
 	int		len;
@@ -80,13 +79,13 @@ void mz_splitter(t_token *head)
 
 	tmp = head;
 	arr = mz_triple_init(head);
-	j= 0;
+	j = 0;
 	while (tmp)
 	{
 		i = 0;
 		while (tmp && tmp->args && tmp->args[i])
 		{
-			len = ft_strlen(tmp->args[i]);
+			len = ft_strlen_mz(tmp->args[i]);
 			tmp->args[i] = mz_nuller(tmp, i);
 			arr[j] = mz_arr(arr[j], mz_nl_sp(tmp->args[i], '\0', len), NULL, 2);
 			i++;

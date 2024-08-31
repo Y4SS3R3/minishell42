@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_mz.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:34:20 by mzouine           #+#    #+#             */
-/*   Updated: 2024/07/30 16:52:25 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:07:21 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ static int	mz_int_counter(int n)
 	return (counter);
 }
 
-char	*mz_itoa(int n, t_shell *data)
+char	*ft_itoa_mz(int n)
 {
 	int		len;
 	char	*str;
 	int		sign;
 
 	if (n == -2147483648)
-		return (ft_strdup("-2147483648", LOOP, data));
+		return (ft_strdup_mz("-2147483648"));
 	sign = 0;
 	len = mz_int_counter(n);
 	str = malloc(len + 1);

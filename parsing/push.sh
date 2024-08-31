@@ -1,0 +1,1 @@
+git add . && git commit -m "Syntax Error Lekher  a jmi!!" && git push && clear
