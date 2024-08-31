@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:07:31 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/29 22:00:38 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/08/31 22:05:13 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	print_stack_s(t_token *stack)
 {
 	while (stack)
 	{
-		dprintf(2, "%s ", stack->cmd);
+		dprintf(2, "Cmd : [%s]\nArgs : \n", stack->cmd);
+		print_2d_array(stack->args);
 		stack = stack->next;
 	}
 	printf("\n");

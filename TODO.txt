@@ -59,29 +59,5 @@ bash-3.2$ export a+=123
 bash-3.2$ echo $a
 123
 
-
-
-void	append_to_var(char **name, t_shell *data)
-{
-	int		len;
-	char	*tmp;
-	char	*str;
-	int		i;
-
-	i = 0;
-	str = *name;
-	if (data->exapp == 1)
-	{
-		len = ft_strlen(str);
-		tmp = malloc_p(len, data->g_gc, data);
-		dprintf(2, "name 2: [%s]\n", *name);
-		while (str[i] != '+' && str[i])
-		{
-			tmp[i] = str[i];
-			i++;
-		}
-		tmp[i] = 0;
-		dprintf(2, "tmp : [%s]\n", tmp);
-		*name = tmp;
-	}
-}
+bash-3.2$ (&)
+bash: syntax error near unexpected token `&'

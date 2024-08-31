@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:03:11 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/29 01:27:55 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/08/31 23:06:13 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ void	star_checkcmd(t_token *node, t_shell *data)
 	if (cmd)
 	{
 		cmd = node->cmd;
-		if (ft_strchr(node->cmd, '*'))
+		if (ft_strnstr(node->cmd, data->key3, ft_strlen(node->cmd)))
 		{
+			node->cmd = bring_star_back(node->cmd, data->key3, data);
 			entry_content = get_entry_content(node->cmd, data);
 			if (!entry_content)
 				return ;

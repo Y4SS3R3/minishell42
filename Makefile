@@ -6,7 +6,7 @@
 #    By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 09:40:06 by mzouine           #+#    #+#              #
-#    Updated: 2024/08/31 21:23:40 by ymassiou         ###   ########.fr        #
+#    Updated: 2024/08/31 23:00:25 by ymassiou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRC = 	minishell.c \
 		parsing/mz_syntax_err.c \
 		parsing/mz_syntax_err2.c \
 		parsing/ft_itoa.c \
+		execution/wildcard/matching_utils1.c \
 		execution/expanding/expand_utils.c \
 		parsing/mz_syntax_handler.c \
 		parsing/mz_syntax_handler2.c \

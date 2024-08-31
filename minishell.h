@@ -170,6 +170,7 @@ typedef struct s_shell
 	int		free_it;
 	char	*key;
 	char	*key2;
+	char	*key3;
 	int		status;
 	int		exec;
 	int		index;
@@ -465,4 +466,5 @@ int     check_before_special(char *s);
 char    *mz_key_assign2(char *s, char *key);
 void	mz_free_char(char *s);
 t_token	*ft_lstnew_mz(char *cmd);
+char	*bring_star_back(char *input, char *key, t_shell *data);
 #endif
