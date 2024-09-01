@@ -6,30 +6,34 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 22:58:52 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 23:06:27 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/01 01:52:19 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static size_t count_occurrences(char *str, char *sub)
+static size_t	count_occurrences(char *str, char *sub)
 {
-	size_t		count;
-	char		*tmp;
+	size_t	count;
+	char	*tmp;
 
 	count = 0;
 	tmp = str;
-	while ((tmp = ft_strnstr(tmp, sub, ft_strlen(tmp))) != NULL)
+	while (tmp != NULL)
 	{
-		count++;
-		tmp += ft_strlen(sub);
+		tmp = ft_strnstr(tmp, sub, ft_strlen(tmp));
+		if (tmp != NULL)
+		{
+			count++;
+			tmp += ft_strlen(sub);
+		}
 	}
 	return (count);
 }
 
-static void replace_key_with_star(char *dest,  char *src,  char *key)
+static void	replace_key_with_star(char *dest, char *src, char *key)
 {
-	size_t key_len;
+	size_t	key_len;
 
 	key_len = ft_strlen(key);
 	while (*src)

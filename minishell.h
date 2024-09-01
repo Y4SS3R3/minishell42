@@ -467,4 +467,5 @@ char    *mz_key_assign2(char *s, char *key);
 void	mz_free_char(char *s);
 t_token	*ft_lstnew_mz(char *cmd);
 char	*bring_star_back(char *input, char *key, t_shell *data);
+char	*trim_string(char *str, t_shell *data);
 #endif

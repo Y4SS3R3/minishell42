@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:09:13 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 23:55:42 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/01 01:52:53 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ex_join(t_token *node, t_shell *data)
 {
 	int	size;
+
 	if (node->join && node->cmd && node->args && node->args[0])
 	{
 		node->cmd = ft_strjoin(node->cmd, node->args[0], LOOP, data);

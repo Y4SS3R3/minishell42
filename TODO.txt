@@ -68,3 +68,19 @@ bash: '": command not found
 
 whenever you find a closed " (with its equivalent not the one next to it) you just ad nothing to the command
 
+✦ starshell: echo saasdadasdasdadasdas && echo mim
+
+✦ starshell: echo $a | wc -l
+the seconf cmd (wc -l) gets joined
+✦ starshell: echo a && echo b
+Join : [0] Cmd : [echo]
+Args :
+[a]
+Join : [1] Cmd : [&&]
+Args :
+(NULL)
+Join : [1] Cmd : [echo]
+Args :
+[b]
+
+

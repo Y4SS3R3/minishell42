@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:25:12 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 23:06:10 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/01 04:11:31 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,11 @@ void	star_checkargs(t_token *node, t_shell *data)
 	{
 		while (i < size)
 		{
-			if (ft_strnstr(node->args[i], data->key3, ft_strlen(node->args[i])))
+			if (ft_strnstr(node->args[i], data->key3,
+					ft_strlen(node->args[i])))
 			{
-				node->args[i] = bring_star_back(node->args[i], data->key3, data);
+				node->args[i] = bring_star_back(node->args[i],
+						data->key3, data);
 				if (match_args(node, i, &size, data))
 					return ;
 			}
