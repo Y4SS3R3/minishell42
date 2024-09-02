@@ -55,6 +55,12 @@ enum e_token
 # define GLOBAL 13
 # define LOOP 37
 # define MALLOC_FAILURE 16
+# define DUP2_FAILURE 101
+# define DUP_FAILURE 100
+# define OPEN_FAILURE 109
+# define FORK_FAILURE 104
+# define GETCWD_FAILURE 106
+# define PIPE_FAILURE 111
 # define CTRLC_HRDC -13
 
 typedef struct s_token	t_token;
@@ -174,6 +180,7 @@ typedef struct s_shell
 	int		status;
 	int		exec;
 	int		index;
+	int		errno_shell;
 	char	**envp;
 	char	*saved_path;
 	char	*last_arg;
@@ -401,7 +408,7 @@ void	ym_lstadd_back(t_list **lst, t_list *new);
 t_list	*ym_lstlast(t_list *lst);
 void	*which_malloc(int mode, size_t size, t_shell *data);
 int		words_count(const char *s, char c);
-char	*replace_key(char *original, char *to_remove);
+char	*replace_key(char *original, char *to_remove, t_shell *data);
 int		redir_in(t_redir *in, t_shell *data);
 int		heredoc_in(t_shell *data, int *flag, char **file, t_redir *node);
 int		check_empty_str(char *file, t_shell *data);

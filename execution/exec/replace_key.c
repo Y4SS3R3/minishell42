@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 17:12:45 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/29 17:48:26 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:41:10 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	process_string(t_replace_info *info, char *original, char *to_remove)
 	info->result[info->res_i] = '\0';
 }
 
-char	*replace_key(char *original, char *to_remove)
+char	*replace_key(char *original, char *to_remove, t_shell *data)
 {
 	t_replace_info	info;
 	size_t			new_len;
@@ -63,7 +63,7 @@ char	*replace_key(char *original, char *to_remove)
 	if (original == NULL || to_remove == NULL)
 		return (NULL);
 	new_len = ft_strlen(original);
-	info.result = malloc(new_len + 1);
+	info.result = which_malloc(LOOP, new_len + 1, data);
 	if (info.result == NULL)
 		return (NULL);
 	initialize_replace_info(&info, info.result, ft_strlen(to_remove));

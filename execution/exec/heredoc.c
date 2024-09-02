@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:12:48 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 12:25:14 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:40:14 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static char	*bring_sign_back(char *limiter, t_shell *data)
 
 	res = limiter;
 	if (ft_strnstr(limiter, data->key2, ft_strlen(limiter)))
-		res = replace_key(limiter, data->key2);
+		res = replace_key(limiter, data->key2, data);
 	if (ft_strnstr(limiter, data->key, ft_strlen(limiter)))
-		res = replace_key(limiter, data->key);
+		res = replace_key(limiter, data->key, data);
 	return (res);
 }
 

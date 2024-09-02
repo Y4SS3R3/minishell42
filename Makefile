@@ -6,7 +6,7 @@
 #    By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 09:40:06 by mzouine           #+#    #+#              #
-#    Updated: 2024/09/01 04:08:24 by ymassiou         ###   ########.fr        #
+#    Updated: 2024/09/02 13:38:15 by ymassiou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,7 +117,7 @@ SRC = 	minishell.c \
 
 OBJS = $(SRC:%.c=%.o)
 CC = cc
-CFLAGS = -fsanitize=address -ggdb3 -g -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -ggdb3 -g
 RM = rm -f
 HEADER = minishell.h
 RLLIB1 = $(shell brew --prefix readline)/lib

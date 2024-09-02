@@ -11,7 +11,14 @@
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
+static void	malloc_err(t_shell *data)
+{
+	data->free_it = 0;
+	free_command(data, NULL);
+	free_programm(data);
+	data->errno_shell = MALLOC_FAILURE;
+	data->status = 1;
+}
 void	*malloc_p(size_t size, t_trash *gc, t_shell *data)
 {
 	void	*ret;
@@ -20,20 +27,17 @@ void	*malloc_p(size_t size, t_trash *gc, t_shell *data)
 	ret = ft_calloc(size, 1);
 	if (ret == NULL)
 	{
-		data->free_it = 0;
-		free_command(data, NULL);
-		free_programm(data);
-		exit(MALLOC_FAILURE);
+		malloc_err(data);
+		putstr_fd("Malloc failed.\n", 2);
 	}
 	else
 	{
 		new = gc_new(ret, data);
-		if (!new)
+		if (new == NULL)
 		{
-			data->free_it = 0;
-			free_command(data, NULL);
-			free_programm(data);
-			exit(MALLOC_FAILURE);
+			malloc_err(data);
+			putstr_fd("Warning: Appending newly allocated address failed.\n", 2);
+			return (NULL);
 		}
 		gc_add(&gc, new);
 	}

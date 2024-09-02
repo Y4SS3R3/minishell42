@@ -47,6 +47,7 @@ int main(int ac, char **av, char **env)
 	init_shell_1(&data);
 	while ('Y')
 	{
+		data.errno_shell = 0;
 		if (repeat(&data))
 			break;
 	}

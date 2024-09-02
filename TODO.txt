@@ -1,3 +1,4 @@
+///////MZ//////////
 //////BUGS/////////
 bash-3.2$ (&)
 bash: syntax error near unexpected token `&'
@@ -24,6 +25,11 @@ bash: '": command not found
 whenever you find a closed " (with its equivalent not the one next to it) you just ad nothing to the string (add empty string)
 
 
+
+////////YM//////////
 if only if $* ($ next to *) do this:
 FLAG*FLAG   exactly
 
+💡 pop a node when it is freed
+
+void gc_pop(t_shell *data, int mode);

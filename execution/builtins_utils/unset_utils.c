@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:18:44 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 19:50:48 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/02 14:32:11 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ int	check_var(char *input, char **name, t_shell *data)
 	k = i;
 	len = unset_parse_var(input, &i);
 	tmp = malloc_p(len + 1, data->g_gc, data);
+	if (data->errno_shell == MALLOC_FAILURE)
+		return (-1);
 	*name = export_get_name(len, k, input, data);
+	if (*name == NULL && data->errno_shell == MALLOC_FAILURE)
+		return (-1);
 	return (0);
 }

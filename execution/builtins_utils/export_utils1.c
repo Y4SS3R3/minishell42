@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 14:47:45 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 14:51:02 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/02 15:29:49 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*split_var(char *var, t_shell *data)
 	while (var[i] && var[i] != '=')
 		i++;
 	res = malloc_p(i + 1, data->g_gc, data);
+	if (res == NULL)
+		return (NULL);
 	if (res == NULL)
 	{
 		putstr_fd("ERROR IN MALLOC[234]!\n", 2);
@@ -46,6 +48,8 @@ void	search_remove(t_list **haystack, char *needle, t_shell *data)
 	while (curr)
 	{
 		tmp = split_var(curr->s, data);
+		if (tmp == NULL)
+			break ;
 		if (!ft_strcmp(tmp, needle))
 		{
 			remove_token(haystack, curr);
