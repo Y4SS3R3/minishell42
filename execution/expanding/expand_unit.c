@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 11:44:00 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/01 05:54:59 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/02 09:55:09 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,22 @@ static char	*expand_name(char *name, t_shell *data)
 	return (value);
 }
 
-void	expand_append(char **input, char **final, char **tmp, t_shell *data)
+void	append_var_content(char **input,
+	char **final, char **tmp, t_shell *data)
 {
 	int		name_len;
 	char	*name;
 
+	name = NULL;
+	name_len = extract_name(input, tmp, &name, data);
+	if (name_len == 0)
+		*final = ft_strjoin(*final, "$", LOOP, data);
+	else
+		*final = ft_strjoin(*final, expand_name(name, data), LOOP, data);
+}
+
+void	expand_append(char **input, char **final, char **tmp, t_shell *data)
+{
 	if (**input == '?')
 	{
 		*final = ft_strjoin(*final,
@@ -58,13 +69,7 @@ void	expand_append(char **input, char **final, char **tmp, t_shell *data)
 		cpy_incr(input, tmp, final, data);
 	}
 	else
-	{
-		name_len = extract_name(input, tmp, &name, data);
-		if (name_len == 0)
-			*final = ft_strjoin(*final, "$", LOOP, data);
-		else
-			*final = ft_strjoin(*final, expand_name(name, data), LOOP, data);
-	}
+		append_var_content(input, final, tmp, data);
 }
 
 char	*ex_assign(char *input, char *flag, t_shell *data)
