@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 11:44:00 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/29 15:40:28 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/01 05:54:59 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ void	expand_append(char **input, char **final, char **tmp, t_shell *data)
 	{
 		if (**input == '0')
 			*final = ft_strjoin(*final, "bash", LOOP, data);
+		(*input)++;
+		cpy_incr(input, tmp, final, data);
+	}
+	else if (*tmp != *input && **input == '*')
+	{
 		(*input)++;
 		cpy_incr(input, tmp, final, data);
 	}

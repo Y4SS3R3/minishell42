@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:31:33 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 19:33:26 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/01 04:31:36 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	cd_home(t_shell *data)
 
 	home = search_fetch_add(data->envp, "HOME", data);
 	if (home == NULL)
-		return (putstr_fd("bash: cd: HOME not set\n", 2), 1);
+		return (putstr_fd("starshell: cd: HOME not set\n", 2), 1);
 	else
 	{
 		if (chdir(home + 5))

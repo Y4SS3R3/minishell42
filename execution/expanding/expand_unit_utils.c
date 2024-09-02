@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 14:29:56 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/27 19:35:18 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/01 05:40:09 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	get_len(char *str, char *milestone)
 
 	i = 0;
 	while (&str[i] != milestone)
+	{
+		dprintf(2, "i++\n");
 		i++;
+	}
 	return (i);
 }
 
