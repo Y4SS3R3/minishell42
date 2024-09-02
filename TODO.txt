@@ -18,12 +18,15 @@ Join : [1] Cmd : [echo]
 Args :
 [b]
 //////ADD/////////
-bash-3.2$ "'"'"'""
+bash-3.2$ ''"'"
 bash: '": command not found
 
-whenever you find a closed " (with its equivalent not the one next to it) you just ad nothing to the string (add empty string)
+whenever you find a closed " (with its equivalent not the one next to it) you just add nothing to the string (add empty string)
 
 
 if only if $* ($ next to *) do this:
 FLAG*FLAG   exactly
-
+|
+V
+you will do it
+  
