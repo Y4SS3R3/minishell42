@@ -6,7 +6,7 @@
 #    By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 09:40:06 by mzouine           #+#    #+#              #
-#    Updated: 2024/09/02 13:38:15 by ymassiou         ###   ########.fr        #
+#    Updated: 2024/09/02 22:19:14 by ymassiou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRC = 	minishell.c \
 		execution/general_utils/utils3.c \
 		execution/exec/cmd_redirs.c \
 		parsing/env_parse.c \
+		execution/expanding/remove_quotes.c \
 		parsing/mz_splitter.c \
 		execution/expanding/ex_hec_key1.c \
 		parsing/mz_make_redi.c \

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
 static void	malloc_err(t_shell *data)
 {
 	data->free_it = 0;

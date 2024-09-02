@@ -6,40 +6,40 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 15:41:57 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/29 15:40:28 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/02 22:18:54 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static char	*new_str(int index, char *input, t_shell *data)
-{
-	int		j;
-	char	*res;
-	int		len;
+// static char	*new_str(int index, char *input, t_shell *data)
+// {
+// 	int		j;
+// 	char	*res;
+// 	int		len;
 
-	j = index;
-	len = 0;
-	while (input[index] != 0)
-	{
-		index++;
-		len++;
-	}
-	if (ft_strlen(input) && (input[index - 1] == '"'
-			|| input[index - 1] == '\''))
-		len--;
-	res = malloc_p(len + 1, data->l_gc, data);
-	index = j;
-	j = 0;
-	while (j < len)
-	{
-		res[j] = input[index];
-		j++;
-		index++;
-	}
-	res[j] = 0;
-	return (res);
-}
+// 	j = index;
+// 	len = 0;
+// 	while (input[index] != 0)
+// 	{
+// 		index++;
+// 		len++;
+// 	}
+// 	if (ft_strlen(input) && (input[index - 1] == '"'
+// 			|| input[index - 1] == '\''))
+// 		len--;
+// 	res = malloc_p(len + 1, data->l_gc, data);
+// 	index = j;
+// 	j = 0;
+// 	while (j < len)
+// 	{
+// 		res[j] = input[index];
+// 		j++;
+// 		index++;
+// 	}
+// 	res[j] = 0;
+// 	return (res);
+// }
 
 int	check_for_quotes(char *str)
 {
@@ -55,18 +55,6 @@ int	check_for_quotes(char *str)
 	if ((first == '\'' && last == '\'') || (first == '"' && last == '"'))
 		return (1);
 	return (0);
-}
-
-char	*remove_quotes(char *input, t_shell *data)
-{
-	int	i;
-
-	i = 0;
-	if (!check_for_quotes(input))
-		return (ft_strdup(input, LOOP, data));
-	if (input[i] == '"' || input[i] == '\'')
-		i++;
-	return (new_str(i, input, data));
 }
 
 void	ex_remove_quotes(t_token *node, t_shell *data)
