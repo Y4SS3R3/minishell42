@@ -22,7 +22,11 @@ int	pwd(t_shell *data)
 		s = getcwd(NULL, 0);
 		gc_add(&data->l_gc, gc_new(s, data));
 		if (!s)
-			putstr_fd("var not found!\n", 2);
+		{
+			perror("pwd: error retrieving current directory: getcwd: cannot access parent directories");
+			return (1);
+		}
+			// putstr_fd("var not found!\n", 2);
 		else
 			printf("%s\n", s);
 		return (0);
@@ -31,3 +35,4 @@ int	pwd(t_shell *data)
 	printf("%s\n", s);
 	return (0);
 }
+//  No such file or directory

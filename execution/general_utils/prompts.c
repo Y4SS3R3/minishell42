@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:04:41 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/01 05:51:34 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:54:32 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	prompt_execution(t_shell *data, char *rl)
 	data->key3 = ft_itoa(key / 3, LOOP, data);
 	rl = mz_key_assign2(rl, data->key3);
 	infix = mz_parser(rl);
-	print_stack_s(infix);
 	if (infix != NULL)
 	{
 		data->fds = generate_heredoc(infix, data);

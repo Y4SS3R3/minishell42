@@ -15,3 +15,22 @@ Ret : [l'""'s]
 Ret : [l']
 >> '""'"'s"
 Ret : [""'s]
+
+✦ starshell: echo a > $dsfdsf
+starshell: ambiguous redirect
+✦ starshell: echo a > *
+starshell: ambiguous redirect
+FD LEAKS
+
+
+UNSET EVERYTHING => cd .. => PWD not found
+
+✦ starshell: << *
+> *
+
+
+✦ starshell: <''
+starshell: <: command not found
+
+✦ starshell:  < ''
+starshell: syntax error (i added space before of <)
