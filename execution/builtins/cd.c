@@ -14,14 +14,10 @@
 
 int	cd(int ac, char **av, t_shell *data)
 {
-	char	*tmp;
 	char	*oldpwd;
 
 	oldpwd = getcwd(NULL, 0);
 	gc_add(&data->l_gc, gc_new(oldpwd, data));
-	tmp = get_var("PWD", data);
-	if (tmp)
-		data->saved_path = tmp;
 	if (ac == 0)
 		return (cd_home(data));
 	else

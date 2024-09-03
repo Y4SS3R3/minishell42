@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:12:48 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/02 13:40:14 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:49:12 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	heredoc(char *limiter, t_fd *node, t_shell *data)
 
 	fd = dup(0);
 	tmp = limiter;
-	limiter = remove_quotes(limiter, data);
+	limiter = remove_quotes(limiter, data, -1, -1);
 	if (!ft_strcmp(tmp, limiter))
 		node->ex_flag = 1;
 	limiter = bring_sign_back(limiter, data);

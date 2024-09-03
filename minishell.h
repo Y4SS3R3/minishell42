@@ -337,7 +337,7 @@ int		mz_strchr(const char *s, char c);
 size_t	mz_strlcpy(char *dst, char *src, size_t dstsize);
 char	*ex_key_2_assign(char *s, char *key_s, t_shell *data);
 char	*ex_assign(char *str, char *flag, t_shell *data);
-char	*remove_quotes(char *input, t_shell *data);
+char	*remove_quotes(char *input, t_shell *data, int rem1, int rem2);
 char	**ym_arr_in(t_arr *info, int *size, t_shell *data);
 char	**ym_arr_rem(char **array, int index, int *size, t_shell *data);
 void	free_list(t_list *head);

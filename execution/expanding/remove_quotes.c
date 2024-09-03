@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:12:47 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/02 22:50:16 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:49:53 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,36 +51,23 @@ int	get_switch_value(int c)
 	return (switch_f);
 }
 
-void	rq_util(int *i, char *input, int *switch_f, int *rem1)
-{
-	*switch_f = get_switch_value(input[*i]);
-	*rem1 = *i;
-	(*i)++;
-}
-void	rq_util1(int *i, int *rem1, int *rem2)
-{
-	*i = 0;
-	*rem1 = -1;
-	*rem2 = -1;
-}
-
-char	*remove_quotes(char *input, t_shell *data)
+char	*remove_quotes(char *input, t_shell *data, int rem1, int rem2)
 {
 	int	len;
 	int	i;
-	int	rem1;
-	int	rem2;
 	int	switch_f;
 
 	len = ft_strlen(input);
-	rq_util1(&i, &rem1, &rem2);
-	while (input[i])
+	i = -1;
+	while (input[++i])
 	{
 		switch_f = 0;
 		len = ft_strlen(input);
 		if (input[i] == '"' || input[i] == '\'')
 		{
-			rq_util(&i, input, &switch_f, &rem1);
+			switch_f = get_switch_value(input[i]);
+			rem1 = i;
+			i++;
 			while (input[i])
 			{
 				if (input[i] == switch_f)
@@ -95,7 +82,6 @@ char	*remove_quotes(char *input, t_shell *data)
 				i++;
 			}
 		}
-		i++;
 	}
 	return (input);
 }

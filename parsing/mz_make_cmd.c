@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_make_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:46:12 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/02 17:48:21 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/03 17:39:05 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	mz_make_cmd(t_token **list, t_list **head)
 		while ((*head) && (*head)->nature == 32)
 		{
 			(*head) = (*head)->next;
-			(*list)->join = 0;
+			new->join = 0;
 		}
 		if ((*head) && (*head)->nature == -1)
 			mz_simple(new, head);
