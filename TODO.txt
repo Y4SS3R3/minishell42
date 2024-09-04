@@ -16,14 +16,8 @@ Ret : [l']
 >> '""'"'s"
 Ret : [""'s]
 
-echo a > $dsfdsf > *
->>>> msg not displayed
-
 
 UNSET EVERYTHING => cd .. => PWD not found
-
-✦ starshell: << *
-> *
 
 
 ✦ starshell: <''
