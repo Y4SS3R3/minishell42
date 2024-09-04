@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 15:41:57 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/03 16:49:41 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:11:49 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,22 @@ void	ex_remove_quotes(t_token *node, t_shell *data)
 	t_redir	*after;
 
 	i = 0;
-	node->cmd = remove_quotes(node->cmd, data, -1 , -1);
+	node->cmd = remove_quotes(node->cmd, data);
 	before = node->before;
 	after = node->after;
 	while (node->args && node->args[i])
 	{
-		node->args[i] = remove_quotes(node->args[i], data, -1, -1);
+		node->args[i] = remove_quotes(node->args[i], data);
 		i++;
 	}
 	while (before)
 	{
-		before->file = remove_quotes(before->file, data, -1, -1);
+		before->file = remove_quotes(before->file, data);
 		before = before->next;
 	}
 	while (after)
 	{
-		after->file = remove_quotes(after->file, data, -1, -1);
+		after->file = remove_quotes(after->file, data);
 		after = after->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:59:52 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/01 00:29:50 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:31:55 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*join_chdir(char *currpwd, char *path, t_shell *data)
 {
 	putstr_fd("cd: error retrieving current directory: ", 2);
 	putstr_fd("getcwd: cannot access ", 2);
-	putstr_fd("parent directories: No such file or directory X\n", 2);
+	putstr_fd("parent directories: No such file or directory\n", 2);
 	currpwd = ft_strjoin(currpwd, path, LOOP, data);
 	chdir(currpwd);
 	return (currpwd);

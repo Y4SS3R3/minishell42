@@ -6,7 +6,7 @@
 #    By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 09:40:06 by mzouine           #+#    #+#              #
-#    Updated: 2024/09/02 22:19:14 by ymassiou         ###   ########.fr        #
+#    Updated: 2024/09/04 17:25:21 by ymassiou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,6 +92,7 @@ SRC = 	minishell.c \
 		execution/expanding/expand_cmd.c \
 		execution/exec/heredoc1.c \
 		execution/exec/exec_utils2.c \
+		execution/expanding/remove_quotes_utils.c \
 		execution/builtins_utils/export_utils3.c \
 		execution/exec/heredoc2.c \
 		execution/exec/cmd_redirs_utils.c \

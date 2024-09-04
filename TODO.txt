@@ -1,4 +1,3 @@
-///////MZ//////////
 ////////YM//////////
 if only if $* ($ next to *) do this:
 FLAG*FLAG   exactly
@@ -17,9 +16,10 @@ Ret : [l']
 Ret : [""'s]
 
 
-UNSET EVERYTHING => cd .. => PWD not found
+UNSET EVERYTHING => cd .. => PWD not found     unset PWD PATH _ SHLVL
 
 
+///////MZ//////////
 ✦ starshell: <''
 starshell: <: command not found
 

@@ -180,6 +180,8 @@ typedef struct s_shell
 	int		status;
 	int		exec;
 	int		index;
+	int		rem1;
+	int		rem2;
 	int		errno_shell;
 	char	**envp;
 	char	*saved_path;
@@ -337,7 +339,7 @@ int		mz_strchr(const char *s, char c);
 size_t	mz_strlcpy(char *dst, char *src, size_t dstsize);
 char	*ex_key_2_assign(char *s, char *key_s, t_shell *data);
 char	*ex_assign(char *str, char *flag, t_shell *data);
-char	*remove_quotes(char *input, t_shell *data, int rem1, int rem2);
+char	*remove_quotes(char *input, t_shell *data);
 char	**ym_arr_in(t_arr *info, int *size, t_shell *data);
 char	**ym_arr_rem(char **array, int index, int *size, t_shell *data);
 void	free_list(t_list *head);
@@ -475,4 +477,6 @@ void	mz_free_char(char *s);
 t_token	*ft_lstnew_mz(char *cmd);
 char	*bring_star_back(char *input, char *key, t_shell *data);
 char	*trim_string(char *str, t_shell *data);
+char	*remove_charindex(char *src, int i1, int i2, t_shell *data);
+int		get_switch_value(int c);
 #endif
