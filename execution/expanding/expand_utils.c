@@ -6,11 +6,24 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 15:41:57 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/04 20:19:14 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/04 20:30:02 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	ft_strcpy(char *dst, const char *src)
+{
+	size_t	i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+}
 
 int	check_for_quotes(char *str)
 {
@@ -28,7 +41,8 @@ int	check_for_quotes(char *str)
 	return (0);
 }
 
-void	generate_find_replace(char **to_find, char **replace_with, char *key, t_shell *data)
+void	generate_find_replace(char **to_find,
+	char **replace_with, char *key, t_shell *data)
 {
 	*to_find = ft_strjoin(*to_find, key, LOOP, data);
 	*to_find = ft_strjoin(*to_find, key, LOOP, data);
