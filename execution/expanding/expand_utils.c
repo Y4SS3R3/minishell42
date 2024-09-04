@@ -6,40 +6,11 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 15:41:57 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/04 17:11:49 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/04 20:19:14 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-// static char	*new_str(int index, char *input, t_shell *data)
-// {
-// 	int		j;
-// 	char	*res;
-// 	int		len;
-
-// 	j = index;
-// 	len = 0;
-// 	while (input[index] != 0)
-// 	{
-// 		index++;
-// 		len++;
-// 	}
-// 	if (ft_strlen(input) && (input[index - 1] == '"'
-// 			|| input[index - 1] == '\''))
-// 		len--;
-// 	res = malloc_p(len + 1, data->l_gc, data);
-// 	index = j;
-// 	j = 0;
-// 	while (j < len)
-// 	{
-// 		res[j] = input[index];
-// 		j++;
-// 		index++;
-// 	}
-// 	res[j] = 0;
-// 	return (res);
-// }
 
 int	check_for_quotes(char *str)
 {
@@ -57,6 +28,38 @@ int	check_for_quotes(char *str)
 	return (0);
 }
 
+void	generate_find_replace(char **to_find, char **replace_with, char *key, t_shell *data)
+{
+	*to_find = ft_strjoin(*to_find, key, LOOP, data);
+	*to_find = ft_strjoin(*to_find, key, LOOP, data);
+	*to_find = ft_strjoin(*to_find, data->key3, LOOP, data);
+	*replace_with = ft_strjoin(*replace_with, key, LOOP, data);
+	*replace_with = ft_strjoin(*replace_with, "*", LOOP, data);
+	*replace_with = ft_strjoin(*replace_with, key, LOOP, data);
+}
+
+char	*star_check(char *input, t_shell *data)
+{
+	char	*to_find;
+	char	*replace_with;
+
+	to_find = NULL;
+	replace_with = NULL;
+	generate_find_replace(&to_find, &replace_with, data->key2, data);
+	input = remove_quotes(input, data);
+	input = find_replace(input, to_find, replace_with, data);
+	to_find = NULL;
+	replace_with = NULL;
+	to_find = ft_strjoin(to_find, data->key, LOOP, data);
+	to_find = ft_strjoin(to_find, data->key, LOOP, data);
+	to_find = ft_strjoin(to_find, "*", LOOP, data);
+	replace_with = ft_strjoin(replace_with, data->key, LOOP, data);
+	replace_with = ft_strjoin(replace_with, "*", LOOP, data);
+	replace_with = ft_strjoin(replace_with, data->key, LOOP, data);
+	input = find_replace(input, to_find, replace_with, data);
+	return (input);
+}
+
 void	ex_remove_quotes(t_token *node, t_shell *data)
 {
 	int		i;
@@ -64,22 +67,22 @@ void	ex_remove_quotes(t_token *node, t_shell *data)
 	t_redir	*after;
 
 	i = 0;
-	node->cmd = remove_quotes(node->cmd, data);
+	node->cmd = star_check(node->cmd, data);
 	before = node->before;
 	after = node->after;
 	while (node->args && node->args[i])
 	{
-		node->args[i] = remove_quotes(node->args[i], data);
+		node->args[i] = star_check(node->args[i], data);
 		i++;
 	}
 	while (before)
 	{
-		before->file = remove_quotes(before->file, data);
+		before->file = star_check(before->file, data);
 		before = before->next;
 	}
 	while (after)
 	{
-		after->file = remove_quotes(after->file, data);
+		after->file = star_check(after->file, data);
 		after = after->next;
 	}
 }

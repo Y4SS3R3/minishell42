@@ -6,16 +6,6 @@ FLAG*FLAG   exactly
 V
 you will do it
 
-///////// just a save not a thing to handle or smtg
-
->> "l'"'""'"'s"
-Ret : [l'""'s]
->> "l'"
-Ret : [l']
->> '""'"'s"
-Ret : [""'s]
-
-
 UNSET EVERYTHING => cd .. => PWD not found     unset PWD PATH _ SHLVL
 
 
@@ -25,3 +15,9 @@ starshell: <: command not found
 
 ✦ starshell:  < ''
 starshell: syntax error (i added space before of <)
+
+
+
+echo > "$r"
+
+ls > "$r" > *

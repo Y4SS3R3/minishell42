@@ -6,7 +6,7 @@
 #    By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 09:40:06 by mzouine           #+#    #+#              #
-#    Updated: 2024/09/04 17:25:21 by ymassiou         ###   ########.fr        #
+#    Updated: 2024/09/04 19:50:44 by ymassiou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC = 	minishell.c \
 		parsing/lexer_utils1.c \
 		parsing/lexer_utils2.c \
 		execution/gc/gc_utils.c \
+		execution/expanding/find_replace.c \
 		parsing/mz_make_special.c\
 		execution/builtins_utils/cd_utils.c\
 		execution/builtins/pwd.c \

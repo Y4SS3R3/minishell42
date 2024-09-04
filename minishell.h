@@ -179,6 +179,7 @@ typedef struct s_shell
 	char	*key3;
 	int		status;
 	int		exec;
+	int		show_err;
 	int		index;
 	int		rem1;
 	int		rem2;
@@ -221,7 +222,6 @@ char	*ft_strjoin(char const *s1, char const *s2, int mode, t_shell *data);
 void	check_env(t_shell *data);
 char	**ft_split(char *s, char c, int mode, t_shell *data);
 void	check_potential_path(t_shell *data);
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *b, int c, size_t len);
@@ -479,4 +479,7 @@ char	*bring_star_back(char *input, char *key, t_shell *data);
 char	*trim_string(char *str, t_shell *data);
 char	*remove_charindex(char *src, int i1, int i2, t_shell *data);
 int		get_switch_value(int c);
+char	*find_replace(char *s1, char *s2, char *s3, t_shell *data);
+void	ft_strcpy(char *dst, const char *src);
+void	generate_find_replace(char **to_find, char **replace_with, char *key, t_shell *data);
 #endif

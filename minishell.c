@@ -18,6 +18,7 @@ static int	repeat(t_shell *data)
 	char	*line;
 
 	data->exec = 1;
+	data->show_err = 0;
 	data->free_it = 1;
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, ctrl_c);

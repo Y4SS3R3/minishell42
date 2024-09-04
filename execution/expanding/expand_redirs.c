@@ -6,12 +6,11 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:53:08 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 12:59:01 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/04 20:07:12 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-#include <stdio.h>
 
 int	check_empty_str(char *file, t_shell *data)
 {
@@ -19,6 +18,7 @@ int	check_empty_str(char *file, t_shell *data)
 	{
 		putstr_fd("starshell: : No such file or directory\n", 2);
 		data->status = 1;
+		data->show_err = 1;
 		return (-2);
 	}
 	return (0);
