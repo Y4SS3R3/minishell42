@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 13:20:10 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 22:03:05 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/04 15:53:04 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	redir_exec(t_token *root, t_shell *data)
 	{
 		if (ft_expand(root, data) < 0)
 		{
-			putstr_fd("starshell: ambiguous redirect\n", 2);
+			putstr_fd("starshell: ambiguous redirect 1\n", 2);
 			return ;
 		}
 	}

@@ -80,6 +80,5 @@ int main(int ac, char **av)
 		rl = readline(">> ");
 		if (!rl || *rl == ' ')
 			break ;
-		dprintf(2, "Ret : [%s]\n", remove_quotes_s(rl));
 	}
 }

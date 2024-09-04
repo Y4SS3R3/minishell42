@@ -16,11 +16,8 @@ Ret : [l']
 >> '""'"'s"
 Ret : [""'s]
 
-✦ starshell: echo a > $dsfdsf
-starshell: ambiguous redirect
-✦ starshell: echo a > *
-starshell: ambiguous redirect
-FD LEAKS
+echo a > $dsfdsf > *
+>>>> msg not displayed
 
 
 UNSET EVERYTHING => cd .. => PWD not found

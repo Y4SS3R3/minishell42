@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 15:24:58 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/01 04:10:54 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:13:32 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ void	handle_builtin(t_token *root, t_shell *data)
 	def_in = dup(0);
 	def_out = dup(1);
 	if (expand(root, data))
+	{
+		close(def_in);
+		close(def_out);
 		return ;
+	}
 	if (redirs(root, data) == 0)
 		data->status = execute_builtin(root, data);
 	dup2(def_in, 0);

@@ -89,7 +89,7 @@ static void	ft_expand_in_cmd(t_token *token, t_shell *data)
 	if (ret != 0)
 	{
 		if (ret != -2)
-			putstr_fd("starshell: ambiguous redirect\n", 2);
+			putstr_fd("starshell: ambiguous redirect 2\n", 2);
 		exit(1);
 	}
 }
