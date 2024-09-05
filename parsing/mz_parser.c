@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 15:54:01 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/05 16:19:35 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/05 16:25:29 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,12 @@ t_token	*mz_parser(char *s, int *status)
 	t_list	*head;
 	t_token	*list;
 
-	if (mz_syntax_err(s) == 1 && mz_syntax_err2(s) == 1)
+	if (mz_syntax_err(s) == 1)
+	{
+		(*status) = 258;
+		return (NULL);
+	}
+	if (mz_syntax_err2(s) == 1)
 	{
 		(*status) = 258;
 		return (NULL);
