@@ -361,7 +361,6 @@ void	init_shell_1(t_shell *data);
 t_trash	*init_l_gc(t_shell *data);
 void	init_path(t_shell *data);
 char	*prompt_user(t_shell *data);
-void	prompt_execution(t_shell *data, char *rl);
 int		prompt_manage(t_shell *data, char *rl);
 void	free_programm(t_shell *data);
 void	free_command(t_shell *data, char *line);

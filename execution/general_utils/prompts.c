@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:04:41 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/05 16:20:02 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/05 17:20:53 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,8 @@ char	*prompt_user(t_shell *data)
 	return (rl);
 }
 
-void	prompt_execution(t_shell *data, char *rl)
+static void	check_syntaxe_err(int status, t_token *infix, t_shell *data)
 {
-	t_token	*infix;
-	int		key;
-	int		status;
-
-	status = 0;
-	add_history(rl);
-	key = mz_key_assign(&rl);
-	data->key = ft_itoa(key, LOOP, data);
-	data->key2 = ft_itoa(key / 2, LOOP, data);
-	data->key3 = ft_itoa(key / 3, LOOP, data);
-	rl = mz_key_assign2(rl, data->key3);
-	infix = mz_parser(rl, &status);
 	if (status)
 		data->status = status;
 	else
@@ -58,6 +46,23 @@ void	prompt_execution(t_shell *data, char *rl)
 			}
 		}
 	}
+}
+
+static void	prompt_execution(t_shell *data, char *rl)
+{
+	t_token	*infix;
+	int		key;
+	int		status;
+
+	status = 0;
+	add_history(rl);
+	key = mz_key_assign(&rl);
+	data->key = ft_itoa(key, LOOP, data);
+	data->key2 = ft_itoa(key / 2, LOOP, data);
+	data->key3 = ft_itoa(key / 3, LOOP, data);
+	rl = mz_key_assign2(rl, data->key3);
+	infix = mz_parser(rl, &status);
+	check_syntaxe_err(status, infix, data);
 	free_token(infix);
 }
 
