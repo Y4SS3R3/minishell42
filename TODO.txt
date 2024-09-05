@@ -1,23 +1,13 @@
 ////////YM//////////
-if only if $* ($ next to *) do this:
-FLAG*FLAG   exactly
-
-|
-V
-you will do it
-
-UNSET EVERYTHING => cd .. => PWD not found     unset PWD PATH _ SHLVL
-
-
 ///////MZ//////////
-✦ starshell: <''
-starshell: <: command not found
-
 ✦ starshell:  < ''
 starshell: syntax error (i added space before of <)
 
+bash-3.2$  a && b || (c || d) >>> not a syntaxe error
+bash: a: command not found
+bash: c: command not found
+bash: d: command not found
+
+(ls) > a >>>> not a syntaxe error
 
 
-echo > "$r"
-
-ls > "$r" > *

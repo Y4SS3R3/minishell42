@@ -1,7 +1,7 @@
 $echo bonjour > test\ 1
 
-echo 2 >> out1 > out2  
-echo 2 > out1 >> out2   
+echo 2 >> out1 > out2
+echo 2 > out1 >> out2
 cat < test
 
 
@@ -58,7 +58,7 @@ cat < test
  echo '$HOME' //////////////////////////////////////////////////////////////////////////////////
  export ; env # display is different for both commands
  echo $HOME
- > log echo coucou 
+ > log echo coucou
  echo hudifg d | | hugdfihd
  echo
  echo simple
@@ -194,3 +194,5 @@ PWDD=
 PWD=/Users/sfellahi
 OLDPWD=/Users/sfellahi/Desktop
 // pwd and oldpwd should not be added
+
+$""

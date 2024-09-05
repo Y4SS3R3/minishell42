@@ -1,0 +1,11 @@
+Makefile
+TODO.txt
+a
+a.out
+execution
+minishell
+minishell.c
+minishell.h
+minishell.o
+parsing
+test.c

@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 15:54:01 by mzouine           #+#    #+#             */
-/*   Updated: 2024/08/31 21:31:27 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/05 11:26:28 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_token	*mz_parser(char *s)
 		return (NULL);
 	if (mz_syntax_err2(s) == 1)
 		return (NULL);
-	s = mz_joiner(s);
+	// s = mz_joiner(s);
 	head = mz_first_scan(s);
 	if (mz_syntax_handler(head) == -1)
 		return (NULL);
