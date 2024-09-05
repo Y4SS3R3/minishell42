@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 17:00:04 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 12:13:35 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/05 17:34:35 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,31 @@ void	assign_hdc(t_fd *fds, t_token *infix)
 	}
 }
 
+static void	count_heredoc(t_token *infix)
+{
+	int	count;
+
+	count = 0;
+	while (infix)
+	{
+		if (!ft_strcmp(infix->cmd, "<<"))
+			count++;
+		infix = infix->next;
+	}
+	if (count > 16)
+	{
+		putstr_fd("starshell: maximum here-document count exceeded\n", 2);
+		exit(2);
+	}
+}
+
 t_fd	*generate_heredoc(t_token *infix, t_shell *data)
 {
 	t_fd	*head;
 	t_fd	*new;
 
 	head = NULL;
+	count_heredoc(infix);
 	while (infix)
 	{
 		if (!ft_strcmp(infix->cmd, "<<"))

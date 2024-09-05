@@ -1,13 +1,4 @@
 ////////YM//////////
+<< 1 << 2 << 3 << 4 << 5 << 6 << 7 << 8 << 9 << 10 << 11 << 12 << 13 << 14 << 15 << 16
+starshell: maximum here-document count exceeded
 ///////MZ//////////
-✦ starshell:  < ''
-starshell: syntax error (i added space before of <)
-
-bash-3.2$  a && b || (c || d) >>> not a syntaxe error
-bash: a: command not found
-bash: c: command not found
-bash: d: command not found
-
-(ls) > a >>>> not a syntaxe error
-
-
