@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_syntax_bfr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:32:36 by mzouine           #+#    #+#             */
-/*   Updated: 2024/08/31 21:13:44 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:50:49 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ int	check_before_special(char *s)
 		flag = mz_flag2(s[i], flag);
 		if (flag == 0 && ((s[i] == '|') || (s[i] == '&' && s[i+1] == '&')))
 		{
-			j = i - 1;
-			i++;
+			j = i++ - 1;
 			if (s[i] == '|' || s[i] == '&')
 				i++;
 			while (j > 0 && s[j] == ' ')
