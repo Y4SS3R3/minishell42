@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mz_syntax_bfr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:32:36 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/05 15:53:53 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:58:23 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 static int	mz_flag2(char c, int flag)
 {
@@ -93,7 +93,7 @@ int	check_before_special(char *s)
 				i++;
 			while (j > 0 && s[j] == ' ')
 				j--;
-			if (j <= 0)
+			if (j < 0)
 				return (1);
 			if (mz_is_forb(s, j, 1) == 1)
 				return (1);
