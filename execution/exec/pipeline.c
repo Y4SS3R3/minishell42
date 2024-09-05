@@ -36,12 +36,10 @@ int	pipe_line(t_token *token, t_shell *data)
 {
 	int	p_fd[2];
 	int	pid1;
-	int	pid2;
 	int	tmp;
 
 	data->index++;
 	pid1 = -111;
-	pid2 = -111;
 	if (pipe(p_fd) == -1)
 		return (putstr_fd("ERROR IN PIPE OPENING[01]", 2), -1);
 	data->to_close = p_fd[READ];

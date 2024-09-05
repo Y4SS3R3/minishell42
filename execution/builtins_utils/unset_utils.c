@@ -74,13 +74,10 @@ static int	check_unwanted_char(char *input)
 int	check_var(char *input, char **name, t_shell *data)
 {
 	int		i;
-	int		j;
 	int		k;
 	int		len;
-	char	*tmp;
 
 	i = 0;
-	j = 0;
 	while (input[i] && input[i] != '='
 		&& !(input[i] != '\'' && input[i] != '\"'))
 		i++;
@@ -88,7 +85,6 @@ int	check_var(char *input, char **name, t_shell *data)
 		return (1);
 	k = i;
 	len = unset_parse_var(input, &i);
-	tmp = malloc_p(len + 1, data->g_gc, data);
 	if (data->errno_shell == MALLOC_FAILURE)
 		return (-1);
 	*name = export_get_name(len, k, input, data);

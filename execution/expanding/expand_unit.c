@@ -74,11 +74,9 @@ void	expand_append(char **input, char **final, char **tmp, t_shell *data)
 
 char	*ex_assign(char *input, char *flag, t_shell *data)
 {
-	int		i;
 	char	*final;
 	char	*tmp;
 
-	i = 0;
 	final = NULL;
 	while (input && *input)
 	{

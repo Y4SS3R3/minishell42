@@ -90,10 +90,8 @@ static void	mz_simple(t_token *list, t_list **head)
 
 void	mz_make_redi(t_token **list, t_list **head)
 {
-	char	*s;
 	t_token	*new;
 
-	s = NULL;
 	new = ft_lstnew_mz((*head)->s);
 	ft_lstadd_back(list, new, NULL);
 	new->nature = (*head)->nature;
