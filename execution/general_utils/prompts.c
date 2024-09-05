@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:04:41 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/05 15:30:37 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:20:02 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,30 @@ void	prompt_execution(t_shell *data, char *rl)
 {
 	t_token	*infix;
 	int		key;
+	int		status;
 
+	status = 0;
 	add_history(rl);
 	key = mz_key_assign(&rl);
 	data->key = ft_itoa(key, LOOP, data);
 	data->key2 = ft_itoa(key / 2, LOOP, data);
 	data->key3 = ft_itoa(key / 3, LOOP, data);
 	rl = mz_key_assign2(rl, data->key3);
-	infix = mz_parser(rl);
-	if (infix != NULL)
+	infix = mz_parser(rl, &status);
+	if (status)
+		data->status = status;
+	else
 	{
-		data->fds = generate_heredoc(infix, data);
-		if (data->exec)
+		if (infix != NULL)
 		{
-			assign_hdc(data->fds, infix);
-			data->the_tree = NULL;
-			data->the_tree = ft_tree(&infix, data);
-			dfs_tree(data->the_tree, data);
+			data->fds = generate_heredoc(infix, data);
+			if (data->exec)
+			{
+				assign_hdc(data->fds, infix);
+				data->the_tree = NULL;
+				data->the_tree = ft_tree(&infix, data);
+				dfs_tree(data->the_tree, data);
+			}
 		}
 	}
 	free_token(infix);
