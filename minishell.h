@@ -436,7 +436,6 @@ char	*ft_substr_mz(char const *s, unsigned int start, size_t len);
 t_list	*mz_lstnew_mz(char *content);
 void	mz_lstadd_back(t_list **lst, t_list *new);
 t_list	*mz_lstlast(t_list *lst);
-t_token	*mz_parser(char *s);
 int		mz_is_space(char c);
 int		mz_is_special(char c);
 int		make_space_nd(t_list **head, char *s, int i);
