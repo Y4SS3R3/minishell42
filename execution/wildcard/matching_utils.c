@@ -79,7 +79,7 @@ void	alpha_sort(char **arr, int size)
 		j = 0;
 		while (j < size - i - 1)
 		{
-			if (ft_strcmp(arr[j], arr[j + 1]) < 0
+			if (ft_strcmp(arr[j], arr[j + 1]) != 0
 				|| (arr[j][0] >= 'a' && arr[j][0] <= 'z' &&
 				arr[j + 1][0] >= 'A' && arr[j + 1][0] <= 'Z'))
 			{

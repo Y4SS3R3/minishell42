@@ -84,10 +84,8 @@ int	export_parse_name(char *tmp)
 int	check_get_len(char *input, int *i, char **val, t_shell *data)
 {
 	int	len;
-	int	j;
 
 	len = 0;
-	j = 0;
 	if (!input[*i])
 	{
 		data->add_equal = 0;

@@ -88,12 +88,10 @@ char	*export_get_val(char *input, int k, int len, t_shell *data)
 int	parse_var(char *input, char **val, char **name, t_shell *data)
 {
 	int	i;
-	int	j;
 	int	k;
 	int	len;
 
 	i = 0;
-	j = 0;
 	i = skip_var_name(input);
 	if (i == -1)
 		return (1);

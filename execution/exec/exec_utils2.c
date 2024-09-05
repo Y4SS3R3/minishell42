@@ -53,12 +53,8 @@ void	update_status(t_shell *data)
 
 void	check_ifdir(t_token *token)
 {
-	char	*tmp;
 	DIR		*ret;
-	int		i;
 
-	tmp = token->cmd;
-	i = 0;
 	ret = opendir(token->cmd);
 	if (ret)
 	{

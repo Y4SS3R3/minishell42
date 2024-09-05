@@ -15,11 +15,9 @@
 static char	**initialize_result(t_arr *info, int len1, int len2, t_shell *data)
 {
 	int		index;
-	char	**host;
 	char	**result;
 
 	index = info->index;
-	host = info->old_arr;
 	if (index <= 0)
 		index = 0;
 	if (index > len1)

@@ -14,10 +14,8 @@
 
 void	mz_make_special(t_token **list, t_list **head)
 {
-	char	*s;
 	t_token	*new;
 
-	s = NULL;
 	new = NULL;
 	if ((*head)->nature == '<' || (*head)->nature == '>')
 		mz_make_redi(list, head);

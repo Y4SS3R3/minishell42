@@ -54,11 +54,9 @@ void	ex_checkargs(t_token *node, t_shell *data)
 {
 	int		i;
 	int		size;
-	char	**tmps;
 	t_attrr	key_index;
 
 	i = 0;
-	tmps = NULL;
 	size = get_length(node->args);
 	if (node->args)
 	{

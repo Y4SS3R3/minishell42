@@ -72,12 +72,10 @@ static void	cmd_expand_split(char *cmd, char *key, t_token *node, t_shell *data)
 	char	**tmp_s;
 	char	*tmp;
 	char	*res;
-	int		size;
 
 	tmp = NULL;
 	tmp_s = NULL;
 	res = NULL;
-	size = 0;
 	tmp = ex_assign(cmd, key, data);
 	tmp_s = ex_getarg(tmp, &res, data);
 	if (ex_words_count(tmp) > 1)

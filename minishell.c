@@ -41,7 +41,7 @@ int main(int ac, char **av, char **env)
 
 	if (ac != 1 || !isatty(0))
 		return (1);
-	rl_catch_signals = 0;
+	// rl_catch_signals = 0;
 	data.g_gc = init_shell(&data, env);
 	data.l_gc = NULL;
 	init_shell_1(&data);

@@ -87,14 +87,8 @@ char	**ym_arr_rem(char **array,
 	int index, int *size, t_shell *data)
 {
 	int		len;
-	int		i;
-	int		j;
-	char	**res;
 
 	len = get_length(array);
-	res = malloc_p(len * sizeof(char *), data->l_gc, data);
-	i = 0;
-	j = 0;
 	if (index < 0)
 		index = 0;
 	if (index >= len)

@@ -15,11 +15,7 @@
 void	update_var(char *val, char *name, t_list *node, t_shell *data)
 {
 	char	*new;
-	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
 	new = NULL;
 	if (node == NULL)
 	{
@@ -78,9 +74,7 @@ int	add_hide(t_shell *data, char *res, char *name)
 void	add_equal(int flag, char **res, t_shell *data, char *name)
 {
 	char	*tmp;
-	char	*final;
 
-	final = *res;
 	if (flag)
 		*res = ft_strjoin(*res, "=", GLOBAL, data);
 	if (data->exapp == 1)
