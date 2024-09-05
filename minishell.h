@@ -260,7 +260,7 @@ t_list	*mz_lstnew(char *content, int mode, t_shell *data);
 void	mz_lstadd_back(t_list **lst, t_list *new);
 t_list	*mz_lstlast(t_list *lst);
 t_list	*env_parse(char **envp, t_shell *data);
-t_token	*mz_parser(char *s);
+t_token	*mz_parser(char *s, int *status);
 int		mz_is_space(char c);
 int		mz_is_special(char c);
 int		make_space_nd(t_list **head, char *s, int i);

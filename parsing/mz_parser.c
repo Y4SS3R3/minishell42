@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 15:54:01 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/05 11:26:28 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:14:36 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,22 @@ static t_list	*mz_first_scan(char *s)
 	return (head);
 }
 
-t_token	*mz_parser(char *s)
+t_token	*mz_parser(char *s, int *status)
 {
 	t_list	*head;
 	t_token	*list;
 
-	if (mz_syntax_err(s) == 1)
+	if (mz_syntax_err(s) == 1 && mz_syntax_err2(s) == 1)
+	{
+		(*status) = 256;
 		return (NULL);
-	if (mz_syntax_err2(s) == 1)
-		return (NULL);
-	// s = mz_joiner(s);
+	}
 	head = mz_first_scan(s);
 	if (mz_syntax_handler(head) == -1)
+	{
+		(*status) = 256;
 		return (NULL);
-	// while (head)
-	// {
-	// 	printf("%s  --> %i", head->s, head->nature);
-	// 	head = head->next;
-	// }
-	// exit(1);
+	}
 	list = mz_last_scan(head);
 	mz_splitter(list);
 	return (list);
