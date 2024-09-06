@@ -1,5 +1,4 @@
 #include "minishell.h"
-#include <string.h>
 
 char	*remove_charindex(char *src, int i1, int i2)
 {
