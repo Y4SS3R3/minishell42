@@ -46,8 +46,8 @@ enum e_token
 	APPEND,
 };
 
-# define OPEN_MAX 1000
-# define SIZE_T_MAX 1000
+// # define OPEN_MAX 1000
+// # define SIZE_T_MAX 1000
 
 
 # define READ 0
