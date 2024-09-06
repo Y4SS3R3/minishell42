@@ -70,7 +70,7 @@ typedef struct s_redir	t_redir;
 typedef struct s_tree	t_tree;
 typedef struct s_list	t_list;
 
-int g_sig = 0;
+int g_sig;
 
 typedef struct s_replace_info
 {
