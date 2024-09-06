@@ -49,6 +49,10 @@ t_token	*mz_parser(char *s, int *status)
 		return (NULL);
 	}
 	head = mz_first_scan(s);
+	/*
+		malloc for head, new malloc for list
+		result : i get list, but head is not freed -> leaks
+	*/
 	if (mz_syntax_handler(head) == -1)
 	{
 		(*status) = 258;

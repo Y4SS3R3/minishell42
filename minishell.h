@@ -46,8 +46,8 @@ enum e_token
 	APPEND,
 };
 
-// # define OPEN_MAX 1000
-// # define SIZE_T_MAX 1000
+# define OPEN_MAX 1000
+# define SIZE_T_MAX 1000
 
 
 # define READ 0
@@ -70,7 +70,7 @@ typedef struct s_redir	t_redir;
 typedef struct s_tree	t_tree;
 typedef struct s_list	t_list;
 
-int g_sig;
+int g_sig = 0;
 
 typedef struct s_replace_info
 {
