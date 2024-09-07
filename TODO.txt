@@ -1,2 +1,14 @@
 ////////YM//////////
 ///////MZ//////////
+
+
+✦ starshell: '|''('
+starshell: syntax error (not syntax error nigger)
+
+✦ starshell: (ls)|(< '|'cat)
+starshell: syntax error (not syntax error nigger)
+✦ starshell: (ls)|(< a cat)
+starshell: syntax error (not syntax error nigger)
+
+✦ starshell: (< a cat)
+starshell: syntax error (not syntax error nigger)
