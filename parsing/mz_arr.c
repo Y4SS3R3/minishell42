@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_arr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:28 by mzouine           #+#    #+#             */
-/*   Updated: 2024/08/31 21:29:45 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/07 17:56:23 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ static char	**freemem(char **final)
 static int	mz_arr_counter(char **org)
 {
 	int	i;
+	int	n;
 
 	if (org == NULL)
 		return (0);
 	i = 0;
+	n = 0;
 	while (org[i])
 		i++;
 	return (i);
@@ -99,7 +101,7 @@ static char	**ym_addstring(char **org, char *s, int size)
 
 	i = 0;
 	j = 0;
-	new =ft_calloc((size + 1 + 1) * sizeof(char *), 1);
+	new = ft_calloc((size + 1 + 1) * sizeof(char *), 1);
 	if (!new)
 		return (NULL);
 	if (org == NULL)
@@ -117,13 +119,11 @@ static char	**ym_addstring(char **org, char *s, int size)
 		j++;
 		i++;
 	}
-	// if (!new[i])
-	// 	return (freemem(new));
 	new[i] = NULL;
 	return (new);
 }
 
-char	**mz_arr(char **org, char **arr, char *s, int flag) // 1 to add string, 2 to add array !
+char	**mz_arr(char **org, char **arr, char *s, int flag)
 {
 	if (flag == 1)
 		return (mz_addstring(org, s, mz_arr_counter(org)));

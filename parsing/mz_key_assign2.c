@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   mz_key_assign2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 20:25:44 by mzouine           #+#    #+#             */
-/*   Updated: 2024/08/31 22:14:25 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/07 17:58:25 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int mz_count_sz(char *s, char *key)
+static int	mz_count_sz(char *s, char *key)
 {
-	int i;
-	int j;
-	int flag;
-	int size;
+	int	i;
+	int	j;
+	int	flag;
+	int	size;
 
 	i = 0;
 	j = 0;
@@ -35,7 +35,7 @@ static int mz_count_sz(char *s, char *key)
 
 static int	mz_ctrl_c_v(char *key, char *final, int j)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (key[i])
@@ -60,7 +60,7 @@ char	*mz_key_assign2(char *s, char *key)
 	final = malloc(mz_count_sz(s, key));
 	if (!final)
 		return (NULL);
-	while(s[i])
+	while (s[i])
 	{
 		flag = mz_flag(s[i], flag);
 		if (flag == 0 && s[i] == '*')

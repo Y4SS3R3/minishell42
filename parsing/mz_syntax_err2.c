@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 09:45:10 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/07 16:12:27 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/07 18:06:30 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,14 @@ static int	mz_flag2(char *s, int *i, int flag)
 		(*i)++;
 		while (s[*i] && s[*i] != '\'')
 			(*i)++;
-		// if (s[*i])
-		// 	(*i)++;
+		// if (s[*i]) && (*i)++;
 	}
 	else if (s[*i] == '\"')
 	{
 		(*i)++;
 		while (s[*i] && s[*i] != '\"')
 			(*i)++;
-		// if (s[*i])
-		// 	(*i)++;
+		// if (s[*i]) && (*i)++;
 	}
 	if (s[*i] && s[*i] == '(' && flag == 0)
 		return (3);
@@ -44,8 +42,8 @@ static int	mz_flag2(char *s, int *i, int flag)
 
 int	mz_syntax_err2(char *s)
 {
-	int i;
-	int flag;
+	int	i;
+	int	flag;
 
 	i = 0;
 	flag = 0;
@@ -68,28 +66,3 @@ int	mz_syntax_err2(char *s)
 	}
 	return (0);
 }
-
-/*
-'ABC'| // SE // CHECK BEFORE JOIN
-(ls)'fsd' // SE // AFTER CPAR: PIPE OR AND Cpar
-((')') // SE
-*/
-
-
-
-// minishell:'"'''
-// =================================================================
-// ==96336==ERROR: AddressSanitizer: heap-buffer-overflow
-
-// minishell:''''''''''''''''
-// =================================================================
-// ==97025==ERROR: AddressSanitizer: heap-buffer-overflow
-
-
-// minishell:$USER'dsfdsf'|"dsfds|dsf"
-// Syntax Error! >> Not a syntax error!
-
-
-
-// minishell:'&&'
-// Syntax Error!

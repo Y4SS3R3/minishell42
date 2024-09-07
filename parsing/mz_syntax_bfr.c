@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:32:36 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/07 17:06:50 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/07 18:09:24 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static int	mz_is_forb(char *s, int n, int i)
 {
 	if (i == 1)
 	{
-		if (s[n] == '|' || s[n] == '(' || s[n] == '&' || s[n] == '<' || s[n] == '>')
+		if (s[n] == '|' || s[n] == '(' || s[n] == '&'
+			|| s[n] == '<' || s[n] == '>')
 			return (1);
 	}
 	else if (i == 2)
@@ -39,19 +40,19 @@ static int	mz_is_forb(char *s, int n, int i)
 			return (0);
 		else if (n >= 1)
 		{
-			if (s[n] == '&' && s[n-1] == '&')
+			if (s[n] == '&' && s[n - 1] == '&')
 				return (0);
 		}
-			return (1);
+		return (1);
 	}
 	return (0);
 }
 
-int check_before_opar(char *s)
+int	check_before_opar(char *s)
 {
-	int i;
+	int	i;
 	int	j;
-	int flag;
+	int	flag;
 
 	i = 0;
 	j = 0;
@@ -76,16 +77,16 @@ int check_before_opar(char *s)
 
 int	check_before_special(char *s)
 {
-	int i;
+	int	i;
 	int	j;
-	int flag;
+	int	flag;
 
 	i = 0;
 	flag = 0;
 	while (s[i])
 	{
 		flag = mz_flag2(s[i], flag);
-		if (flag == 0 && ((s[i] == '|') || (s[i] == '&' && s[i+1] == '&')))
+		if (flag == 0 && ((s[i] == '|') || (s[i] == '&' && s[i + 1] == '&')))
 		{
 			j = i++ - 1;
 			if (s[i] == '|' || s[i] == '&')

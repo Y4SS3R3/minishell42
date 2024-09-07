@@ -6,15 +6,16 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 11:01:14 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/07 16:25:41 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/07 18:05:00 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int mz_check_prev(t_list *lst)
+static int	mz_check_prev(t_list *lst)
 {
 	t_list	*tmp;
+
 	tmp = lst;
 	if (tmp->prev != NULL)
 		tmp = tmp->prev;
@@ -49,7 +50,7 @@ static int	mz_redir_handler(t_list *lst)
 	return (0);
 }
 
-static	int mz_in_quote(t_list *lst, t_list *nd)
+static	int	mz_in_quote(t_list *lst, t_list *nd)
 {
 	t_list	*tmp;
 	int		flag;
@@ -68,7 +69,7 @@ static	int mz_in_quote(t_list *lst, t_list *nd)
 
 static int	mz_pip_handler(t_list	*lst)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = lst;
 	while (lst)
@@ -89,7 +90,6 @@ static int	mz_pip_handler(t_list	*lst)
 	}
 	return (0);
 }
-
 
 int	mz_syntax_handler(t_list *lst)
 {

@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 15:54:01 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/07 17:00:33 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/07 18:10:51 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,23 @@ t_token	*mz_parser(char *s, int *status)
 
 	if (mz_syntax_err(s) == 1)
 	{
-		printf("1\n");
 		(*status) = 258;
 		return (NULL);
 	}
 	if (mz_syntax_err2(s) == 1)
 	{
-		printf("2\n");
 		(*status) = 258;
 		return (NULL);
 	}
 	head = mz_first_scan(s);
-	/*
-		malloc for head, new malloc for list
-		result : i get list, but head is not freed -> leaks
-	*/
+	mz_free_char(s);
 	if (mz_syntax_handler(head) == -1)
 	{
-		printf("3\n");
 		(*status) = 258;
 		return (NULL);
 	}
 	list = mz_last_scan(head);
 	mz_splitter(list);
-	free_list(head); // free head
+	free_list(head);
 	return (list);
 }

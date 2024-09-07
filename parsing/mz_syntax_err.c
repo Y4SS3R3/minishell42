@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:44:05 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/07 17:02:23 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/07 18:08:09 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	mz_is_forb(char *s, int n, int i)
 	else if (i == 2)
 	{
 		if ((s[n] == '|' || s[n] == ')' || s[n] == '\0')
-			|| (s[n] == '&' && s[n+1] == '&'))
+			|| (s[n] == '&' && s[n + 1] == '&'))
 			return (0);
 		else
 			return (1);
@@ -44,10 +44,10 @@ static int	mz_is_forb(char *s, int n, int i)
 	return (0);
 }
 
-static int check_after_cpar(char *s)
+static int	check_after_cpar(char *s)
 {
-	int i;
-	int flag;
+	int	i;
+	int	flag;
 
 	i = 0;
 	flag = 0;
@@ -71,15 +71,15 @@ static int check_after_cpar(char *s)
 
 static int	check_after_special(char *s)
 {
-	int i;
-	int flag;
+	int	i;
+	int	flag;
 
 	flag = 0;
 	i = 0;
 	while (s[i])
 	{
 		flag = mz_flag2(s[i], flag);
-		if (flag == 0 && ((s[i] == '|') || (s[i] == '&' && s[i+1] == '&')))
+		if (flag == 0 && ((s[i] == '|') || (s[i] == '&' && s[i + 1] == '&')))
 		{
 			i++;
 			if (s[i] == '|' || s[i] == '&')
@@ -96,11 +96,10 @@ static int	check_after_special(char *s)
 	return (0);
 }
 
-
 int	mz_syntax_err(char *s)
 {
-	int i;
-	int flag;
+	int	i;
+	int	flag;
 
 	i = 0;
 	flag = 0;
@@ -124,5 +123,3 @@ int	mz_syntax_err(char *s)
 	}
 	return (0);
 }
-
-

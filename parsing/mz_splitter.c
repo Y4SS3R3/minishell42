@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_splitter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 16:26:56 by mzouine           #+#    #+#             */
-/*   Updated: 2024/08/31 21:13:44 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/07 17:44:26 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	mz_splitter(t_token *head)
 		tmp = tmp->next;
 		j++;
 	}
+	free(arr);
 }
 // ls -l -p > haha -a -z || echo hello as das ""
 // ls "asd" > d as

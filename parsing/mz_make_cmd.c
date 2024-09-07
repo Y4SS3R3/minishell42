@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_make_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:46:12 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/03 17:39:05 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/07 17:59:17 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,6 @@ void	mz_make_cmd(t_token **list, t_list **head)
 	new = ft_lstnew_mz((*head)->s);
 	ft_lstadd_back(list, new, NULL);
 	new->nature = (*head)->nature;
-	new->key_d_q = (*head)->key_d_q;
-	new->key_q = (*head)->key_q;
 	(*head) = (*head)->next;
 	while ((*head))
 	{
