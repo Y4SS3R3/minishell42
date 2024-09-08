@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:11:29 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/30 18:40:11 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 08:08:00 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_trash	*init_shell(t_shell *data, char **env)
 	global = gc_new(NULL, data);
 	if (global == NULL)
 	{
-		putstr_fd("CANNOT OPEN MINISHELL : GC FAILED[6345]\n", 2);
+		putstr_fd("Cannot open minishell : garbage collector failure[6345]\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	data->to_close = -1;

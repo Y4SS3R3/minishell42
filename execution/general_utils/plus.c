@@ -16,9 +16,9 @@ static void	malloc_err(t_shell *data)
 {
 	data->free_it = 0;
 	free_command(data, NULL);
-	free_programm(data);
 	data->errno_shell = MALLOC_FAILURE;
 	data->status = 1;
+	if ()
 }
 
 void	*malloc_p(size_t size, t_trash *gc, t_shell *data)

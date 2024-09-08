@@ -42,11 +42,10 @@ t_trash	*gc_new(void *address, t_shell *data)
 	t_trash	*new;
 
 	new = malloc(sizeof(t_trash));
-	if (!new)
+ 	if (!new)
 	{
 		data->free_it = 0;
 		free_command(data, NULL);
-		free_programm(data);
 		data->errno_shell = MALLOC_FAILURE;
 	}
 	new->to_free = address;

@@ -49,10 +49,11 @@ static char	**export_base_env(t_shell *data)
 {
 	char	**new_envp;
 
-	new_envp = malloc_p(5 * sizeof(char *), data->g_gc, data);
+	new_envp = which_malloc(GLOBAL, 5 * sizeof(char *), data);
 	if (new_envp == NULL)
 	{
-		putstr_fd("ERROR IN MALLOC[014]!\n", 2);
+		putstr_fd("Error in malloc[014]!\n", 2);
+		free_programm(data);
 		exit(EXIT_FAILURE);
 	}
 	new_envp[0] = ft_strdup("PATH=/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.",

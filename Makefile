@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+         #
+#    By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 09:40:06 by mzouine           #+#    #+#              #
-#    Updated: 2024/09/07 16:56:16 by mzouine          ###   ########.fr        #
+#    Updated: 2024/09/08 08:22:36 by ymassiou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,7 +120,7 @@ SRC = 	minishell.c \
 
 OBJS = $(SRC:%.c=%.o)
 CC = cc
-CFLAGS = -fsanitize=address -ggdb3 -g #-Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -ggdb3 -g
 RM = rm -f
 HEADER = minishell.h
 RLLIB1 = $(shell brew --prefix readline)/lib

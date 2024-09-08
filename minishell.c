@@ -34,16 +34,22 @@ static int	repeat(t_shell *data)
 	return (0);
 }
 
+void f()
+{
+	system("leaks minishell");
+}
+
 int main(int ac, char **av, char **env)
 {
 	t_shell data;
 	(void)av;
 
+	atexit(f);
 	if (ac != 1 || !isatty(0))
 		return (1);
 	rl_catch_signals = 0;
-	data.g_gc = init_shell(&data, env);
 	data.l_gc = NULL;
+	data.g_gc = init_shell(&data, env);
 	init_shell_1(&data);
 	while ('Y')
 	{
