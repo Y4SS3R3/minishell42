@@ -71,7 +71,7 @@ static void	execute_cmd(char *tmp, t_token *token, t_shell *data)
 		putstr_fd("starshell: ..: command not found\n", 2);
 		exit (127);
 	}
-	token->args = mz_arr(token->args, NULL, token->cmd, 3);
+	token->args = mz_arr(token->args, NULL, token->cmd, 3, data);
 	execve(token->cmd, token->args, data->envp);
 	if (token->cmd)
 		check_ifdir(token);

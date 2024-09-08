@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mz_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 15:54:01 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/07 18:10:51 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/08 16:48:04 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static t_list	*mz_first_scan(char *s)
+static t_list	*mz_first_scan(char *s, t_shell *data)
 {
 	t_list	*head;
 	int		i;
@@ -24,16 +24,16 @@ static t_list	*mz_first_scan(char *s)
 		if (s[i] == 32 && s[i + 1] == '\0')
 			return (head);
 		if (mz_is_space(s[i]))
-			i = make_space_nd(&head, s, i);
+			i = make_space_nd(&head, s, i, data);
 		else if (mz_is_special(s[i]))
-			i = make_special_nd(&head, s, i);
+			i = make_special_nd(&head, s, i, data);
 		else
-			i = make_word_nd(&head, s, i);
+			i = make_word_nd(&head, s, i, data);
 	}
 	return (head);
 }
 
-t_token	*mz_parser(char *s, int *status)
+t_token	*mz_parser(char *s, int *status, t_shell *data)
 {
 	t_list	*head;
 	t_token	*list;
@@ -48,15 +48,14 @@ t_token	*mz_parser(char *s, int *status)
 		(*status) = 258;
 		return (NULL);
 	}
-	head = mz_first_scan(s);
-	mz_free_char(s);
+	head = mz_first_scan(s, data);
 	if (mz_syntax_handler(head) == -1)
 	{
 		(*status) = 258;
 		return (NULL);
 	}
-	list = mz_last_scan(head);
-	mz_splitter(list);
-	free_list(head);
+	list = mz_last_scan(head, data);
+	mz_splitter(list, data);
+	// free_list(head);
 	return (list);
 }

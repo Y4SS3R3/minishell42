@@ -31,7 +31,7 @@ void	*malloc_p(size_t size, t_trash *gc, t_shell *data, int mode)
 	t_trash	*new;
 
 	ret = ft_calloc(size, 1);
-	dprintf(2, "Malloced : [%p]\n", ret);
+	// dprintf(2, "Malloced : [%p]\n", ret);
 	if (ret == NULL)
 	{
 		putstr_fd("Malloc failed.\n", 2);
@@ -40,7 +40,7 @@ void	*malloc_p(size_t size, t_trash *gc, t_shell *data, int mode)
 	else
 	{
 		new = gc_new(ret, data);
-		dprintf(2, "node of Malloced : [%p]\n", new);
+		// dprintf(2, "node of Malloced : [%p]\n", new);
 		if (new == NULL)
 		{
 			putstr_fd("Warning: Appending newly allocated address failed.\n", 2);

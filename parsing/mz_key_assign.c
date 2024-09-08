@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:19:07 by mzouine           #+#    #+#             */
-/*   Updated: 2024/08/31 21:13:44 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 16:45:36 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	mz_size_count(char *s, char *key_s)
 	return (j);
 }
 
-int	mz_key_assign(char **s)
+int	mz_key_assign(char **s, t_shell *data)
 {
 	int		key;
 	char	*key_s;
@@ -73,13 +73,10 @@ int	mz_key_assign(char **s)
 	key = mz_get_key();
 	if (key < 0)
 		key = key * -1;
-	key_s = ft_itoa_mz(key);
-	key_half = ft_itoa_mz(key / 2);
-	info.final = malloc(mz_size_count(*s, key_s));
+	key_s = ft_itoa_mz(key, data);
+	key_half = ft_itoa_mz(key / 2, data);
+	info.final = which_malloc(LOOP, mz_size_count(*s, key_s), data);
 	mz_key_insert(&info, *s, key_s, key_half);
-	mz_free_char(*s);
-	mz_free_char(key_s);
-	mz_free_char(key_half);
 	*s = info.final;
 	return (key);
 }

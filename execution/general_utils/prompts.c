@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:04:41 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 15:33:51 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 16:51:38 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ static void	prompt_execution(t_shell *data, char *rl)
 
 	status = 0;
 	add_history(rl);
-	key = mz_key_assign(&rl);
+	key = mz_key_assign(&rl, data);
 	data->key = ft_itoa(key, LOOP, data);
 	data->key2 = ft_itoa(key / 2, LOOP, data);
 	data->key3 = ft_itoa(key / 3, LOOP, data);
-	rl = mz_key_assign2(rl, data->key3);
-	infix = mz_parser(rl, &status);
+	rl = mz_key_assign2(rl, data->key3, data);
+	infix = mz_parser(rl, &status, data);
 	check_syntaxe_err(status, infix, data);
-	free_token(infix);
+	// free_token(infix);
 }
 
 int	prompt_manage(t_shell *data, char *rl)

@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:30:52 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/01 03:52:18 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 16:37:57 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ size_t	ft_strlen_mz(const char *s)
 	return (i);
 }
 
-char	*ft_strdup_mz(const char *s1)
+char	*ft_strdup_mz(const char *s1, t_shell *data)
 {
 	char	*cpy;
 	size_t	i;
 
 	i = 0;
-	cpy = (char *) malloc(ft_strlen_mz(s1) + 1);
+	cpy = which_malloc(LOOP, ft_strlen_mz(s1) + 1, data);
 	if (cpy == NULL)
 		return (NULL);
 	while (s1[i])
@@ -40,7 +40,7 @@ char	*ft_strdup_mz(const char *s1)
 	return (cpy);
 }
 
-char	*ft_substr_mz(char const *s, unsigned int start, size_t len)
+char	*ft_substr_mz(char const *s, unsigned int start, size_t len, t_shell *data)
 {
 	size_t	tol;
 	size_t	i;
@@ -50,12 +50,12 @@ char	*ft_substr_mz(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	i = 0;
 	if (start > ft_strlen_mz(s))
-		return (ft_strdup_mz(""));
+		return (ft_strdup_mz("", data));
 	if (len > ft_strlen_mz(s) - start)
 		tol = ft_strlen_mz(s) - start;
 	else
 		tol = len;
-	sub = malloc(tol + 1);
+	sub = which_malloc(LOOP, tol + 1, data);
 	if (!sub)
 		return (NULL);
 	while (i < tol)
@@ -67,7 +67,7 @@ char	*ft_substr_mz(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-char	*ft_strjoin_mz(char const *s1, char const *s2)
+char	*ft_strjoin_mz(char const *s1, char const *s2, t_shell *data)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -76,12 +76,12 @@ char	*ft_strjoin_mz(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1)
-		return (ft_strdup_mz(s2));
+		return (ft_strdup_mz(s2, data));
 	if (!s2)
-		return (ft_strdup_mz(s1));
+		return (ft_strdup_mz(s1, data));
 	i = -1;
 	j = 0;
-	final = malloc(ft_strlen_mz(s1) + ft_strlen_mz(s2) + 1);
+	final = which_malloc(LOOP, ft_strlen_mz(s1) + ft_strlen_mz(s2) + 1, data);
 	if (!final)
 		return (NULL);
 	while (s1[++i])
@@ -104,18 +104,18 @@ int	mz_search(char *s, int i, char c)
 	return (-1);
 }
 
-void	mz_free_char(char *s)
-{
-	free(s);
-	s = NULL;
-}
+// void	mz_free_char(char *s)
+// {
+// 	free(s);
+// 	s = NULL;
+// }
 
-t_token	*ft_lstnew_mz(char *cmd)
+t_token	*ft_lstnew_mz(char *cmd, t_shell *data)
 {
 	t_token	*head;
 
 	head = NULL;
-	head = (t_token *)malloc(sizeof(t_token));
+	head = which_malloc(LOOP, sizeof(t_token), data);
 	if (head == NULL)
 		return (NULL);
 	head->args = NULL;

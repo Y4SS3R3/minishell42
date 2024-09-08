@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_key_assign2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 20:25:44 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/07 17:58:25 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/08 16:54:41 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	mz_ctrl_c_v(char *key, char *final, int j)
 	return (j);
 }
 
-char	*mz_key_assign2(char *s, char *key)
+char	*mz_key_assign2(char *s, char *key, t_shell *data)
 {
 	char	*final;
 	int		i;
@@ -57,7 +57,7 @@ char	*mz_key_assign2(char *s, char *key)
 	i = 0;
 	j = 0;
 	flag = 0;
-	final = malloc(mz_count_sz(s, key));
+	final = which_malloc(LOOP, mz_count_sz(s, key), data);
 	if (!final)
 		return (NULL);
 	while (s[i])
@@ -70,7 +70,6 @@ char	*mz_key_assign2(char *s, char *key)
 		i++;
 	}
 	final[j] = '\0';
-	mz_free_char(s);
 	// mz_free_char(key);
 	return (final);
 }

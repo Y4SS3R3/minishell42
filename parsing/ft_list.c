@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:33:34 by mzouine           #+#    #+#             */
-/*   Updated: 2024/08/31 21:13:44 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 16:17:31 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void	mz_lstadd_back(t_list **lst, t_list *new)
 	new->prev = ptr;
 }
 
-t_list	*mz_lstnew_mz(char *content)
+t_list	*mz_lstnew_mz(char *content, t_shell *data)
 {
 	t_list	*new;
 
-	new = malloc(sizeof(t_list));
+	new = which_malloc(LOOP, sizeof(t_list), data);
 	if (!new)
 		return (NULL);
-	new -> s = ft_strdup_mz(content);
+	new -> s = ft_strdup_mz(content, data);
 	new -> next = NULL;
 	new->prev = NULL;
 	new->key_q = NULL;

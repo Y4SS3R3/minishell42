@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_syntax_err2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 09:45:10 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/07 18:06:30 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/08 16:45:15 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	mz_syntax_err2(char *s)
 	}
 	if (flag != 0)
 	{
-		mz_free_char(s);
 		printf("starshell: syntax error\n");
 		return (1);
 	}

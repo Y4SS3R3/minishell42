@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_splitter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 16:26:56 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/07 17:44:26 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/08 16:37:14 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*mz_nuller(t_token *head, int n)
 	return (arr);
 }
 
-static char	***mz_triple_init(t_token *head)
+static char	***mz_triple_init(t_token *head, t_shell *data)
 {
 	t_token	*tmp;
 	int		i;
@@ -55,7 +55,7 @@ static char	***mz_triple_init(t_token *head)
 		i++;
 		tmp = tmp->next;
 	}
-	final = (char ***)malloc((i + 1) * sizeof(char **));
+	final = which_malloc(LOOP, (i + 1) * sizeof(char **), data);
 	if (!final)
 	{
 		printf("malloc fail in triple arr\n");
@@ -69,7 +69,7 @@ static char	***mz_triple_init(t_token *head)
 	return (final);
 }
 
-void	mz_splitter(t_token *head)
+void	mz_splitter(t_token *head, t_shell *data)
 {
 	t_token	*tmp;
 	int		len;
@@ -78,7 +78,7 @@ void	mz_splitter(t_token *head)
 	int		j;
 
 	tmp = head;
-	arr = mz_triple_init(head);
+	arr = mz_triple_init(head, data);
 	j = 0;
 	while (tmp)
 	{
@@ -87,7 +87,7 @@ void	mz_splitter(t_token *head)
 		{
 			len = ft_strlen_mz(tmp->args[i]);
 			tmp->args[i] = mz_nuller(tmp, i);
-			arr[j] = mz_arr(arr[j], mz_nl_sp(tmp->args[i], '\0', len), NULL, 2);
+			arr[j] = mz_arr(arr[j], mz_nl_sp(tmp->args[i], '\0', len, data), NULL, 2, data);
 			i++;
 		}
 		if (tmp && tmp->args)
@@ -95,7 +95,7 @@ void	mz_splitter(t_token *head)
 		tmp = tmp->next;
 		j++;
 	}
-	free(arr);
+	// free(arr);
 }
 // ls -l -p > haha -a -z || echo hello as das ""
 // ls "asd" > d as

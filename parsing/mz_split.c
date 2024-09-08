@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:39:42 by mzouine           #+#    #+#             */
-/*   Updated: 2024/08/31 21:13:44 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 16:19:00 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static unsigned int	mz_word_count(const char *s, char c)
 	return (j);
 }
 
-static char	*mz_word_finder(const char *s, char c, int *word)
+static char	*mz_word_finder(const char *s, char c, int *word, t_shell *data)
 {
 	int		i;
 	int		j;
@@ -42,7 +42,7 @@ static char	*mz_word_finder(const char *s, char c, int *word)
 	i = *word;
 	while (s[*word] && s[*word] != c)
 		(*word)++;
-	str = malloc((*word - i) + 1);
+	str = which_malloc(LOOP, (*word - i) + 1, data);
 	if (!str)
 		return (NULL);
 	j = 0;
@@ -55,24 +55,24 @@ static char	*mz_word_finder(const char *s, char c, int *word)
 	return (str);
 }
 
-static char	**freemem(char **final)
-{
-	int	i;
+// static char	**freemem(char **final)
+// {
+// 	int	i;
 
-	i = 0;
-	if (final)
-	{
-		while (final[i])
-		{
-			free(final[i]);
-			i++;
-		}
-		free(final);
-	}
-	return (NULL);
-}
+// 	i = 0;
+// 	if (final)
+// 	{
+// 		while (final[i])
+// 		{
+// 			free(final[i]);
+// 			i++;
+// 		}
+// 		free(final);
+// 	}
+// 	return (NULL);
+// }
 
-char	**mz_split(char const *s, char c)
+char	**mz_split(char const *s, char c, t_shell *data)
 {
 	char			**final;
 	unsigned int	i;
@@ -82,14 +82,12 @@ char	**mz_split(char const *s, char c)
 		return (NULL);
 	word = 0;
 	i = 0;
-	final = malloc((mz_word_count(s, c) + 1) * sizeof(char *));
+	final = which_malloc(LOOP, (mz_word_count(s, c) + 1) * sizeof(char *), data);
 	if (!final)
 		return (NULL);
 	while (i < mz_word_count(s, c))
 	{
-		final[i] = mz_word_finder(s, c, &word);
-		if (!final[i])
-			return (freemem(final));
+		final[i] = mz_word_finder(s, c, &word, data);
 		i++;
 		word++;
 	}
