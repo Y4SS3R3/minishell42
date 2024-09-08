@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:31:33 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/01 04:31:36 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 11:07:01 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	update_pwd(char *currpwd, t_shell *data)
 	update_var(data->saved_path, "OLDPWD", ret, data);
 }
 
-char	*get_var(char *name, t_shell *data)
+char	*get_var_value(char *name, t_shell *data)
 {
 	t_list	*node;
 	char	*ret;
@@ -64,7 +64,7 @@ int	cd_home(t_shell *data)
 			currpwd = getcwd(NULL, 0);
 			gc_add(&data->l_gc, gc_new(currpwd, data));
 			if (currpwd == NULL)
-				currpwd = get_var("PWD", data);
+				currpwd = get_var_value("PWD", data);
 			update_pwd(currpwd, data);
 		}
 	}

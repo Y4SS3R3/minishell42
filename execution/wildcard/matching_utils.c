@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 21:38:53 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/29 15:40:28 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 09:12:28 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*remove_ws(char *str, t_shell *data)
 		i++;
 	while (str[i + len] && !(str[i + len] == ' ' || str[i + len] == '\t'))
 		len++;
-	res = malloc_p(len + 1, data->l_gc, data);
+	res = which_malloc(LOOP, len + 1, data);
 	while (j < len)
 	{
 		res[j] = str[i + j];

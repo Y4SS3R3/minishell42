@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:11:29 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 08:08:00 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 11:09:26 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 void	update_shlvl(t_shell *data)
 {
 	char	*shlvl;
-	char	*tmp1;
+	char	*tmp;
 	int		res;
 
-	shlvl = get_var("SHLVL", data);
+	shlvl = get_var_value("SHLVL", data);
+	if (!shlvl)
+		return ;
 	res = ft_atoi(shlvl);
 	res++;
-	tmp1 = ft_itoa(res, GLOBAL, data);
-	update_var(tmp1, "SHLVL",
+	tmp = ft_itoa(res, GLOBAL, data);
+	if (tmp != NULL)
+		return ;
+	update_var(tmp, "SHLVL",
 		search_fetch_list(data->envl, "SHLVL", data), data);
 }
 
@@ -36,13 +40,13 @@ t_trash	*init_shell(t_shell *data, char **env)
 		putstr_fd("Cannot open minishell : garbage collector failure[6345]\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	data->to_close = -1;
-	data->status = 0;
 	data->fork = 1;
-	data->add_equal = 1;
-	data->cd_flag = 0;
 	data->exapp = 0;
 	data->envp = env;
+	data->status = 0;
+	data->cd_flag = 0;
+	data->to_close = -1;
+	data->add_equal = 1;
 	data->fildes = NULL;
 	data->last_arg = NULL;
 	return (global);
@@ -53,6 +57,11 @@ void	init_shell_1(t_shell *data)
 	char	*pwd;
 
 	check_env(data);
+	if (data->envp == NULL)
+	{
+		putstr_fd("Can't get shell environment\n", 2);
+		exit(EXIT_FAILURE);
+	}
 	data->envl = env_parse(data->envp, data);
 	update_shlvl(data);
 	pwd = getcwd(NULL, 0);
@@ -96,7 +105,7 @@ void	init_path(t_shell *data)
 	char	*tmp;
 
 	data->envp = list_to_arr(data->envl, data);
-	tmp = get_var("PWD", data);
+	tmp = get_var_value("PWD", data);
 	if (tmp)
 		data->saved_path = tmp;
 	check_potential_path(data);

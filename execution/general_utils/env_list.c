@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:01:19 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/29 13:26:39 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 11:07:21 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*search_fetch_add(char **env, char *to_find, t_shell *data)
 	tmp = NULL;
 	while (env[i])
 	{
-		tmp = split_var(env[i], data);
+		tmp = get_var_name(env[i], data);
 		if (!ft_strcmp(tmp, to_find))
 			return (env[i]);
 		i++;
@@ -49,8 +49,8 @@ t_list	*search_fetch_list(t_list *head, char *to_find, t_shell *data)
 	tmp = NULL;
 	while (head)
 	{
-		tmp = split_var(head->s, data);
-		if (!ft_strcmp(tmp, to_find))
+		tmp = get_var_name(head->s, data);
+		if (tmp && !ft_strcmp(tmp, to_find))
 			return (head);
 		head = head->next;
 	}

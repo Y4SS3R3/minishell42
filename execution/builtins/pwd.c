@@ -31,7 +31,7 @@ int	pwd(t_shell *data)
 			printf("%s\n", s);
 		return (0);
 	}
-	s = get_var("PWD", data);
+	s = get_var_value("PWD", data);
 	printf("%s\n", s);
 	return (0);
 }

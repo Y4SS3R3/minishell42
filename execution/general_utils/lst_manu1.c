@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:33:34 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/01 01:42:39 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 10:26:27 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ym_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*ptr;
 
-	if (!lst)
+	if (!lst || !new)
 		return ;
 	if (!*lst)
 	{
@@ -46,16 +46,15 @@ t_list	*ym_lstnew(char *content, int mode, t_shell *data)
 {
 	t_list	*new;
 
-	if (mode == GLOBAL)
-		new = malloc_p(sizeof(t_list), data->g_gc, data);
-	else if (mode == LOOP)
-		new = malloc_p(sizeof(t_list), data->l_gc, data);
-	else
-		new = malloc(sizeof(t_list));
+	if (content == NULL)
+		return (NULL);
+	new = which_malloc(mode, sizeof(t_list), data);
 	if (!new)
 		return (NULL);
-	new -> s = ft_strdup(content, mode, data);
-	new -> next = NULL;
+	new->s = ft_strdup(content, mode, data);
+	if (!new->s)
+		return (NULL);
+	new->next = NULL;
 	new->prev = NULL;
 	new->key_q = NULL;
 	new->hide = 0;
@@ -69,16 +68,11 @@ t_list	*mz_lstnew(char *content, int mode, t_shell *data)
 {
 	t_list	*new;
 
-	if (mode == GLOBAL)
-		new = malloc_p(sizeof(t_list), data->g_gc, data);
-	else if (mode == LOOP)
-		new = malloc_p(sizeof(t_list), data->l_gc, data);
-	else
-		new = malloc(sizeof(t_list));
+	new = which_malloc(mode, sizeof(t_list), data);
 	if (!new)
 		return (NULL);
-	new -> s = ft_strdup(content, mode, data);
-	new -> next = NULL;
+	new->s = ft_strdup(content, mode, data);
+	new->next = NULL;
 	new->prev = NULL;
 	new->key_q = NULL;
 	new->hide = 0;

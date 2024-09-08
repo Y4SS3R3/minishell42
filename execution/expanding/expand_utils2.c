@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:54:17 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 12:57:12 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 09:02:09 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ws_strdup(char *src, int len, t_shell *data)
 	char	*res;
 
 	i = 0;
-	res = malloc_p(len + 1, data->l_gc, data);
+	res = which_malloc(LOOP, len + 1, data);
 	while (src[i] && !(src[i] == ' ' || src[i] == '\t'))
 	{
 		res[i] = src[i];

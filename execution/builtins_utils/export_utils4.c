@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:59:03 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/01 04:07:00 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 11:24:22 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	update_var(char *val, char *name, t_list *node, t_shell *data)
 		append_to_env(name, val, 1, data);
 		return ;
 	}
-	name = split_var(node->s, data);
+	name = get_var_name(node->s, data);
 	new = ft_strjoin(name, "=", GLOBAL, data);
 	new = ft_strjoin(new, val, GLOBAL, data);
 	node->s = new;
@@ -42,7 +42,7 @@ void	append_to_var(char **name, t_shell *data)
 	if (data->exapp == 1)
 	{
 		len = ft_strlen(str);
-		tmp = malloc_p(len, data->g_gc, data);
+		tmp = which_malloc(GLOBAL, len, data);
 		while (str[i] != '+' && str[i])
 		{
 			tmp[i] = str[i];
@@ -106,6 +106,8 @@ void	append_to_env(char *name, char *value, int flag, t_shell *data)
 	}
 	res = ft_strjoin(res, value, GLOBAL, data);
 	new = ym_lstnew(res, GLOBAL, data);
+	if (new == NULL)
+		return ;
 	if (!flag)
 		new->hide = 1;
 	search_remove(&data->envl, name, data);

@@ -168,6 +168,11 @@ typedef struct s_trash
 
 typedef struct s_shell
 {
+	int		DEBUG;
+
+
+
+
 	int		fork;
 	int		add_equal;
 	int		cd_flag;
@@ -236,7 +241,7 @@ void	ft_exec(t_token *token, t_shell *data);
 void	exec_tind(t_token *root, t_shell *data);
 t_trash	*gc_last(t_trash *head);
 void	gc_add(t_trash **head, t_trash *new);
-void	*malloc_p(size_t size, t_trash *gc, t_shell *data);
+void	*malloc_p(size_t size, t_trash *gc, t_shell *data, int mode);
 void	gc_free(t_shell *data, int mode);
 t_token	*token_clone(t_token *token, t_shell *data);
 t_token	*ft_lstnew(char *cmd, int mode, t_shell *data);
@@ -301,7 +306,7 @@ void	mz_splitter(t_token *head);
 void	mz_make_redi(t_token **list, t_list **head);
 char	**mz_nul_split(char const *s, char c, int n);
 void	search_remove(t_list **haystack, char *needle, t_shell *data);
-char	*split_var(char *var, t_shell *data);
+char	*get_var_name(char *var, t_shell *data);
 char	**list_to_arr(t_list *head, t_shell *data);
 char	*search_fetch_add(char **env, char *to_find, t_shell *data);
 int		open_out(t_redir *out, t_shell *data);
@@ -313,7 +318,7 @@ t_list	*search_fetch_list(t_list *head, char *to_find, t_shell *data);
 void	update_var(char *val, char *name, t_list *node, t_shell *data);
 int		ft_tolower(int c);
 size_t	ft_strcmp_b(char *s1, char *s2);
-char	*get_var(char *name, t_shell *data);
+char	*get_var_value(char *name, t_shell *data);
 int		mz_key_assign(char **s);
 char	**mz_nl_sp(char const *s, char c, int n);
 int		mz_search(char *s, int i, char c);
@@ -347,7 +352,6 @@ int		keep_quotes(char *str);
 void	print_list(t_list *head);
 void	append_to_env(char *name, char *value, int flag, t_shell *data);
 void	free_token(t_token *head);
-void	free_list(t_list *head);
 void	free_trash(t_trash *head);
 void	free_fds(t_fd *head);
 void	assign_hdc(t_fd *fds, t_token *infix);

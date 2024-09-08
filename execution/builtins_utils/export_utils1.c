@@ -6,13 +6,13 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 14:47:45 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/02 15:29:49 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 11:07:21 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	*split_var(char *var, t_shell *data)
+char	*get_var_name(char *var, t_shell *data)
 {
 	char	*res;
 	int		i;
@@ -21,14 +21,9 @@ char	*split_var(char *var, t_shell *data)
 	(void)data;
 	while (var[i] && var[i] != '=')
 		i++;
-	res = malloc_p(i + 1, data->g_gc, data);
+	res = which_malloc(GLOBAL, i + 1, data);
 	if (res == NULL)
 		return (NULL);
-	if (res == NULL)
-	{
-		putstr_fd("ERROR IN MALLOC[234]!\n", 2);
-		exit(EXIT_FAILURE);
-	}
 	i = 0;
 	while (var[i] && var[i] != '=')
 	{
@@ -47,7 +42,7 @@ void	search_remove(t_list **haystack, char *needle, t_shell *data)
 	curr = *haystack;
 	while (curr)
 	{
-		tmp = split_var(curr->s, data);
+		tmp = get_var_name(curr->s, data);
 		if (tmp == NULL)
 			break ;
 		if (!ft_strcmp(tmp, needle))

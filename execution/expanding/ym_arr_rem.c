@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 01:14:34 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/29 15:40:28 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 09:05:01 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	**ym_arr_remove_first(char **array, int *size, t_shell *data)
 	i = 1;
 	j = 0;
 	len = get_length(array);
-	res = malloc_p(len * sizeof(char *), data->l_gc, data);
+	res = which_malloc(LOOP, len * sizeof(char *), data);
 	while (array[i])
 	{
 		res[j] = ft_strdup(array[i], LOOP, data);
@@ -43,7 +43,7 @@ static char	**ym_arr_remove_last(char **array,
 
 	len = get_length(array);
 	i = 0;
-	res = malloc_p(len * sizeof(char *), data->l_gc, data);
+	res = which_malloc(LOOP, len * sizeof(char *), data);
 	while (i < index)
 	{
 		res[i] = ft_strdup(array[i], LOOP, data);
@@ -64,7 +64,7 @@ static char	**ym_arr_remove_middle(char **array,
 
 	i = 0;
 	len = get_length(array);
-	res = malloc_p(len * sizeof(char *), data->l_gc, data);
+	res = which_malloc(LOOP, len * sizeof(char *), data);
 	while (i < index)
 	{
 		res[i] = ft_strdup(array[i], LOOP, data);

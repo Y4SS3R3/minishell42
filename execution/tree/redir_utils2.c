@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 16:03:58 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/29 15:40:28 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 09:12:00 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_redir	*token_to_redir(t_token *token, t_shell *data)
 {
 	t_redir	*redir;
 
-	redir = malloc_p(sizeof(t_redir), data->l_gc, data);
+	redir = which_malloc(LOOP, sizeof(t_redir), data);
 	if (!redir)
 		return (NULL);
 	redir->type = token->cmd;

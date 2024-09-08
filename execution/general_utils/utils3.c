@@ -36,13 +36,7 @@ static char	*allocate(int len, int mode, t_shell *data)
 {
 	char	*allocated;
 
-	allocated = NULL;
-	if (mode == GLOBAL)
-		allocated = malloc_p(len + 1, data->g_gc, data);
-	else if (mode == LOOP)
-		allocated = malloc_p(len + 1, data->l_gc, data);
-	else
-		allocated = malloc(len + 1);
+	allocated = which_malloc(mode, len + 1, data);
 	if (allocated == NULL)
 		return (NULL);
 	return (allocated);

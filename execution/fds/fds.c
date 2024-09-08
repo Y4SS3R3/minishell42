@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:09:24 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/29 15:58:46 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 09:05:30 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_fd	*fds_new(t_shell *data)
 {
 	t_fd	*new;
 
-	new = malloc_p(sizeof(t_fd), data->l_gc, data);
+	new = which_malloc(LOOP, sizeof(t_fd), data);
 	new->fd = -1;
 	new->ex_flag = 0;
 	new->limiter = NULL;

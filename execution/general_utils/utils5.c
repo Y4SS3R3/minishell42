@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 15:25:18 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/29 15:40:28 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 09:10:36 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	**ws_split(char *str, t_shell *data)
 	char	**out;
 
 	wc = wc_counter(str);
-	out = malloc_p(sizeof(char *) * (wc + 1), data->l_gc, data);
+	out = which_malloc(LOOP, sizeof(char *) * (wc + 1), data);
 	i = 0;
 	k = 0;
 	while (str[i])
@@ -96,7 +96,7 @@ char	**ws_split(char *str, t_shell *data)
 			i++;
 		if (i > j)
 		{
-			out[k] = malloc_p(sizeof(char) * ((i - j) + 1), data->l_gc, data);
+			out[k] = which_malloc(LOOP, sizeof(char) * ((i - j) + 1), data);
 			ft_strncpy(out[k++], &str[j], i - j);
 		}
 	}

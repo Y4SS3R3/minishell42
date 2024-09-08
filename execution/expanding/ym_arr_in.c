@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 20:44:29 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/29 15:40:28 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 09:03:54 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ static char	**initialize_result(t_arr *info, int len1, int len2, t_shell *data)
 		index = 0;
 	if (index > len1)
 		index = len1;
-	result = malloc_p((len1 + len2 + 1) * sizeof(char *),
-			data->l_gc, data);
+	result = which_malloc(LOOP, (len1 + len2 + 1) * sizeof(char *), data);
 	return (result);
 }
 
@@ -62,7 +61,7 @@ static char	**no_host(char **new, t_shell *data)
 	int		i;
 
 	len = get_length(new);
-	result = malloc_p((len + 1) * sizeof(char *), data->l_gc, data);
+	result = which_malloc(LOOP, (len + 1) * sizeof(char *), data);
 	i = 0;
 	if (result == NULL)
 	{
@@ -86,7 +85,7 @@ static char	**no_new(char **host, t_shell *data)
 
 	i = 0;
 	len = get_length(host);
-	result = malloc_p((len + 1) * sizeof(char *), data->l_gc, data);
+	result = which_malloc(LOOP, (len + 1) * sizeof(char *), data);
 	if (result == NULL)
 	{
 		putstr_fd("ERROR IN MALLOC[0910]\n", 2);

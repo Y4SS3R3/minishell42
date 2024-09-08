@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 15:28:22 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 08:42:17 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 11:02:05 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,7 @@ char	*ft_strdup(const char *s1, int mode, t_shell *data)
 
 	tmp = NULL;
 	size1 = ft_strlen(s1) + 1;
-	if (mode == LOOP)
-		tmp = malloc_p(size1, data->l_gc, data);
-	else if (mode == GLOBAL)
-		tmp = malloc_p(size1, data->g_gc, data);
-	else
-		tmp = malloc(size1);
+	tmp = which_malloc(mode, size1, data);
 	if (tmp == NULL)
 		return (NULL);
 	return (ft_memcpy(tmp, s1, size1));
@@ -96,6 +91,8 @@ char	*ft_substr_s(t_sub *info, int mode, t_shell *data)
 		len = ft_strlen(&s[start]);
 	i = 0;
 	result = which_malloc(mode, len + 1, data);
+	if (result == NULL)
+		return (NULL);
 	while (i < len)
 	{
 		result[i] = s[start + i];

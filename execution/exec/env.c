@@ -62,6 +62,8 @@ static char	**export_base_env(t_shell *data)
 	new_envp[2] = ft_strdup("SHLVL=1", GLOBAL, data);
 	new_envp[3] = ft_strdup("_=/usr/bin/env", GLOBAL, data);
 	new_envp[4] = NULL;
+	if (!new_envp[0] || !new_envp[1] || !new_envp[2] || !new_envp[3])
+		return (NULL);
 	return (new_envp);
 }
 

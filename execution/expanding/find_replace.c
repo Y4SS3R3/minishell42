@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:02:17 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/04 20:29:32 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 11:43:13 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static char	*copy_and_replace(char *s1, char *s2, char *s3, char *result)
 			break ;
 	}
 	ft_strcpy(current_pos, s1);
-	return (result);
+	return (ft_strdup(result, -1, NULL)); //LEAKS
 }
 
 char	*find_replace(char *s1, char *s2, char *s3, t_shell *data)

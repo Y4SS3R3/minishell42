@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:59:54 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 17:23:23 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 09:00:10 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*export_get_val(char *input, int k, int len, t_shell *data)
 	char	*tmp;
 
 	j = 0;
-	tmp = malloc_p(len + 1, data->l_gc, data);
+	tmp = which_malloc(LOOP, len + 1, data);
 	while (j < len)
 	{
 		if (input[k] == '\\')

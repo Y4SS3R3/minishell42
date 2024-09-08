@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 18:40:54 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/02 09:44:07 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 11:35:17 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	ex_insert_new_args(t_attrr *key_index,
 	{
 		tmp = ex_assign(node->args[key_index->index], key_index->key2, data);
 		if (!ft_strcmp(node->cmd, "export"))
-			node->args[key_index->index] = tmp;
+			node->args[key_index->index] = ft_strdup(tmp, LOOP, data);
 		else
 		{
 			tmps = ws_split(tmp, data);
