@@ -31,6 +31,7 @@ static int	repeat(t_shell *data)
 	close_fildes(data);
 	if (data->free_it)
 		free_command(data, line);
+	free(line);
 	return (0);
 }
 

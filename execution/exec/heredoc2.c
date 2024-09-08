@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 23:33:20 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/06 17:50:46 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 17:57:24 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ char	*fill_heredoc(char *limiter, t_shell *data)
 	if (line == NULL || g_sig)
 		return (NULL);
 	if (!ft_strcmp(line, limiter))
+	{
+		free(line);
 		return (NULL);
+	}
 	tmp = ft_strjoin(line, "\n", LOOP, data);
 	free(line);
 	return (tmp);
