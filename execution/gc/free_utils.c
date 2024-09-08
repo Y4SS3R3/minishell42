@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:03:40 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 11:33:24 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:40:58 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,12 @@
 void	free_token(t_token *head)
 {
 	t_token	*tmp;
-	int		i;
 
-	i = 0;
 	while (head)
 	{
 		tmp = head;
 		head = head->next;
 		free(tmp->cmd);
-		while (tmp->args && tmp->args[i])
-		{
-			free(tmp->args[i]);
-			i++;
-		}
-		free(tmp->args);
 		free(tmp);
 		tmp = NULL;
 	}

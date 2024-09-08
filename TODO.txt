@@ -3,21 +3,5 @@
 
 
 
-✦ starshell: unset PWD PATH _ SHLVL
-✦ starshell: echo $PWD
 
-✦ starshell: cd ..
-Currpwd : [/Users/ymassiou/Desktop]
-ret : [0x0]
-Val : [/Users/ymassiou/Desktop] Name : [PWD]
-✦ starshell: echo $PWD
-/Users/ymassiou/Desktop
-✦ starshell: unset PWD OLDPWD
-✦ starshell: cd ..
-Currpwd : [/Users/ymassiou]
-ret : [0x0]
-Val : [/Users/ymassiou] Name : [PWD]
-Val : [/Users/ymassiou/Desktop] Name : [OLDPWD]
-✦ starshell: echo $PWD
 
-✦ starshell: exit
