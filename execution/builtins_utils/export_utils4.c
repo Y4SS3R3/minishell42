@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:59:03 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 11:24:22 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 14:23:10 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	append_to_var(char **name, t_shell *data)
 
 	i = 0;
 	str = *name;
+	if (str == NULL)
+		return ;
 	if (data->exapp == 1)
 	{
 		len = ft_strlen(str);
@@ -95,6 +97,8 @@ void	append_to_env(char *name, char *value, int flag, t_shell *data)
 	envl = data->envl;
 	res = NULL;
 	append_to_var(&name, data);
+	if (name == NULL)
+		return ;
 	res = ft_strjoin(res, name, GLOBAL, data);
 	if (add_hide(data, res, name))
 		return ;
@@ -111,5 +115,5 @@ void	append_to_env(char *name, char *value, int flag, t_shell *data)
 	if (!flag)
 		new->hide = 1;
 	search_remove(&data->envl, name, data);
-	ym_lstadd_back(&envl, new);
+	ym_lstadd_back(&data->envl, new);
 }

@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 14:47:45 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 11:07:21 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 13:10:01 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	*get_var_name(char *var, t_shell *data)
 	int		i;
 
 	i = 0;
-	(void)data;
 	while (var[i] && var[i] != '=')
 		i++;
 	res = which_malloc(GLOBAL, i + 1, data);

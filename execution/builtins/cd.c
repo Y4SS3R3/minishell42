@@ -14,10 +14,6 @@
 
 int	cd(int ac, char **av, t_shell *data)
 {
-	char	*oldpwd;
-
-	oldpwd = getcwd(NULL, 0);
-	gc_add(&data->l_gc, gc_new(oldpwd, data));
 	if (ac == 0)
 		return (cd_home(data));
 	else
@@ -30,7 +26,7 @@ int	cd(int ac, char **av, t_shell *data)
 			return (1);
 		}
 		else
-			cd_custompath(av[0], oldpwd, data);
+			cd_custompath(av[0], data);
 	}
 	return (0);
 }

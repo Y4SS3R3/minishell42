@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:11:29 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 11:09:26 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 12:59:11 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,6 @@ void	init_shell_1(t_shell *data)
 	data->envl = env_parse(data->envp, data);
 	update_shlvl(data);
 	pwd = getcwd(NULL, 0);
-	if (tcgetattr(STDERR_FILENO, &data->orig_termios) < 0)
-	{
-		perror("tcgetattr");
-		data->status = 1;
-		return ;
-	}
 	if (pwd != NULL)
 	{
 		gc_add(&data->g_gc, gc_new(pwd, data));
@@ -83,6 +77,12 @@ void	init_shell_1(t_shell *data)
 		putstr_fd("error retrieving current directory: ", 2);
 		putstr_fd("getcwd: cannot access parent directories: \n", 2);
 		perror("");
+	}
+	if (tcgetattr(STDERR_FILENO, &data->orig_termios) < 0)
+	{
+		perror("tcgetattr");
+		data->status = 1;
+		return ;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:59:52 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 11:07:01 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 13:31:51 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*join_chdir(char *currpwd, char *path, t_shell *data)
 	return (currpwd);
 }
 
-void	cd_custompath(char *path, char *oldpwd, t_shell *data)
+void	cd_custompath(char *path, t_shell *data)
 {
 	char	*currpwd;
 
@@ -36,8 +36,6 @@ void	cd_custompath(char *path, char *oldpwd, t_shell *data)
 		if (!ft_strcmp(path, "."))
 			currpwd = join_chdir(currpwd, "/.", data);
 	}
-	if (oldpwd == NULL)
-		oldpwd = get_var_value("OLDPWD", data);
 	if (!ft_strcmp(path, "//"))
 		currpwd = ft_strdup("//", GLOBAL, data);
 	update_pwd(currpwd, data);
