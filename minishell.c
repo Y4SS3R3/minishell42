@@ -22,6 +22,7 @@ static int	repeat(t_shell *data)
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, ctrl_c);
 	data->l_gc = init_l_gc(data);
+	if (data->l_gc)
 	init_path(data);
 	data->fildes = ft_strdup(".", LOOP, data);
 	line = prompt_user(data);
@@ -35,17 +36,11 @@ static int	repeat(t_shell *data)
 	return (0);
 }
 
-void f()
-{
-	system("leaks minishell");
-}
-
 int main(int ac, char **av, char **env)
 {
 	t_shell data;
 	(void)av;
 
-	// atexit(f);
 	data.DEBUG = 0;
 	if (ac != 1 || !isatty(0))
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:59:03 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 15:17:09 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/08 21:11:36 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,14 @@ void	append_to_var(char **name, t_shell *data)
 int	add_hide(t_shell *data, char *res, char *name)
 {
 	t_list	*new;
-	t_list	*envl;
 
-	envl = data->envl;
 	if (data->add_equal == 0)
 	{
 		data->add_equal = 1;
 		new = ym_lstnew(res, GLOBAL, data);
 		new->hide = 1;
-		if (!search_fetch_list(envl, name, data))
-			ym_lstadd_back(&envl, new);
+		if (!search_fetch_list(data->envl, name, data))
+			ym_lstadd_back(&data->envl, new);
 		return (-1);
 	}
 	return (0);
@@ -92,9 +90,7 @@ void	append_to_env(char *name, char *value, int flag, t_shell *data)
 {
 	char	*res;
 	t_list	*new;
-	t_list	*envl;
 
-	envl = data->envl;
 	res = NULL;
 	append_to_var(&name, data);
 	if (name == NULL)
