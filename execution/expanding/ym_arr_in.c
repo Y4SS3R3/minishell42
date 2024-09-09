@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 20:44:29 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 09:03:54 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:49:14 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static char	**append_to_host(t_arr *info, int len1, int len2, t_shell *data)
 	char	**result;
 
 	result = initialize_result(info, len1, len2, data);
+	if (result == NULL)
+		return (NULL);
 	i = 0;
 	while (i < info->index && info->old_arr && info->old_arr[i])
 	{
@@ -62,12 +64,9 @@ static char	**no_host(char **new, t_shell *data)
 
 	len = get_length(new);
 	result = which_malloc(LOOP, (len + 1) * sizeof(char *), data);
-	i = 0;
 	if (result == NULL)
-	{
-		putstr_fd("ERROR IN MALLOC[8234]\n", 2);
 		return (NULL);
-	}
+	i = 0;
 	while (new[i])
 	{
 		result[i] = ft_strdup(new[i], LOOP, data);
@@ -87,10 +86,7 @@ static char	**no_new(char **host, t_shell *data)
 	len = get_length(host);
 	result = which_malloc(LOOP, (len + 1) * sizeof(char *), data);
 	if (result == NULL)
-	{
-		putstr_fd("ERROR IN MALLOC[0910]\n", 2);
 		return (NULL);
-	}
 	while (host[i])
 	{
 		result[i] = ft_strdup(host[i], LOOP, data);

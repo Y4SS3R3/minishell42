@@ -40,6 +40,8 @@ char	*ft_strjoin(char const *s1, char const *s2, int mode, t_shell *data)
 	i = -1;
 	j = 0;
 	final = which_malloc(mode, ft_strlen(s1) + ft_strlen(s2) + 1, data);
+	if (final == NULL)
+		return (NULL);
 	while (s1[++i])
 		final[i] = s1[i];
 	while (s2[j])

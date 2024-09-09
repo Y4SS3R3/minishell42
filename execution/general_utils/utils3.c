@@ -99,6 +99,8 @@ char	**ft_split(char *s, char c, int mode, t_shell *data)
 	result = NULL;
 	j = 0;
 	result = which_malloc(mode, (words + 1) * sizeof(char *), data);
+	if (result == NULL)
+		return (NULL);
 	while (*s && words--)
 	{
 		while (*s == c && *s)

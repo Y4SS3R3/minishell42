@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:59:03 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 21:11:36 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:41:41 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	append_to_var(char **name, t_shell *data)
 	{
 		len = ft_strlen(str);
 		tmp = which_malloc(GLOBAL, len, data);
+		if (tmp == NULL)
+			return ;
 		while (str[i] != '+' && str[i])
 		{
 			tmp[i] = str[i];

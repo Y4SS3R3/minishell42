@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 01:14:34 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 09:05:01 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:50:03 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static char	**ym_arr_remove_first(char **array, int *size, t_shell *data)
 	j = 0;
 	len = get_length(array);
 	res = which_malloc(LOOP, len * sizeof(char *), data);
+	if (res == NULL)
+		return (NULL);
 	while (array[i])
 	{
 		res[j] = ft_strdup(array[i], LOOP, data);
@@ -44,6 +46,8 @@ static char	**ym_arr_remove_last(char **array,
 	len = get_length(array);
 	i = 0;
 	res = which_malloc(LOOP, len * sizeof(char *), data);
+	if (res == NULL)
+		return (NULL);
 	while (i < index)
 	{
 		res[i] = ft_strdup(array[i], LOOP, data);
@@ -65,6 +69,8 @@ static char	**ym_arr_remove_middle(char **array,
 	i = 0;
 	len = get_length(array);
 	res = which_malloc(LOOP, len * sizeof(char *), data);
+	if (res == NULL)
+		return (NULL);
 	while (i < index)
 	{
 		res[i] = ft_strdup(array[i], LOOP, data);
