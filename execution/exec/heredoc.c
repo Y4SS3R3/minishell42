@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:12:48 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/04 17:11:38 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:35:48 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ static void	fill_hdc_file(char *file, char *final, t_fd *node, t_shell *data)
 	int	hdc;
 
 	hdc = open_hdc(file, node, data);
+	if (hdc == -1)
+	{
+		data->status = 1;
+		return ;
+	}
 	if (final)
 		write(hdc, final, ft_strlen(final));
 	close(hdc);
@@ -60,6 +65,13 @@ int	heredoc(char *limiter, t_fd *node, t_shell *data)
 	int		fd;
 
 	fd = dup(0);
+	if (fd == -1)
+	{
+		putstr_fd("Dup() call failure[133]\n", 2);
+		data->status = 1;
+		close_fildes(data);
+		return (-1);
+	}
 	tmp = limiter;
 	limiter = remove_quotes(limiter, data);
 	if (!ft_strcmp(tmp, limiter))

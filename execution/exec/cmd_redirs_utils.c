@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 18:08:55 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/04 20:08:10 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/09 20:31:47 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	redir_in(t_redir *in, t_shell *data)
 	{
 		putstr_fd("starshell: ", 2);
 		putstr_fd(in->file, 2);
-		putstr_fd(": No such file or directory\n", 2);
+		putstr_fd(": No such file or directory 1\n", 2);
 		return (-1);
 	}
 	return (fd_in);

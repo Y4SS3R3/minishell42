@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:02:44 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/04 20:08:14 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/09 20:32:01 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	exec_child(t_token *token, t_shell *data)
 		pid = fork();
 		if (pid == -1)
 		{
-			putstr_fd("ERROR FORK[01]", 2);
+			putstr_fd("Fork() call failure\n", 2);
 			return (1);
 		}
 		if (!pid)
@@ -67,7 +67,7 @@ void	check_ifdir(t_token *token)
 	{
 		putstr_fd("starshell: ", 2);
 		putstr_fd(token->cmd, 2);
-		putstr_fd(": No such file or directory\n", 2);
+		putstr_fd(": No such file or directory 3\n", 2);
 		exit(127);
 	}
 	closedir(ret);

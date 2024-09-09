@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:47:10 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/29 16:02:50 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:24:42 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	close_fildes(t_shell *data)
 		if (fildes[i] == '\0')
 			break ;
 		to_close = ft_atoi(&fildes[i]);
-		close(to_close);
+		if (to_close)
+			close(to_close);
 		while (fildes[i] && fildes[i] != '.')
 			i++;
 	}

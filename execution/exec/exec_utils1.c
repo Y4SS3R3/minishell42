@@ -42,6 +42,12 @@ int	ex_heredoc(t_fd *node, char **new_file, t_shell *data)
 	name = randomize_file_name(data);
 	name = ft_strjoin(name, "_tmp", LOOP, data);
 	tmp = open(name, O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (tmp == -1)
+	{
+		putstr_fd("Open() call failed[409]\n", 2);
+		close_fildes(data);
+		return (-1);
+	}
 	data->fildes = append_fdes(data, tmp);
 	while (1)
 	{
@@ -52,6 +58,12 @@ int	ex_heredoc(t_fd *node, char **new_file, t_shell *data)
 	close(tmp);
 	*new_file = name;
 	tmp = open(name, O_CREAT | O_RDWR, 0644);
+	if (tmp == -1)
+	{
+		putstr_fd("Open() call failed[215]\n", 2);
+		close_fildes(data);
+		return (-1);
+	}
 	data->fildes = append_fdes(data, tmp);
 	return (tmp);
 }

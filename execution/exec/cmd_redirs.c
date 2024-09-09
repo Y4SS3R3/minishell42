@@ -6,18 +6,23 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 17:50:44 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 12:45:06 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:33:27 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_dup_it(int fd_in, int fd_out, char *file, int flag)
+static void	ft_dup_it(int fd_in, int fd_out, char *file, int flag, t_shell *data)
 {
 	if (fd_in != -44)
 	{
 		if (dup2(fd_in, 0) == -1)
-			putstr_fd("DUP2() ERROR[099]!\n", 2);
+		{
+			putstr_fd("Dup2() call failure[099]\n", 2);
+			data->status = 1;
+			close_fildes(data);
+			return ;
+		}
 	}
 	close(fd_in);
 	if (flag)
@@ -25,7 +30,12 @@ void	ft_dup_it(int fd_in, int fd_out, char *file, int flag)
 	if (fd_out != -44)
 	{
 		if (dup2(fd_out, 1) == -1)
-			putstr_fd("DUP2() ERROR[089]!\n", 2);
+		{
+			putstr_fd("Dup2() call failure[097]\n", 2);
+			data->status = 1;
+			close_fildes(data);
+			return ;
+		}
 	}
 	close(fd_out);
 }
@@ -108,6 +118,6 @@ int	handle_redirs(t_redir *in, t_shell *data, int dup_it)
 		in = in->next;
 	}
 	if (dup_it)
-		ft_dup_it(fd_in, fd_out, file, flag);
+		ft_dup_it(fd_in, fd_out, file, flag, data);
 	return (0);
 }

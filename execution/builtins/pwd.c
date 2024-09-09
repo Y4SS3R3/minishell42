@@ -16,11 +16,12 @@ int	pwd(t_shell *data)
 {
 	char	*s;
 
-	s = search_fetch_add(data->envp, "PWD", data);
+	s = getcwd(NULL, 0);
+	dprintf(2, "Pwd : [%s]\n", s);
+	gc_add(&data->l_gc, gc_new(s, data));
 	if (!s)
 	{
-		s = getcwd(NULL, 0);
-		gc_add(&data->l_gc, gc_new(s, data));
+		s = search_fetch_add(data->envp, "PWD", data);
 		if (!s)
 		{
 			perror("pwd: error retrieving current directory: getcwd: cannot access parent directories");
@@ -28,10 +29,9 @@ int	pwd(t_shell *data)
 		}
 			// putstr_fd("var not found!\n", 2);
 		else
-			printf("%s\n", s);
+			printf("%s\n", get_var_value("PWD", data));
 		return (0);
 	}
-	s = get_var_value("PWD", data);
 	printf("%s\n", s);
 	return (0);
 }

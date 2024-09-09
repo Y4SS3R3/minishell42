@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 23:33:20 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 17:57:24 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:44:49 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,13 @@ int	open_hdc(char *file, t_fd *node, t_shell *data)
 
 	node->file_name = file;
 	hdc = open(file, O_CREAT | O_RDWR, 0644);
-	data->fildes = append_fdes(data, hdc);
 	if (hdc == -1)
-		return (putstr_fd("ERROR IN OPEN[500]!\n", 2), -1);
+	{
+		putstr_fd("Open() call failed[719]\n", 2);
+		close_fildes(data);
+		return (-1);
+	}
+	data->fildes = append_fdes(data, hdc);
 	return (hdc);
 }
 
@@ -48,7 +52,14 @@ int	hrdc_ctrlc(int fd, t_shell *data)
 	{
 		data->status = 1;
 		data->exec = 0;
-		dup2(fd, 0);
+		if (dup2(fd, 1) == -1)
+		{
+			putstr_fd("Dup2() call failure[717]\n", 2);
+			data->status = 1;
+			close_fildes(data);
+			close(fd);
+			return (CTRLC_HRDC);
+		}
 		close(fd);
 		return (CTRLC_HRDC);
 	}
@@ -61,6 +72,12 @@ int	end_hdc(int fd, char *file, t_shell *data)
 
 	close(fd);
 	hdc = open(file, O_CREAT | O_RDWR, 0644);
+	if (hdc == -1)
+	{
+		putstr_fd("Open() call failed[013]\n", 2);
+		close_fildes(data);
+		return (-1);
+	}
 	data->fildes = append_fdes(data, hdc);
 	unlink(file);
 	return (hdc);
