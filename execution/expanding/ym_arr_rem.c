@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 01:14:34 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 10:47:32 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 21:57:28 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ static char	**ym_arr_remove_middle(char **array,
 	i = 0;
 	len = get_length(array);
 	res = which_malloc(LOOP, len * sizeof(char *), data);
-	if (res == NULL)
-		return (NULL);
 	while (i < index)
 	{
 		res[i] = ft_strdup(array[i], LOOP, data);

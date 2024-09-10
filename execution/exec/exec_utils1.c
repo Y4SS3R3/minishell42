@@ -22,9 +22,9 @@ static int	ex_copy(t_fd *node, int tmp, t_shell *data)
 	line = get_next_line(fd);
 	if (line == NULL)
 		return (-1);
+	gc_add(&data->l_gc, gc_new(line, data));
 	if (node->ex_flag)
 	{
-		gc_add(&data->l_gc, gc_new(line, data));
 		line = ex_key_2_assign(line, data->key, data);
 		if (ft_strnstr(line, data->key, ft_strlen(line)))
 			line = ex_assign(line, data->key, data);

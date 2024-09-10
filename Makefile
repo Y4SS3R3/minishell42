@@ -6,7 +6,7 @@
 #    By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 09:40:06 by mzouine           #+#    #+#              #
-#    Updated: 2024/09/10 13:50:22 by ymassiou         ###   ########.fr        #
+#    Updated: 2024/09/10 22:07:16 by ymassiou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,6 @@ SRC = 	minishell.c \
 		execution/exec/init_shell.c \
 		execution/exec/heredoc.c \
 		execution/expanding/expand_unit.c \
-		execution/general_utils/[DEPRECATED]print_utils.c\
 		execution/gc/free_utils.c \
 		parsing/mz_syntax_bfr.c \
 		parsing/mz_syntax_err.c \

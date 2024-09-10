@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:04:41 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/09 18:30:28 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 22:01:07 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static void	prompt_execution(t_shell *data, char *rl)
 	rl = mz_key_assign2(rl, data->key3, data);
 	infix = mz_parser(rl, &status, data);
 	check_syntaxe_err(status, infix, data);
-	// free_token(infix);
 }
 
 int	prompt_manage(t_shell *data, char *rl)

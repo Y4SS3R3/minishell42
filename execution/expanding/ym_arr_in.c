@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 20:44:29 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 12:30:03 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 21:57:16 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ static char	**append_to_host(t_arr *info, int len1, int len2, t_shell *data)
 	char	**result;
 
 	result = initialize_result(info, len1, len2, data);
-	if (result == NULL)
-		return (NULL);
 	i = 0;
 	while (i < info->index && info->old_arr && info->old_arr[i])
 	{

@@ -28,7 +28,7 @@ void	*malloc_p(size_t size, t_trash *gc, t_shell *data)
 		new = gc_new(ret, data);
 		if (new == NULL)
 		{
-			putstr_fd("Warning: Appending newly allocated address failed.\n", 2);
+			putstr_fd(GCAPPEND_ERRMSG, 2);
 			stop_programm(data);
 			return (NULL);
 		}

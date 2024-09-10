@@ -1,16 +1,23 @@
-////////YM//////////
-///////MZ//////////
-
-
-
-
-
-✦ starshell: << '"'
->
-
-leaks
-
-
-    2 (32 bytes) << TOTAL >>
-      1 (16 bytes) ROOT LEAK: 0x7f8d6c40b920 [16]  length: 1  ""
-      1 (16 bytes) ROOT LEAK: 0x7f8d6c40cbb0 [16]  length: 1  ""
+tmp = dup(1);
+	if (tmp == -1)
+	{
+		fds_error(data, "Dup() call failure[027]\n");
+		return ;
+	}
+	append_fdes(data, tmp);
+	if (!is_a_redir(token->left))
+	{
+		if (dup2(p_fd[WRITE], 1) == -1)
+		{
+			fds_error(data, "Dup2() call failure[668]\n");
+			return ;
+		}
+	}
+	close(p_fd[WRITE]);
+	pid1 = exec_child(token->left, data);
+	if (dup2(tmp, 1) == -1)
+	{
+		fds_error(data, "Dup2() call failure[618]\n");
+		return ;
+	}
+	close(tmp);

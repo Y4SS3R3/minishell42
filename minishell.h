@@ -63,6 +63,8 @@ enum e_token
 # define CTRLC_HRDC -13
 # define GETCWD_ERRMSG "pwd: error retrieving current directory: getcwd: cannot access parent directories\n"
 # define GCFAILED_ERRMSG "Cannot open minishell : garbage collector failure[6345]\n"
+# define RETRIVE_PATH_ERRMSG "error retrieving current directory: getcwd: cannot access parent directories\n"
+# define GCAPPEND_ERRMSG "Warning: Appending newly allocated address failed\n"
 
 typedef struct s_token	t_token;
 typedef struct s_trash	t_trash;
@@ -187,7 +189,6 @@ typedef struct s_shell
 	int		status;
 	int		exec;
 	int		show_err;
-	int		index;
 	int		rem1;
 	int		rem2;
 	int		errno_shell;

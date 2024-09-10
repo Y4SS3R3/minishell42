@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 15:28:22 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 11:02:05 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 22:05:03 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ char	*ft_substr_s(t_sub *info, int mode, t_shell *data)
 		len = ft_strlen(&s[start]);
 	i = 0;
 	result = which_malloc(mode, len + 1, data);
-	if (result == NULL)
-		return (NULL);
 	while (i < len)
 	{
 		result[i] = s[start + i];
