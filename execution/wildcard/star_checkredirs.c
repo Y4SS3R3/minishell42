@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:33:31 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 23:11:58 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 10:21:22 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	star_check_before(t_token *node, t_shell *data)
 			{
 				file = bring_star_back(file, data->key3, data);
 				entry_content = get_entry_content(file, data);
+				if (entry_content == NULL)
+					return (-1);
 				if (check_ambiguos(entry_content) == -1)
 					return (-1);
 				else
@@ -55,6 +57,8 @@ int	star_check_after(t_token *node, t_shell *data)
 			{
 				file = bring_star_back(file, data->key3, data);
 				entry_content = get_entry_content(file, data);
+				if (entry_content == NULL)
+					return (-1);
 				if (check_ambiguos(entry_content) == -1)
 					return (-1);
 				else

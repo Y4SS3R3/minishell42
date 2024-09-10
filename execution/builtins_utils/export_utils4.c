@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:59:03 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/09 17:41:41 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 10:19:52 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void	append_to_env(char *name, char *value, int flag, t_shell *data)
 	if (value && ft_strchr(value, '*'))
 	{
 		value = get_entry_content(value, data);
+		if (value == NULL)
+			return ;
 		value = trim_string(value, data);
 	}
 	res = ft_strjoin(res, value, GLOBAL, data);
