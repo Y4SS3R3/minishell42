@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:12:48 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/09 19:35:48 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 10:08:32 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ static char	*buffer_file_content(char *limiter, t_shell *data)
 	char	*final;
 
 	final = NULL;
+	signal(SIGINT, ctrl_c_heredoc);
 	while (!g_sig)
 	{
-		signal(SIGINT, ctrl_c_heredoc);
 		tmp = fill_heredoc(limiter, data);
 		if (tmp == NULL)
 			break ;
