@@ -24,7 +24,7 @@ static int	repeat(t_shell *data)
 	signal(SIGINT, ctrl_c);
 	data->l_gc = init_l_gc(data);
 	if (data->l_gc)
-	init_path(data);
+		init_path(data);
 	data->fildes = ft_strdup(".", LOOP, data);
 	line = prompt_user(data);
 	if (prompt_manage(data, line))
@@ -37,11 +37,11 @@ static int	repeat(t_shell *data)
 	return (0);
 }
 
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
-	t_shell data;
-	(void)av;
+	t_shell	data;
 
+	(void)av;
 	data.DEBUG = 0;
 	if (ac != 1 || !isatty(0))
 		return (1);
@@ -54,9 +54,9 @@ int main(int ac, char **av, char **env)
 		data.errno_shell = 0;
 		data.DEBUG = 0;
 		if (repeat(&data))
-			break;
+			break ;
 	}
 	if (data.free_it)
 		free_programm(&data);
-	return 0;
+	return (0);
 }

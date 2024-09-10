@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:11:29 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 20:30:15 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 22:44:06 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ void	init_shell_1(t_shell *data)
 		append_to_env("OLDPWD", NULL, 0, data);
 	}
 	else
-		putstr_fd(RETRIVE_PATH_ERRMSG, 2);
+	{
+		putstr_fd("error retrieving current directory:", 2);
+		putstr_fd(" getcwd: cannot access parent directories\n", 2);
+	}
 	tcgetattr(STDERR_FILENO, &data->orig_termios);
 }
 

@@ -22,7 +22,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
-#include <dirent.h>
+# include <dirent.h>
 # include <limits.h>
 # include <sys/wait.h>
 # include <termios.h>
@@ -46,9 +46,6 @@ enum e_token
 	APPEND,
 };
 
-// # define OPEN_MAX 1000
-// # define SIZE_T_MAX 1000
-
 # define READ 0
 # define WRITE 1
 # define GLOBAL 13
@@ -61,9 +58,7 @@ enum e_token
 # define GETCWD_FAILURE 106
 # define PIPE_FAILURE 111
 # define CTRLC_HRDC -13
-# define GETCWD_ERRMSG "pwd: error retrieving current directory: getcwd: cannot access parent directories\n"
-# define GCFAILED_ERRMSG "Cannot open minishell : garbage collector failure[6345]\n"
-# define RETRIVE_PATH_ERRMSG "error retrieving current directory: getcwd: cannot access parent directories\n"
+# define GCFAILED_ERRMSG "Cannot open minishell : garbage collector failure\n"
 # define GCAPPEND_ERRMSG "Warning: Appending newly allocated address failed\n"
 
 typedef struct s_token	t_token;
@@ -73,7 +68,7 @@ typedef struct s_redir	t_redir;
 typedef struct s_tree	t_tree;
 typedef struct s_list	t_list;
 
-int g_sig;
+int						g_sig;
 
 typedef struct s_replace_info
 {
@@ -107,19 +102,19 @@ typedef struct s_arr
 
 typedef struct s_sub
 {
-	char		*s;
-	unsigned	int start;
-	size_t		len;
+	char			*s;
+	unsigned int	start;
+	size_t			len;
 }	t_sub;
 
 typedef struct s_fd
 {
-	int		fd;
-	int		visited;
-	int		ex_flag;
-	char	*file_name;
-	char	*limiter;
-	struct	s_fd *next;
+	int			fd;
+	int			visited;
+	int			ex_flag;
+	char		*file_name;
+	char		*limiter;
+	struct s_fd	*next;
 }	t_fd;
 
 typedef struct s_redir
@@ -171,38 +166,33 @@ typedef struct s_trash
 
 typedef struct s_shell
 {
-	int		DEBUG;
-
-
-
-
-	int		fork;
-	int		add_equal;
-	int		cd_flag;
-	int		to_close;
-	int		exapp;
-	int		free_it;
-	int		unlink_it;
-	char	*key;
-	char	*key2;
-	char	*key3;
-	int		status;
-	int		exec;
-	int		show_err;
-	int		rem1;
-	int		rem2;
-	int		errno_shell;
-	char	**envp;
-	char	*saved_path;
-	char	*last_arg;
-	char	*fildes;
-	t_list	*envl;
-	char	**paths;
-	t_token	*the_tree;
-	t_trash	*g_gc;
-	t_trash	*l_gc;
-	t_fd	*fds;
-	struct termios orig_termios;
+	int				fork;
+	int				add_equal;
+	int				cd_flag;
+	int				to_close;
+	int				exapp;
+	int				free_it;
+	int				unlink_it;
+	char			*key;
+	char			*key2;
+	char			*key3;
+	int				status;
+	int				exec;
+	int				show_err;
+	int				rem1;
+	int				rem2;
+	int				errno_shell;
+	char			**envp;
+	char			*saved_path;
+	char			*last_arg;
+	char			*fildes;
+	t_list			*envl;
+	char			**paths;
+	t_token			*the_tree;
+	t_trash			*g_gc;
+	t_trash			*l_gc;
+	t_fd			*fds;
+	struct termios	orig_termios;
 }	t_shell;
 
 typedef struct s_list
@@ -217,9 +207,6 @@ typedef struct s_list
 	int				hide;
 	int				d_quote;
 }	t_list;
-
-void generate_ast_graph(t_token *first_node);
-
 
 void	putstr_fd(char *msg, int fd);
 char	*mz_strdup(const char *s1);
@@ -272,10 +259,10 @@ int		mz_is_space(char c);
 int		mz_is_special(char c);
 int		make_word_nd(t_list **head, char *s, int i, t_shell *data);
 int		make_out(t_list **head, char *s, int i, t_shell *data);
-int	make_quote(t_list **head, char *s, int i, t_shell *data);
+int		make_quote(t_list **head, char *s, int i, t_shell *data);
 int		make_dquote(t_list **head, char *s, int i, t_shell *data);
 int		make_dollar(t_list **head, char *s, int i, t_shell *data);
-int	make_star(t_list **head, char *s, int i, t_shell *data);
+int		make_star(t_list **head, char *s, int i, t_shell *data);
 void	mz_make_special(t_token **list, t_list **head, t_shell *data);
 char	*ft_itoa(int n, int mode, t_shell *data);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -423,7 +410,8 @@ char	*export_get_val(char *input, int k, int len, t_shell *data);
 char	**mz_split(char const *s, char c, t_shell *data);
 char	*ft_strjoin_mz(char const *s1, char const *s2, t_shell *data);
 char	*ft_strdup_mz(const char *s1, t_shell *data);
-char	*ft_substr_mz(char const *s, unsigned int start, size_t len, t_shell *data);
+char	*ft_substr_mz(char const *s, unsigned int start,
+			size_t len, t_shell *data);
 t_list	*mz_lstnew_mz(char *content, t_shell *data);
 void	mz_lstadd_back(t_list **lst, t_list *new);
 t_list	*mz_lstlast(t_list *lst);
@@ -436,25 +424,25 @@ int		make_in(t_list **head, char *s, int i, t_shell *data);
 int		make_and(t_list **head, char *s, int i, t_shell *data);
 int		make_o_par(t_list **head, char *s, int i, t_shell *data);
 int		make_c_par(t_list **head, char *s, int i, t_shell *data);
-t_token *mz_last_scan(t_list *head, t_shell *data);
-void     mz_make_cmd(t_token **list, t_list **head, t_shell *data);
+t_token	*mz_last_scan(t_list *head, t_shell *data);
+void	mz_make_cmd(t_token **list, t_list **head, t_shell *data);
 char	**mz_arr(char **org, char **arr, char *s, int flag, t_shell *data);
-int     mz_syntax_handler(t_list *lst);
-int     mz_search(char *s, int i, char c);
+int		mz_syntax_handler(t_list *lst);
+int		mz_search(char *s, int i, char c);
 size_t	ft_strlen_mz(const char *s);
 char	**mz_nl_sp(char const *s, char c, int n, t_shell *data);
 void	mz_make_redi(t_token **list, t_list **head, t_shell *data);
-int     mz_key_assign(char **s, t_shell *data);
-void    mz_key_insert(t_info *info, char *s, char *key, char *key_half);
-int     mz_flag(char c, int flag);
+int		mz_key_assign(char **s, t_shell *data);
+void	mz_key_insert(t_info *info, char *s, char *key, char *key_half);
+int		mz_flag(char c, int flag);
 char	*ft_itoa_mz(int n, t_shell *data);
 char	*mz_joiner(char *s);
-int     mz_syntax_err(char *s);
-int     mz_syntax_err2(char *s);
-int     mz_check_op(t_list *lst);
-int     check_before_opar(char *s);
-int     check_before_special(char *s);
-char    *mz_key_assign2(char *s, char *key, t_shell *data);
+int		mz_syntax_err(char *s);
+int		mz_syntax_err2(char *s);
+int		mz_check_op(t_list *lst);
+int		check_before_opar(char *s);
+int		check_before_special(char *s);
+char	*mz_key_assign2(char *s, char *key, t_shell *data);
 void	mz_free_char(char *s);
 t_token	*ft_lstnew_mz(char *cmd, t_shell *data);
 char	*bring_star_back(char *input, char *key, t_shell *data);
@@ -465,5 +453,6 @@ char	*find_replace(char *s1, char *s2, char *s3, t_shell *data);
 void	ft_strcpy(char *dst, const char *src);
 void	stop_programm(t_shell *data);
 void	fds_error(t_shell *data, char *msg);
-void	generate_find_replace(char **to_find, char **replace_with, char *key, t_shell *data);
+void	generate_find_replace(char **to_find,
+			char **replace_with, char *key, t_shell *data);
 #endif

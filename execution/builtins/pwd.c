@@ -23,7 +23,8 @@ int	pwd(t_shell *data)
 		s = search_fetch_add(data->envp, "PWD", data);
 		if (!s)
 		{
-			perror(GETCWD_ERRMSG);
+			putstr_fd("pwd: error retrieving current directory:getcwd: ", 2);
+			putstr_fd("cannot access parent directories\n", 2);
 			return (1);
 		}
 		else
