@@ -64,6 +64,8 @@ int	cd(int ac, char **av, t_shell *data)
 	tmp = get_var_value("PWD", data);
 	if (tmp)
 		data->saved_path = tmp;
+	else
+		data->saved_path = oldpwd;
 	if (ac == 0)
 		return (cd_home(data));
 	else

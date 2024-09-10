@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 17:50:44 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/09 19:33:27 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 09:37:23 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	ft_dup_it(int fd_in, int fd_out, char *file, int flag, t_shell *data
 			putstr_fd("Dup2() call failure[099]\n", 2);
 			data->status = 1;
 			close_fildes(data);
+			if (flag)
+				unlink(file);
 			return ;
 		}
 	}

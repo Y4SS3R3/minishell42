@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 18:08:55 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/09 20:31:47 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 09:40:43 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,12 @@ int	heredoc_in(t_shell *data, int *flag, char **file, t_redir *node)
 
 	fd_in = -44;
 	fd_in = heredocing_time_cmd(data, file, node);
+	dprintf(2, "Called [13]\n");
 	if (fd_in == -1)
+	{
+		unlink(*file);
 		return (-1);
+	}
 	*flag = 1;
 	unlink(*file);
 	return (fd_in);

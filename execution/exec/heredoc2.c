@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 23:33:20 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/09 19:44:49 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 09:38:07 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	end_hdc(int fd, char *file, t_shell *data)
 	{
 		putstr_fd("Open() call failed[013]\n", 2);
 		close_fildes(data);
+		unlink(file);
 		return (-1);
 	}
 	data->fildes = append_fdes(data, hdc);
