@@ -17,7 +17,6 @@ int	pwd(t_shell *data)
 	char	*s;
 
 	s = getcwd(NULL, 0);
-	dprintf(2, "Pwd : [%s]\n", s);
 	gc_add(&data->l_gc, gc_new(s, data));
 	if (!s)
 	{

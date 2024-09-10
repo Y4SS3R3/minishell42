@@ -12,105 +12,71 @@
 
 #include "../../minishell.h"
 
-void update_pwd(char *currpwd, t_shell *data)
-{
-	t_list *ret;
-
-	ret = search_fetch_list(data->envl, "PWD", data);
-	update_var(currpwd, "PWD",ret, data);
-	ret = search_fetch_list(data->envl, "OLDPWD", data);
-	update_var(data->saved_path, "OLDPWD", ret, data);
-}
-
-int	cd_home(char *oldpwd, t_shell *data)
+static int	cd_home(t_shell *data)
 {
 	char	*home;
 	char	*currpwd;
 
 	home = search_fetch_add(data->envp, "HOME", data);
 	if (home == NULL)
-	{
-		putstr_fd("bash: cd: HOME not set\n", 2);
-		return (1);
-	}
+		return (putstr_fd("starshell: cd: HOME not set\n", 2), 1);
 	else
 	{
 		if (chdir(home + 5))
-		{
-			perror(NULL);
-			return (1);
-		}
+			return (perror(NULL), 1);
 		else
 		{
 			currpwd = getcwd(NULL, 0);
 			gc_add(&data->l_gc, gc_new(currpwd, data));
 			if (currpwd == NULL)
-			{
-				puts("PWD IS NULL 1");
 				currpwd = get_var_value("PWD", data);
-			}
-			if (oldpwd == NULL)
-			{
-				puts("OLDPWD IS NULL 1");
-				oldpwd = get_var_value("OLDPWD", data);
-			}
 			update_pwd(currpwd, data);
 		}
 	}
 	return (0);
 }
 
+static void	cd_part2(t_shell *data, char *path)
+{
+	char	*currpwd;
+
+	currpwd = getcwd(NULL, 0);
+	gc_add(&data->l_gc, gc_new(currpwd, data));
+	if (currpwd == NULL)
+	{
+		currpwd = get_var_value("PWD", data);
+		if (!ft_strcmp(path, ".."))
+			currpwd = join_chdir(currpwd, "/..", data);
+		if (!ft_strcmp(path, "."))
+			currpwd = join_chdir(currpwd, "/.", data);
+		data->status = 1;
+	}
+	cd_custompath(currpwd, path, data);
+}
+
 int	cd(int ac, char **av, t_shell *data)
 {
-	// printf("%s\n", getcwd(NULL, 0));
-	char *tmp;
-	// char *path_to;
-	char *oldpwd;
-	char *currpwd;
+	char	*tmp;
+	char	*oldpwd;
 
 	oldpwd = getcwd(NULL, 0);
 	gc_add(&data->l_gc, gc_new(oldpwd, data));
 	tmp = get_var_value("PWD", data);
 	if (tmp)
 		data->saved_path = tmp;
-	if(ac == 0)
-		return (cd_home(oldpwd, data));
+	if (ac == 0)
+		return (cd_home(data));
 	else
 	{
 		if (!ft_strcmp(av[0], "~"))
-			return (cd_home(oldpwd, data));
+			return (cd_home(data));
 		if (chdir(av[0]) != 0)
 		{
 			perror(av[0]);
 			return (1);
 		}
 		else
-		{
-			currpwd = getcwd(NULL, 0);
-			gc_add(&data->l_gc, gc_new(currpwd, data));
-			if (currpwd == NULL)
-			{
-				currpwd = get_var_value("PWD", data);
-				if (!ft_strcmp(av[0], ".."))
-				{
-					putstr_fd("cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n", 2);
-					currpwd = ft_strjoin(currpwd, "/..", LOOP, data);
-					chdir(currpwd);
-				}
-				if (!ft_strcmp(av[0], "."))
-				{
-					putstr_fd("cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n", 2);
-					currpwd = ft_strjoin(currpwd, "/.", LOOP, data);
-					chdir(currpwd);
-				}
-			}
-			if (oldpwd == NULL)
-				oldpwd = get_var_value("OLDPWD", data);
-			if (!ft_strcmp(av[0], "//"))
-				currpwd = ft_strdup("//", GLOBAL, data);
-			update_pwd(currpwd, data);
-		}
+			cd_part2(data, av[0]);
 	}
-	// printf("%s\n", getcwd(NULL, 0));
 	return (0);
 }

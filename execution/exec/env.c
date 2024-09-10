@@ -50,7 +50,7 @@ static char	**export_base_env(t_shell *data)
 	char	**new_envp;
 
 	new_envp = which_malloc(GLOBAL, 5 * sizeof(char *), data);
-	if (new_envp != NULL)
+	if (new_envp == NULL)
 		exit(EXIT_FAILURE);
 	new_envp[0] = ft_strdup("PATH=/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.",
 			GLOBAL, data);
