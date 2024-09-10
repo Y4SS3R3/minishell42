@@ -6,29 +6,11 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:59:03 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 10:19:52 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:28:41 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-void	update_var(char *val, char *name, t_list *node, t_shell *data)
-{
-	char	*new;
-
-	new = NULL;
-	if (node == NULL)
-	{
-		append_to_env(name, val, 1, data);
-		return ;
-	}
-	name = get_var_name(node->s, data);
-	new = ft_strjoin(name, "=", GLOBAL, data);
-	new = ft_strjoin(new, val, GLOBAL, data);
-	node->s = new;
-	node->hide = 0;
-	data->envp = list_to_arr(data->envl, data);
-}
 
 void	append_to_var(char **name, t_shell *data)
 {
@@ -88,6 +70,15 @@ void	add_equal(int flag, char **res, t_shell *data, char *name)
 	}
 }
 
+void	append_to_env_util(t_shell *data, int flag, t_list	*new, char *name)
+{
+	(void)flag;
+	if (!flag)
+		new->hide = 1;
+	search_remove(&data->envl, name, data);
+	ym_lstadd_back(&data->envl, new);
+}
+
 void	append_to_env(char *name, char *value, int flag, t_shell *data)
 {
 	char	*res;
@@ -114,8 +105,5 @@ void	append_to_env(char *name, char *value, int flag, t_shell *data)
 	new = ym_lstnew(res, GLOBAL, data);
 	if (new == NULL)
 		return ;
-	if (!flag)
-		new->hide = 1;
-	search_remove(&data->envl, name, data);
-	ym_lstadd_back(&data->envl, new);
+	append_to_env_util(data, flag, new, name);
 }
