@@ -19,36 +19,18 @@ int	pipe_line2(int read_end, int pid1, t_token *token, t_shell *data)
 
 	tmp = dup(0);
 	if (tmp == -1)
-	{
-		putstr_fd("Dup() call failure[092]\n", 2);
-		data->status = 1;
-		close(read_end);
-		close_fildes(data);
-		return (-1);
-	}
+		return (fds_error(data, "Dup() call failure[092]\n"), -1);
+	append_fdes(data, tmp);
 	if (!is_a_redir(token->right))
 	{
 		if (dup2(read_end, 0) == -1)
-		{
-			putstr_fd("Dup2() call failure[797]\n", 2);
-			data->status = 1;
-			close(read_end);
-			close(tmp);
-			close_fildes(data);
-			return (-1);
-		}
+			return (fds_error(data, "Dup2() call failure[797]\n"), -1);
 	}
 	close(read_end);
 	data->to_close = -1;
 	pid2 = exec_child(token->right, data);
 	if (dup2(tmp, 0) == -1)
-	{
-		putstr_fd("Dup2() call failure[606]\n", 2);
-		data->status = 1;
-		close(tmp);
-		close_fildes(data);
-		return (-1);
-	}
+		return (fds_error(data, "Dup2() call failure[797]\n"), -1);
 	close(tmp);
 	if (pid1 != -2)
 		waitpid(pid1, NULL, 0);
@@ -73,28 +55,21 @@ void	pipe_line(t_token *token, t_shell *data)
 		close_fildes(data);
 		return ;
 	}
-		// return (putstr_fd("ERROR IN PIPE OPENING[01]", 2), -1);
+	append_fdes(data, p_fd[READ]);
+	append_fdes(data, p_fd[WRITE]);
 	data->to_close = p_fd[READ];
 	tmp = dup(1);
 	if (tmp == -1)
 	{
-		putstr_fd("Dup() call failure[027]\n", 2);
-		data->status = 1;
-		close(p_fd[0]);
-		close(p_fd[1]);
-		close_fildes(data);
+		fds_error(data, "Dup() call failure[027]\n");
 		return ;
 	}
+	append_fdes(data, tmp);
 	if (!is_a_redir(token->left))
 	{
 		if (dup2(p_fd[WRITE], 1) == -1)
 		{
-			putstr_fd("Dup2() call failure[668]\n", 2);
-			data->status = 1;
-			close(tmp);
-			close(p_fd[WRITE]);
-			close(p_fd[READ]);
-			close_fildes(data);
+			fds_error(data, "Dup2() call failure[668]\n");
 			return ;
 		}
 	}
@@ -102,11 +77,7 @@ void	pipe_line(t_token *token, t_shell *data)
 	pid1 = exec_child(token->left, data);
 	if (dup2(tmp, 1) == -1)
 	{
-		putstr_fd("Dup2() call failure[618]\n", 2);
-		data->status = 1;
-		close(tmp);
-		close(p_fd[READ]);
-		close_fildes(data);
+		fds_error(data, "Dup2() call failure[618]\n");
 		return ;
 	}
 	close(tmp);

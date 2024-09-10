@@ -23,10 +23,9 @@ int	pwd(t_shell *data)
 		s = search_fetch_add(data->envp, "PWD", data);
 		if (!s)
 		{
-			perror("pwd: error retrieving current directory: getcwd: cannot access parent directories");
+			perror(GETCWD_ERRMSG);
 			return (1);
 		}
-			// putstr_fd("var not found!\n", 2);
 		else
 			printf("%s\n", get_var_value("PWD", data));
 		return (0);
@@ -34,4 +33,3 @@ int	pwd(t_shell *data)
 	printf("%s\n", s);
 	return (0);
 }
-//  No such file or directory

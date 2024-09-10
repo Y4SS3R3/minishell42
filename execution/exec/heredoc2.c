@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 23:33:20 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 10:10:01 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:43:33 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,7 @@ int	hrdc_ctrlc(int fd, t_shell *data)
 		data->exec = 0;
 		if (dup2(fd, 0) == -1)
 		{
-			putstr_fd("Dup2() call failure[717]\n", 2);
-			data->status = 1;
-			close_fildes(data);
-			close(fd);
+			fds_error(data, "Dup2() call failure[717]\n");
 			return (CTRLC_HRDC);
 		}
 		close(fd);

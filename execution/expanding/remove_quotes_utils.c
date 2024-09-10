@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 17:21:00 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/09 17:47:32 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 12:27:33 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,7 @@ char	*remove_charindex(char *src, int i1, int i2, t_shell *data)
 		if (i == i1 || i == i2)
 			i++;
 		else
-		{
-			ret[j] = src[i];
-			j++;
-			i++;
-		}
+			ret[j++] = src[i++];
 	}
 	ret[j] = 0;
 	return (ret);

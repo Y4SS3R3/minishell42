@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:12:48 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 10:08:32 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:48:10 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,14 @@ int	heredoc(char *limiter, t_fd *node, t_shell *data)
 
 	fd = dup(0);
 	if (fd == -1)
-	{
-		putstr_fd("Dup() call failure[133]\n", 2);
-		data->status = 1;
-		close_fildes(data);
-		return (-1);
-	}
+		return (fds_error(data, "Dup() call failure[133]\n"), -1);
+	append_fdes(data, fd);
 	tmp = limiter;
 	limiter = remove_quotes(limiter, data);
 	if (!ft_strcmp(tmp, limiter))
 		node->ex_flag = 1;
 	limiter = bring_sign_back(limiter, data);
-	limiter = bring_star_back(limiter, data->key3, data); //
+	limiter = bring_star_back(limiter, data->key3, data);
 	final = buffer_file_content(limiter, data);
 	if (hrdc_ctrlc(fd, data) == CTRLC_HRDC)
 		return (CTRLC_HRDC);

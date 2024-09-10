@@ -37,34 +37,24 @@ int	ex_heredoc(t_fd *node, char **new_file, t_shell *data)
 {
 	char	*name;
 	int		tmp;
-	int		fd;
 
-	fd = node->fd;
 	name = randomize_file_name(data);
 	name = ft_strjoin(name, "_tmp", LOOP, data);
 	tmp = open(name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (tmp == -1)
-	{
-		putstr_fd("Open() call failed[409]\n", 2);
-		close_fildes(data);
-		return (-1);
-	}
+		return (fds_error(data, "Open() call failed[409]\n"), -1);
 	data->fildes = append_fdes(data, tmp);
 	while (1)
 	{
 		if (ex_copy(node, tmp, data))
 			break ;
 	}
-	close(fd);
+	close(node->fd);
 	close(tmp);
 	*new_file = name;
 	tmp = open(name, O_CREAT | O_RDWR, 0644);
 	if (tmp == -1)
-	{
-		putstr_fd("Open() call failed[215]\n", 2);
-		close_fildes(data);
-		return (-1);
-	}
+		return (fds_error(data, "Open() call failed[215]\n"), -1);
 	data->fildes = append_fdes(data, tmp);
 	return (tmp);
 }

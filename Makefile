@@ -6,7 +6,7 @@
 #    By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 09:40:06 by mzouine           #+#    #+#              #
-#    Updated: 2024/09/10 09:44:58 by ymassiou         ###   ########.fr        #
+#    Updated: 2024/09/10 13:50:22 by ymassiou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,6 +111,7 @@ SRC = 	minishell.c \
 		execution/general_utils/utils4.c \
 		execution/general_utils/utils5.c \
 		execution/general_utils/utils6.c \
+		execution/errors/error.c \
 		execution/builtins_utils/export_utils2.c \
 		execution/builtins_utils/export_utils4.c \
 		execution/general_utils/utils7.c \

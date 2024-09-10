@@ -17,9 +17,9 @@ void	*which_malloc(int mode, size_t size, t_shell *data)
 	void	*buffer;
 
 	if (mode == GLOBAL)
-		buffer = malloc_p(size, data->g_gc, data, mode);
+		buffer = malloc_p(size, data->g_gc, data);
 	else if (mode == LOOP)
-		buffer = malloc_p(size, data->l_gc, data, mode);
+		buffer = malloc_p(size, data->l_gc, data);
 	else
 		buffer = malloc(size);
 	return (buffer);

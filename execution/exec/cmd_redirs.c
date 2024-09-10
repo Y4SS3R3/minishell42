@@ -6,36 +6,32 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 17:50:44 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 09:37:23 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:43:33 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static void	ft_dup_it(int fd_in, int fd_out, char *file, int flag, t_shell *data)
+static void	ft_dup_it(int fd_in, int fd_out, char *file, t_shell *data)
 {
 	if (fd_in != -44)
 	{
 		if (dup2(fd_in, 0) == -1)
 		{
-			putstr_fd("Dup2() call failure[099]\n", 2);
-			data->status = 1;
-			close_fildes(data);
-			if (flag)
+			fds_error(data, "Dup2() call failure[099]\n");
+			if (data->unlink_it)
 				unlink(file);
 			return ;
 		}
 	}
 	close(fd_in);
-	if (flag)
+	if (data->unlink_it)
 		unlink(file);
 	if (fd_out != -44)
 	{
 		if (dup2(fd_out, 1) == -1)
 		{
-			putstr_fd("Dup2() call failure[097]\n", 2);
-			data->status = 1;
-			close_fildes(data);
+			fds_error(data, "Dup2() call failure[097]\n");
 			return ;
 		}
 	}
@@ -99,15 +95,14 @@ int	handle_redirs(t_redir *in, t_shell *data, int dup_it)
 {
 	int		fd_in;
 	int		fd_out;
-	int		flag;
 	char	*file;
 
-	init_stuff(&flag, &file, &fd_in, &fd_out);
+	init_stuff(&data->unlink_it, &file, &fd_in, &fd_out);
 	while (in)
 	{
 		if (!ft_strcmp_b(in->type, "<") || !ft_strcmp_b(in->type, "<<"))
 		{
-			fd_in = in_redirs(in, &flag, &file, data);
+			fd_in = in_redirs(in, &data->unlink_it, &file, data);
 			if (fd_in < 0)
 				return (-1);
 		}
@@ -120,6 +115,6 @@ int	handle_redirs(t_redir *in, t_shell *data, int dup_it)
 		in = in->next;
 	}
 	if (dup_it)
-		ft_dup_it(fd_in, fd_out, file, flag, data);
+		ft_dup_it(fd_in, fd_out, file, data);
 	return (0);
 }

@@ -49,7 +49,6 @@ enum e_token
 // # define OPEN_MAX 1000
 // # define SIZE_T_MAX 1000
 
-
 # define READ 0
 # define WRITE 1
 # define GLOBAL 13
@@ -62,6 +61,8 @@ enum e_token
 # define GETCWD_FAILURE 106
 # define PIPE_FAILURE 111
 # define CTRLC_HRDC -13
+# define GETCWD_ERRMSG "pwd: error retrieving current directory: getcwd: cannot access parent directories\n"
+# define GCFAILED_ERRMSG "Cannot open minishell : garbage collector failure[6345]\n"
 
 typedef struct s_token	t_token;
 typedef struct s_trash	t_trash;
@@ -179,6 +180,7 @@ typedef struct s_shell
 	int		to_close;
 	int		exapp;
 	int		free_it;
+	int		unlink_it;
 	char	*key;
 	char	*key2;
 	char	*key3;
@@ -241,7 +243,7 @@ void	ft_exec(t_token *token, t_shell *data);
 void	exec_tind(t_token *root, t_shell *data);
 t_trash	*gc_last(t_trash *head);
 void	gc_add(t_trash **head, t_trash *new);
-void	*malloc_p(size_t size, t_trash *gc, t_shell *data, int mode);
+void	*malloc_p(size_t size, t_trash *gc, t_shell *data);
 void	gc_free(t_shell *data, int mode);
 t_token	*token_clone(t_token *token, t_shell *data);
 t_token	*ft_lstnew(char *cmd, int mode, t_shell *data);
@@ -460,5 +462,7 @@ char	*remove_charindex(char *src, int i1, int i2, t_shell *data);
 int		get_switch_value(int c);
 char	*find_replace(char *s1, char *s2, char *s3, t_shell *data);
 void	ft_strcpy(char *dst, const char *src);
+void	stop_programm(t_shell *data);
+void	fds_error(t_shell *data, char *msg);
 void	generate_find_replace(char **to_find, char **replace_with, char *key, t_shell *data);
 #endif

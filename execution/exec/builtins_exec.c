@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 15:24:58 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/09 19:21:44 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:43:33 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,46 @@ int	is_a_builtin(t_token *node)
 	return (0);
 }
 
+static int	bring_std_back(int def_in, int def_out, t_shell *data)
+{
+	if (dup2(def_in, 0) == -1)
+	{
+		fds_error(data, "Dup2() call failure[110]\n");
+		return (-1);
+	}
+	if (dup2(def_out, 1) == -1)
+	{
+		fds_error(data, "Dup2() call failure[169]\n");
+		return (-1);
+	}
+	return (0);
+}
+
+static int	save_fds(int *def_in, int *def_out, t_shell *data)
+{
+	*def_in = dup(0);
+	if (*def_in == -1)
+	{
+		fds_error(data, "Dup() call failure[912]\n");
+		return (-1);
+	}
+	append_fdes(data, *def_in);
+	*def_out = dup(1);
+	if (*def_out == -1)
+	{
+		fds_error(data, "Dup() call failure[612]\n");
+		return (-1);
+	}
+	append_fdes(data, *def_out);
+	return (0);
+}
+
 void	handle_builtin(t_token *root, t_shell *data)
 {
 	int	def_in;
 	int	def_out;
 
-	def_in = dup(0);
-	if (def_in == -1)
-	{
-		putstr_fd("Dup() call failure[912]\n", 2);
-		data->status = 1;
-		close_fildes(data);
-		return ;
-	}
-	def_out = dup(1);
-	if (def_out == -1)
-	{
-		putstr_fd("Dup() call failure[612]\n", 2);
-		data->status = 1;
-		close(def_in);
-		close_fildes(data);
-		return ;
-	}
+	save_fds(&def_in, &def_out, data);
 	if (expand(root, data))
 	{
 		close(def_in);
@@ -55,24 +73,8 @@ void	handle_builtin(t_token *root, t_shell *data)
 	}
 	if (redirs(root, data) == 0)
 		data->status = execute_builtin(root, data);
-	if (dup2(def_in, 0) == -1)
-	{
-		putstr_fd("Dup2() call failure[110]\n", 2);
-		data->status = 1;
-		close(def_in);
-		close(def_out);
-		close_fildes(data);
+	if (bring_std_back(def_in, def_out, data) == -1)
 		return ;
-	}
-	if (dup2(def_out, 1) == -1)
-	{
-		putstr_fd("Dup2() call failure[169]\n", 2);
-		data->status = 1;
-		close(def_in);
-		close(def_out);
-		close_fildes(data);
-		return ;
-	}
 	close(def_in);
 	close(def_out);
 }
