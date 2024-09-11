@@ -6,7 +6,7 @@
 #    By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 09:40:06 by mzouine           #+#    #+#              #
-#    Updated: 2024/09/10 22:07:16 by ymassiou         ###   ########.fr        #
+#    Updated: 2024/09/11 15:35:53 by ymassiou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,43 +120,25 @@ SRC = 	minishell.c \
 
 OBJS = $(SRC:%.c=%.o)
 CC = cc
-CFLAGS =  -Wall -Werror -Wextra #-fsanitize=address -ggdb3 -g
+CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 HEADER = minishell.h
 RLLIB1 = $(shell brew --prefix readline)/lib
 RLINC1 = $(shell brew --prefix readline)/include
 
-YELLOW = \033[1;33m
-BLUE = \033[1;34m
-RED = \033[1;31m
-GREEN = \033[1;32m
-PURPLE = \033[1;35m
-RESET = \033[0m
-
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L ${RLLIB1} -lreadline
-	@echo "$(GREEN)Compilation successful √$(RESET)"
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L ${RLLIB1} -lreadline
 
 %.o: %.c $(HEADER)
-	@echo "$(YELLOW)Compiling $<$(RESET)"
-	@$(CC) $(CFLAGS) -I ${RLINC1} -c $< -o $@
-	@echo "$(BLUE)Creating $@$(RESET)"
+	$(CC) $(CFLAGS) -I ${RLINC1} -c $< -o $@
 
 clean:
-	@for obj in $(OBJS); do \
-		if [ -f $$obj ]; then \
-			echo "$(RED)Deleting $$obj$(RESET)"; \
-			$(RM) $$obj; \
-		fi \
-	done
+	$(RM) $(OBJS)
 
 fclean: clean
-	@if [ -f $(NAME) ]; then \
-		echo "$(PURPLE)minishell deleted$(RESET)"; \
-		$(RM) $(NAME); \
-	fi
+	$(RM) $(NAME)
 
 re: fclean all
 

@@ -6,13 +6,13 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 15:26:52 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/24 15:29:05 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:46:28 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	*mz_strjoin(char const *s1, char const *s2)
+char	*mz_strjoin(char const *s1, char const *s2, t_shell *data)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -21,14 +21,12 @@ char	*mz_strjoin(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1)
-		return (mz_strdup(s2));
+		return (mz_strdup(s2, data));
 	if (!s2)
-		return (mz_strdup(s1));
+		return (mz_strdup(s1, data));
 	i = -1;
 	j = 0;
-	final = malloc(mz_strlen(s1) + mz_strlen(s2) + 1);
-	if (!final)
-		return (NULL);
+	final = which_malloc(LOOP, mz_strlen(s1) + mz_strlen(s2) + 1, data);
 	while (s1[++i])
 		final[i] = s1[i];
 	while (s2[j])
@@ -79,15 +77,13 @@ size_t	mz_strlcpy(char *dst, char *src, size_t dstsize)
 	return (src_len);
 }
 
-char	*mz_strdup(const char *s1)
+char	*mz_strdup(const char *s1, t_shell *data)
 {
 	char	*cpy;
 	size_t	i;
 
 	i = 0;
-	cpy = (char *) malloc(mz_strlen(s1) + 1);
-	if (cpy == NULL)
-		return (NULL);
+	cpy = which_malloc(LOOP, mz_strlen(s1) + 1, data);
 	while (s1[i])
 	{
 		cpy[i] = s1[i];

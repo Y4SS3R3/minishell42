@@ -203,7 +203,7 @@ typedef struct s_list
 }	t_list;
 
 void	putstr_fd(char *msg, int fd);
-char	*mz_strdup(const char *s1);
+char	*mz_strdup(const char *s1, t_shell *data);
 int		get_length(char **array);
 char	*check_command(char *command, char **paths, t_shell *data);
 size_t	ft_strlen(const char *s);
@@ -305,9 +305,9 @@ t_fd	*generate_heredoc(t_token *infix, t_shell *data);
 void	print_fds(t_fd *head);
 char	*randomize_file_name(t_shell *data);
 t_fd	*fds_last(t_fd *head);
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, t_shell *data);
 int		ex_heredoc(t_fd *node, char **new_file, t_shell *data);
-char	*mz_strjoin(char const *s1, char const *s2);
+char	*mz_strjoin(char const *s1, char const *s2, t_shell *data);
 size_t	mz_strlen(const char *s);
 int		mz_strchr(const char *s, char c);
 size_t	mz_strlcpy(char *dst, char *src, size_t dstsize);

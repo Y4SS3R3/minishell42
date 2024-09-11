@@ -19,10 +19,9 @@ static int	ex_copy(t_fd *node, int tmp, t_shell *data)
 
 	line = NULL;
 	fd = node->fd;
-	line = get_next_line(fd);
+	line = get_next_line(fd, data);
 	if (line == NULL)
 		return (-1);
-	gc_add(&data->l_gc, gc_new(line, data));
 	if (node->ex_flag)
 	{
 		line = ex_key_2_assign(line, data->key, data);
