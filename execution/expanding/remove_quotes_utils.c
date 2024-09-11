@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 17:21:00 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 12:27:33 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:18:47 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ char	*remove_charindex(char *src, int i1, int i2, t_shell *data)
 	j = 0;
 	len = ft_strlen(src) - 1;
 	ret = which_malloc(LOOP, len, data);
-	if (!ret)
-		return (NULL);
-	if (data->errno_shell == MALLOC_FAILURE)
-		return (NULL);
 	while (src[i] && j < len)
 	{
 		if (i == i1 || i == i2)

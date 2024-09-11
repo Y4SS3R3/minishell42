@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 20:44:29 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 21:57:16 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:19:04 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ static char	**no_host(char **new, t_shell *data)
 
 	len = get_length(new);
 	result = which_malloc(LOOP, (len + 1) * sizeof(char *), data);
-	if (result == NULL)
-		return (NULL);
 	i = 0;
 	while (new[i])
 	{
@@ -83,8 +81,6 @@ static char	**no_new(char **host, t_shell *data)
 	i = 0;
 	len = get_length(host);
 	result = which_malloc(LOOP, (len + 1) * sizeof(char *), data);
-	if (result == NULL)
-		return (NULL);
 	while (host[i])
 	{
 		result[i] = ft_strdup(host[i], LOOP, data);

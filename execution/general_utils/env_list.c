@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:01:19 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/09 17:50:55 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:25:12 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,10 @@ char	**list_to_arr(t_list *head, t_shell *data)
 
 	size = lst_size(head);
 	res = which_malloc(GLOBAL, (size + 1) * sizeof(char *), data);
-	if (res == NULL)
-		return (NULL);
 	i = 0;
 	while (head && i < size)
 	{
 		res[i] = which_malloc(GLOBAL, ft_strlen(head->s), data);
-		if (res[i] == NULL)
-			return (NULL);
 		res[i] = ft_strdup(head->s, GLOBAL, data);
 		head = head->next;
 		i++;

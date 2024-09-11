@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 15:28:22 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 22:05:03 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:21:51 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,34 +42,7 @@ char	*ft_strdup(const char *s1, int mode, t_shell *data)
 	tmp = NULL;
 	size1 = ft_strlen(s1) + 1;
 	tmp = which_malloc(mode, size1, data);
-	if (tmp == NULL)
-		return (NULL);
 	return (ft_memcpy(tmp, s1, size1));
-}
-
-char	*ft_substr(char *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	char	*result;
-
-	if (s == NULL)
-		return (NULL);
-	if (start > ft_strlen(s))
-		return ((char *)ft_calloc(1, 1));
-	if (len > ft_strlen(&s[start]))
-		len = ft_strlen(&s[start]);
-	i = 0;
-	result = NULL;
-	result = (char *)ft_calloc(len + 1, 1);
-	if (result == NULL)
-		return (NULL);
-	while (i < len)
-	{
-		result[i] = s[start + i];
-		i++;
-	}
-	result[len] = 0;
-	return (result);
 }
 
 char	*ft_substr_s(t_sub *info, int mode, t_shell *data)

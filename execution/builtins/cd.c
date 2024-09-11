@@ -68,7 +68,7 @@ int	cd(int ac, char **av, t_shell *data)
 		data->saved_path = oldpwd;
 	if (ac == 0)
 		return (cd_home(data));
-	else
+	if (ft_strlen(av[0]))
 	{
 		if (!ft_strcmp(av[0], "~"))
 			return (cd_home(data));

@@ -30,7 +30,6 @@ void	*malloc_p(size_t size, t_trash *gc, t_shell *data)
 		{
 			putstr_fd(GCAPPEND_ERRMSG, 2);
 			stop_programm(data);
-			return (NULL);
 		}
 		gc_add(&gc, new);
 	}

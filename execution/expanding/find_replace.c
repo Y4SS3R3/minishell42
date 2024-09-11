@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:02:17 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 12:26:58 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:16:41 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,5 @@ char	*find_replace(char *s1, char *s2, char *s3, t_shell *data)
 		return (NULL);
 	new_len = calculate_new_length(s1, s2, s3);
 	result = which_malloc(LOOP, new_len + 1, data);
-	if (!result)
-		return (NULL);
 	return (copy_and_replace(s1, s2, s3, result));
 }

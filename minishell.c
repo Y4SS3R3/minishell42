@@ -42,7 +42,6 @@ int	main(int ac, char **av, char **env)
 	t_shell	data;
 
 	(void)av;
-	data.DEBUG = 0;
 	if (ac != 1 || !isatty(0))
 		return (1);
 	rl_catch_signals = 0;
@@ -52,7 +51,6 @@ int	main(int ac, char **av, char **env)
 	while ('Y')
 	{
 		data.errno_shell = 0;
-		data.DEBUG = 0;
 		if (repeat(&data))
 			break ;
 	}

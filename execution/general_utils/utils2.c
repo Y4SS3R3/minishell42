@@ -27,8 +27,6 @@ t_token	*token_clone(t_token *token, t_shell *data)
 	if (token == NULL)
 		return (NULL);
 	head = which_malloc(LOOP, sizeof(t_token), data);
-	if (head == NULL)
-		return (NULL);
 	head->cmd = token->cmd;
 	head->args = token->args;
 	head->nature = token->nature;
@@ -45,8 +43,6 @@ t_token	*ft_lstnew(char *cmd, int mode, t_shell *data)
 	t_token	*head;
 
 	head = which_malloc(mode, sizeof(t_token), data);
-	if (head == NULL)
-		return (NULL);
 	head->next = NULL;
 	head->previous = NULL;
 	head->right = NULL;

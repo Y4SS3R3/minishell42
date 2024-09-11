@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 22:58:52 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/01 01:52:19 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:19:44 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ char	*bring_star_back(char *input, char *key, t_shell *data)
 	count = count_occurrences(input, key);
 	new_len = input_len - (count * (key_len - 1));
 	result = which_malloc(LOOP, new_len + 1, data);
-	if (result == NULL)
-		return (NULL);
 	replace_key_with_star(result, input, key);
 	return (result);
 }

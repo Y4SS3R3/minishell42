@@ -50,13 +50,6 @@ enum e_token
 # define WRITE 1
 # define GLOBAL 13
 # define LOOP 37
-# define MALLOC_FAILURE 16
-# define DUP2_FAILURE 101
-# define DUP_FAILURE 100
-# define OPEN_FAILURE 109
-# define FORK_FAILURE 104
-# define GETCWD_FAILURE 106
-# define PIPE_FAILURE 111
 # define CTRLC_HRDC -13
 # define GCFAILED_ERRMSG "Cannot open minishell : garbage collector failure\n"
 # define GCAPPEND_ERRMSG "Warning: Appending newly allocated address failed\n"
@@ -248,7 +241,6 @@ t_redir	*token_to_redir(t_token *token, t_shell *data);
 void	append_redir(t_redir **head, t_redir *new);
 t_redir	*redir(t_token **input, t_shell *data);
 char	*ft_strdup(const char *s1, int mode, t_shell *data);
-char	*ft_substr(char *s, unsigned int start, size_t len);
 char	*ft_substr_s(t_sub *info, int mode, t_shell *data);
 t_list	*mz_lstnew(char *content, int mode, t_shell *data);
 void	mz_lstadd_back(t_list **lst, t_list *new);

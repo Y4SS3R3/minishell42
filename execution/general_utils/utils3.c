@@ -37,8 +37,6 @@ static char	*allocate(int len, int mode, t_shell *data)
 	char	*allocated;
 
 	allocated = which_malloc(mode, len + 1, data);
-	if (allocated == NULL)
-		return (NULL);
 	return (allocated);
 }
 
@@ -53,8 +51,6 @@ char	*ft_itoa(int n, int mode, t_shell *data)
 	i = 0;
 	len = nbrlen(ntmp);
 	result = allocate(len, mode, data);
-	if (result == NULL)
-		return (NULL);
 	if (ntmp < 0)
 	{
 		result[i] = '-';
@@ -99,8 +95,6 @@ char	**ft_split(char *s, char c, int mode, t_shell *data)
 	result = NULL;
 	j = 0;
 	result = which_malloc(mode, (words + 1) * sizeof(char *), data);
-	if (result == NULL)
-		return (NULL);
 	while (*s && words--)
 	{
 		while (*s == c && *s)

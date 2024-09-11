@@ -46,8 +46,6 @@ t_trash	*gc_new(void *address, t_shell *data)
 	{
 		data->free_it = 0;
 		free_command(data, NULL);
-		data->errno_shell = MALLOC_FAILURE;
-		return (NULL);
 	}
 	new->to_free = address;
 	new->freed = 0;

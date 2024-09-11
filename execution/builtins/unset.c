@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 08:51:37 by marvin            #+#    #+#             */
-/*   Updated: 2024/09/10 11:11:10 by ymassiou         ###   ########.fr       */
+/*   Created: 2024/09/11 14:26:23 by ymassiou          #+#    #+#             */
+/*   Updated: 2024/09/11 14:26:25 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int	unset(int ac, char **av, t_shell *data)
 			if (tmp == -1)
 				return (1);
 			search_remove(&data->envl, name, data);
-			if (data->errno_shell == MALLOC_FAILURE)
-				return (1);
 			i++;
 		}
 	}

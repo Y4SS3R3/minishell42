@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:48:06 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/09 17:38:30 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:14:25 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@ char	*export_get_name(int len, int k, char *input, t_shell *data)
 
 	j = 0;
 	tmp = which_malloc(GLOBAL, len + 1, data);
-	if (tmp == NULL)
-		return (NULL);
-	if (data->errno_shell == MALLOC_FAILURE)
-		return (NULL);
 	while (j < len)
 	{
 		if (input[k] == '\\')

@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:33:34 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/08 14:22:54 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:24:58 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,7 @@ t_list	*ym_lstnew(char *content, int mode, t_shell *data)
 	if (content == NULL)
 		return (NULL);
 	new = which_malloc(mode, sizeof(t_list), data);
-	if (!new)
-		return (NULL);
 	new->s = ft_strdup(content, mode, data);
-	if (!new->s)
-		return (NULL);
 	new->next = NULL;
 	new->prev = NULL;
 	new->key_q = NULL;
@@ -69,8 +65,6 @@ t_list	*mz_lstnew(char *content, int mode, t_shell *data)
 	t_list	*new;
 
 	new = which_malloc(mode, sizeof(t_list), data);
-	if (!new)
-		return (NULL);
 	new->s = ft_strdup(content, mode, data);
 	new->next = NULL;
 	new->prev = NULL;
