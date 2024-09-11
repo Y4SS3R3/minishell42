@@ -29,16 +29,17 @@ static int	words_count1(const char *s)
 	return (count);
 }
 
-static void	nmr_arg_req(char *arg)
+static void	nmr_arg_req(char *arg, t_shell *data)
 {
 	putstr_fd("exit\n", 2);
 	putstr_fd("starshell: exit: ", 2);
 	putstr_fd(arg, 2);
 	putstr_fd(": numeric argument required\n", 2);
+	clean(data);
 	exit (255);
 }
 
-static int	single_args(char **av)
+static int	single_args(char **av, t_shell *data)
 {
 	int	exit_st;
 	int	j;
@@ -47,7 +48,7 @@ static int	single_args(char **av)
 	j = 0;
 	i = 0;
 	if (words_count1(av[0]) != 1)
-		nmr_arg_req(av[0]);
+		nmr_arg_req(av[0], data);
 	while (av[0][j] && (av[0][j] == ' ' || av[0][j] == '\t'))
 		j++;
 	i = j;
@@ -56,38 +57,32 @@ static int	single_args(char **av)
 	while (av[0][j] && !(av[0][j] == ' ' || av[0][j] == '\t'))
 	{
 		if (!(av[0][j] >= '0' && av[0][j] <= '9'))
-			nmr_arg_req(av[0]);
+			nmr_arg_req(av[0], data);
 		j++;
 	}
 	exit_st = ft_atoi(&av[0][i]);
 	printf("exit\n");
+	clean(data);
 	exit(exit_st);
 }
 
-static int	multiple_args(char **av)
+static int	multiple_args(char **av, t_shell *data)
 {
-	int	i;
 	int	j;
 
-	i = 0;
 	j = 0;
+	while (av[0][j] && (av[0][j] == ' ' || av[0][j] == '\t'))
+		j++;
+	if (av[0][j] == '+' || av[0][j] == '-')
+		j++;
 	while (av[0][j])
 	{
-		if (av[0][j] >= '0' && av[0][j] <= '9')
-			nmr_arg_req("");
+		if (!(av[0][j] >= '0' && av[0][j] <= '9'))
+			nmr_arg_req(av[0], data);
 		j++;
 	}
-	while (av[i])
-	{
-		j = 0;
-		while (av[i][j])
-		{
-			if (!(av[i][j] >= '0' && av[i][j] <= '9'))
-				nmr_arg_req(av[i]);
-			j++;
-		}
-		i++;
-	}
+	ft_atoi(av[0]);
+	putstr_fd("exit\n", 2);
 	putstr_fd("starshell: exit: too many arguments\n", 2);
 	return (1);
 }
@@ -97,11 +92,12 @@ int	exit_cmd(int ac, char **av, t_shell *data)
 	if (ac == 0)
 	{
 		printf("exit\n");
+		clean(data);
 		exit(data->status);
 	}
 	else if (ac == 1)
-		return (single_args(av));
+		return (single_args(av, data));
 	else
-		return (multiple_args(av));
+		return (multiple_args(av, data));
 	return (0);
 }

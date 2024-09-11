@@ -269,6 +269,8 @@ void	print_2d_array(char **arr);
 int		echo(int ac, char **av);
 int		env(t_shell *data);
 int		ft_atoi(char *str);
+void	clean(t_shell *data);
+void	unlink_fil(t_shell *data);
 int		exit_cmd(int ac, char **av, t_shell *data);
 void	remove_token(t_list **head, t_list *to_remove);
 int		unset(int ac, char **av, t_shell *data);

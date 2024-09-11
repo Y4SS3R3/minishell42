@@ -6,13 +6,13 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:44:55 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/11 19:36:40 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:55:30 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static void	unlink_fil(t_shell *data)
+void	unlink_fil(t_shell *data)
 {
 	int		i;
 	int		j;
@@ -33,19 +33,25 @@ static void	unlink_fil(t_shell *data)
 		j = i;
 		while (files[j] && files[j] != '.')
 			j++;
-		file = ft_substr_mz(files,i , j, data);
+		file = ft_substr_mz(files, i, j, data);
 		unlink(file);
 		while (files[i] && files[i] != '.')
 			i++;
 	}
 }
 
-void	stop_programm(t_shell *data)
+void	clean(t_shell *data)
 {
+	rl_clear_history();
 	close_fildes(data);
 	unlink_fil(data);
 	free_command(data, NULL);
 	free_programm(data);
+}
+
+void	stop_programm(t_shell *data)
+{
+	clean(data);
 	exit(MALLOC_FAILURE);
 }
 
