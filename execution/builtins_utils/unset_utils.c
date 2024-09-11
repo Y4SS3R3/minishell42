@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:18:44 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/12 00:03:30 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 00:21:25 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ static int	unset_parse_var(char *input, int *i)
 	while (input[*i] && input[*i] != '\'' && input[*i] != '\"')
 	{
 		if (check_unwanted_char1(input, *i))
-			return (1);
+			return (-1);
 		if (input[*i] == '\\')
 		{
 			if (check_check(&check, input))
-				return (1);
+				return (-1);
 			(*i)++;
 		}
 		else
@@ -91,6 +91,8 @@ int	check_var(char *input, char **name, t_shell *data)
 		return (1);
 	k = i;
 	len = unset_parse_var(input, &i);
+	if (len == -1)
+		return (1);
 	*name = export_get_name(len, k, input, data);
 	return (0);
 }
