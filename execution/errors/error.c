@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:44:55 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 20:24:26 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:32:34 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	stop_programm(t_shell *data)
 	close_fildes(data);
 	free_command(data, NULL);
 	free_programm(data);
-	exit(EXIT_FAILURE);
+	exit(MALLOC_FAILURE);
 }
 
 void	fds_error(t_shell *data, char *msg)

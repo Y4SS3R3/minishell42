@@ -51,6 +51,7 @@ enum e_token
 # define GLOBAL 13
 # define LOOP 37
 # define CTRLC_HRDC -13
+# define MALLOC_FAILURE 3
 # define GCFAILED_ERRMSG "Cannot open minishell : garbage collector failure\n"
 # define GCAPPEND_ERRMSG "Warning: Appending newly allocated address failed\n"
 
