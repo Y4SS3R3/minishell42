@@ -76,6 +76,8 @@ void	*ft_free(char **to_free, size_t elements, int flag)
 
 void	putstr_fd(char *msg, int fd)
 {
+	if (!msg)
+		return ;
 	while (*msg)
 	{
 		write(fd, msg, 1);

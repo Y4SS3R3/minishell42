@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:11:29 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 22:44:06 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 22:18:00 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	update_shlvl(t_shell *data)
 	res = ft_atoi(shlvl);
 	res++;
 	tmp = ft_itoa(res, GLOBAL, data);
-	if (tmp != NULL)
+	if (tmp == NULL)
 		return ;
 	update_var(tmp, "SHLVL",
 		search_fetch_list(data->envl, "SHLVL", data), data);

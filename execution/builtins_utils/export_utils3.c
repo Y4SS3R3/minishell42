@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:59:54 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/11 17:48:46 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 00:11:56 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,22 @@ static int	invalid_char_util(char *input, int i, t_shell *data)
 			data->exapp = 1;
 		else
 		{
-			putstr_fd("starshell: export: not a valid identifier\n", 2);
+			putstr_fd("starshell: export: `", 2);
+			putstr_fd(input, 2);
+			putstr_fd("': not a valid identifier\n", 2);
 			return (1);
 		}
 	}
 	return (0);
 }
 
-static int	check_bs(int check)
+static int	check_bs(int check, char *input)
 {
 	if (check > 1)
 	{
-		putstr_fd("starshell: export: not a valid identifier\n", 2);
+		putstr_fd("starshell: export: `", 2);
+		putstr_fd(input, 2);
+		putstr_fd("': not a valid identifier\n", 2);
 		return (1);
 	}
 	return (0);
@@ -53,8 +57,8 @@ static int	invalid_char(char *input, int *i, t_shell *data)
 		if (input[*i] == '\\')
 		{
 			check++;
-			if (check_bs(check))
-				return (1);
+			if (check_bs(check, input))
+				return (-1);
 			(*i)++;
 		}
 		else
@@ -97,6 +101,8 @@ int	parse_var(char *input, char **val, char **name, t_shell *data)
 		return (1);
 	k = i;
 	len = invalid_char(input, &i, data);
+	if (len == -1)
+		return (1);
 	*name = export_get_name(len, k, input, data);
 	if (export_parse_name(*name))
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 17:50:44 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 16:43:33 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:48:24 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ int	out_redirs(t_redir *in, t_shell *data)
 	{
 		if (is_a_dir(in->file))
 			return (-1);
-		putstr_fd("starshell: ", 2);
-		putstr_fd(in->file, 2);
-		putstr_fd(": Permission denied\n", 2);
+		perror(in->file);
 		return (-1);
 	}
 	data->fildes = append_fdes(data, fd_out);

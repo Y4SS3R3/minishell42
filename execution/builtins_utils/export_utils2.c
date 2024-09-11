@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:48:06 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/11 14:14:25 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 00:11:50 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ static int	invalid_1(char *input, int i)
 	if (!ft_isalpha(input[i])
 		&& input[i] != '_' && input[i] != '\\' && input[i] != '$')
 	{
-		putstr_fd("starshell: export: not a valid identifier\n", 2);
+		putstr_fd("starshell: export: `", 2);
+		putstr_fd(input, 2);
+		putstr_fd("': not a valid identifier\n", 2);
 		return (-1);
 	}
 	return (0);
@@ -71,7 +73,9 @@ int	export_parse_name(char *tmp)
 	{
 		if (!ft_isalnum(tmp[j]) && tmp[j] != '_' && tmp[j] != '+')
 		{
-			putstr_fd("starshell: export: not a valid identifier\n", 2);
+			putstr_fd("starshell: export: `", 2);
+			putstr_fd(tmp, 2);
+			putstr_fd("': not a valid identifier\n", 2);
 			return (1);
 		}
 		j++;

@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:02:44 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/09 20:32:01 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 00:12:34 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	update_status(t_shell *data)
 {
 	if (WIFEXITED(data->status))
 		data->status = WEXITSTATUS(data->status);
-	else if (WIFSIGNALED(data->status))
+	else if (WIFSIGNALED(data->status)
+		&& WTERMSIG(data->status) != SIGHUP)
 		data->status = 128 + data->status;
 }
 
@@ -67,7 +68,7 @@ void	check_ifdir(t_token *token)
 	{
 		putstr_fd("starshell: ", 2);
 		putstr_fd(token->cmd, 2);
-		putstr_fd(": No such file or directory 3\n", 2);
+		putstr_fd(": No such file or directory\n", 2);
 		exit(127);
 	}
 	closedir(ret);

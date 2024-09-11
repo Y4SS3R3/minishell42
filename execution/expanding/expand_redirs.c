@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:53:08 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/09 20:32:04 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 00:12:29 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_empty_str(char *file, t_shell *data)
 {
 	if (!ft_strcmp(file, ""))
 	{
-		putstr_fd("starshell: : No such file or directory 4\n", 2);
+		putstr_fd("starshell: : No such file or directory\n", 2);
 		data->status = 1;
 		data->show_err = 1;
 		return (-2);

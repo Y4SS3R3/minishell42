@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 12:46:42 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/08/31 14:45:37 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:36:52 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	is_a_dir(char *path)
 		putstr_fd("starshell: ", 2);
 		putstr_fd(path, 2);
 		putstr_fd(": is a directory\n", 2);
+		closedir(ret);
 		return (1);
 	}
-	closedir(ret);
 	return (0);
 }
 
