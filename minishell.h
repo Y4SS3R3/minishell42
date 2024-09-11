@@ -180,6 +180,7 @@ typedef struct s_shell
 	char			*saved_path;
 	char			*last_arg;
 	char			*fildes;
+	char			*filcollect;
 	t_list			*envl;
 	char			**paths;
 	t_token			*the_tree;

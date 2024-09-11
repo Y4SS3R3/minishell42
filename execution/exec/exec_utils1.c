@@ -43,6 +43,8 @@ int	ex_heredoc(t_fd *node, char **new_file, t_shell *data)
 	if (tmp == -1)
 		return (fds_error(data, "Open() call failed[409]\n"), -1);
 	data->fildes = append_fdes(data, tmp);
+	data->filcollect = ft_strjoin(data->filcollect, name, LOOP, data);
+	data->filcollect = ft_strjoin(data->filcollect, ".", LOOP, data);
 	while (1)
 	{
 		if (ex_copy(node, tmp, data))
