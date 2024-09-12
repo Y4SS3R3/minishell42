@@ -81,7 +81,7 @@ typedef struct s_attrr
 
 typedef struct s_infozm
 {
-	char	**a;
+	char	*a;
 	int		l;
 	int		i;
 }	t_infozm;

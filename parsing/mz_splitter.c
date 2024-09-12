@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 16:26:56 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/12 21:05:26 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/12 21:35:05 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static char	***mz_triple_init(t_token *head, t_shell *data)
 void	mz_splitter(t_token *head, t_shell *data)
 {
 	t_token		*tmp;
-	t_infozm	*x;
+	t_infozm	x;
 	char		***a;
 	int			j;
 
@@ -81,15 +81,15 @@ void	mz_splitter(t_token *head, t_shell *data)
 	j = 0;
 	while (tmp)
 	{
-		x->i = 0;
-		while (tmp && tmp->args && tmp->args[x->i])
+		x.i = 0;
+		while (tmp && tmp->args && tmp->args[x.i])
 		{
-			x->l = ft_strlen_mz(tmp->args[x->i]);
-			tmp->args[x->i] = mz_nuller(tmp, x->i);
-			x->a = tmp->args[x->i];
+			x.l = ft_strlen_mz(tmp->args[x.i]);
+			tmp->args[x.i] = mz_nuller(tmp, x.i);
+			x.a = tmp->args[x.i];
 			data->flag = 2;
-			a[j] = mz_arr(a[j], mz_nl_sp(x->a, '\0', x->l, data), NULL, data);
-			x->i = x->i + 1;
+			a[j] = mz_arr(a[j], mz_nl_sp(x.a, '\0', x.l, data), NULL, data);
+			x.i = x.i + 1;
 		}
 		if (tmp && tmp->args)
 			tmp->args = a[j];
