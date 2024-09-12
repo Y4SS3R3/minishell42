@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mz_arr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:28 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/09 17:54:46 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:58:37 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-// static char	**freemem(char **final)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (final)
-// 	{
-// 		while (final[i])
-// 		{
-// 			free(final[i]);
-// 			i++;
-// 		}
-// 		free(final);
-// 	}
-// 	return (NULL);
-// }
 
 static int	mz_arr_counter(char **org)
 {
@@ -113,13 +96,13 @@ static char	**ym_addstring(char **org, char *s, int size)
 	return (new);
 }
 
-char	**mz_arr(char **org, char **arr, char *s, int flag, t_shell *data)
+char	**mz_arr(char **org, char **arr, char *s, t_shell *data)
 {
-	if (flag == 1)
+	if (data->flag == 1)
 		return (mz_addstring(org, s, mz_arr_counter(org), data));
-	else if (flag == 2)
+	else if (data->flag == 2)
 		return (mz_addarray(org, arr, mz_arr_counter(org), data));
-	else if (flag == 3)
+	else if (data->flag == 3)
 		return (ym_addstring(org, s, mz_arr_counter(org)));
 	else
 	{

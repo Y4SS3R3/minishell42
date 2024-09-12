@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_key_assign2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 20:25:44 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/09 17:54:53 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:27:55 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,5 @@ char	*mz_key_assign2(char *s, char *key, t_shell *data)
 		i++;
 	}
 	final[j] = '\0';
-	// mz_free_char(key);
 	return (final);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_syntax_err2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 09:45:10 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/08 16:45:15 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:26:42 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,12 @@ static int	mz_flag2(char *s, int *i, int flag)
 		(*i)++;
 		while (s[*i] && s[*i] != '\'')
 			(*i)++;
-		// if (s[*i]) && (*i)++;
 	}
 	else if (s[*i] == '\"')
 	{
 		(*i)++;
 		while (s[*i] && s[*i] != '\"')
 			(*i)++;
-		// if (s[*i]) && (*i)++;
 	}
 	if (s[*i] && s[*i] == '(' && flag == 0)
 		return (3);

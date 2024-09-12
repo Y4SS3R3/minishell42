@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mz_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:39:42 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/08 16:19:00 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:41:11 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static unsigned int	mz_word_count(const char *s, char c)
+static unsigned int	mz_wrd_cnt(const char *s, char c)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -55,23 +55,6 @@ static char	*mz_word_finder(const char *s, char c, int *word, t_shell *data)
 	return (str);
 }
 
-// static char	**freemem(char **final)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (final)
-// 	{
-// 		while (final[i])
-// 		{
-// 			free(final[i]);
-// 			i++;
-// 		}
-// 		free(final);
-// 	}
-// 	return (NULL);
-// }
-
 char	**mz_split(char const *s, char c, t_shell *data)
 {
 	char			**final;
@@ -82,10 +65,10 @@ char	**mz_split(char const *s, char c, t_shell *data)
 		return (NULL);
 	word = 0;
 	i = 0;
-	final = which_malloc(LOOP, (mz_word_count(s, c) + 1) * sizeof(char *), data);
+	final = which_malloc(LOOP, (mz_wrd_cnt(s, c) + 1) * sizeof(char *), data);
 	if (!final)
 		return (NULL);
-	while (i < mz_word_count(s, c))
+	while (i < mz_wrd_cnt(s, c))
 	{
 		final[i] = mz_word_finder(s, c, &word, data);
 		i++;

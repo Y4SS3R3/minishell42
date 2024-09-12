@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 15:54:01 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/08 16:48:04 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:28:17 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ t_token	*mz_parser(char *s, int *status, t_shell *data)
 	}
 	list = mz_last_scan(head, data);
 	mz_splitter(list, data);
-	// free_list(head);
 	return (list);
 }

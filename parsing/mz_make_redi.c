@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_make_redi.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:46:10 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/08 16:43:37 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:01:33 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	mz_d_quote(t_token *list, t_list **head, t_shell *data)
 	s = ft_strjoin_mz(s, "\"", data);
 	if (*head)
 		(*head) = (*head)->next;
-	list->args = mz_arr(list->args, NULL, s, 1, data);
+	data->flag = 1;
+	list->args = mz_arr(list->args, NULL, s, data);
 }
 
 static void	mz_quote(t_token *list, t_list **head, t_shell *data)
@@ -51,7 +52,8 @@ static void	mz_quote(t_token *list, t_list **head, t_shell *data)
 	s = ft_strjoin_mz(s, "\'", data);
 	if (*head)
 		(*head) = (*head)->next;
-	list->args = mz_arr(list->args, NULL, s, 1, data);
+	data->flag = 1;
+	list->args = mz_arr(list->args, NULL, s, data);
 }
 
 static void	mz_simple(t_token *list, t_list **head, t_shell *data)
@@ -79,7 +81,8 @@ static void	mz_simple(t_token *list, t_list **head, t_shell *data)
 			break ;
 		(*head) = (*head)->next;
 	}
-	list->args = mz_arr(list->args, NULL, s, 1, data);
+	data->flag = 1;
+	list->args = mz_arr(list->args, NULL, s, data);
 }
 
 void	mz_make_redi(t_token **list, t_list **head, t_shell *data)
