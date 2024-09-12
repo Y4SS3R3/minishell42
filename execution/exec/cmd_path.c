@@ -31,24 +31,18 @@ static char	*create_path(char **paths, char *command, t_shell *data)
 			return (result);
 		i++;
 	}
-	return (NULL);
+	return (command);
 }
 
 char	*check_command(char *command, char **paths, t_shell *data)
 {
-	char	*result;
-
 	if (command == NULL)
 		return (NULL);
-	result = NULL;
 	if (ft_strchr(command, '/') == NULL)
 		return (create_path(paths, command, data));
 	else
 	{
-		if (access(command, X_OK) == -1)
-			return (NULL);
-		else
-			result = command;
+		check_ifdir(command, data);
+		return (command);
 	}
-	return (result);
 }

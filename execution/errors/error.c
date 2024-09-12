@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:44:55 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/11 21:55:30 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:29:01 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,10 @@ void	fds_error(t_shell *data, char *msg)
 	putstr_fd(msg, 2);
 	data->status = 1;
 	close_fildes(data);
+}
+
+void	improved_exit(int val, t_shell *data)
+{
+	clean(data);
+	exit(val);
 }

@@ -60,12 +60,12 @@ int	ex_heredoc(t_fd *node, char **new_file, t_shell *data)
 	return (tmp);
 }
 
-static void	execute_cmd(char *tmp, t_token *token, t_shell *data)
+static void	execute_cmd(t_token *token, t_shell *data)
 {
-	if (ft_strcmp(token->cmd, "")
-		&& ft_strcmp(token->cmd, ".") && ft_strcmp(token->cmd, ".."))
-		token->cmd = check_command(token->cmd, data->paths, data);
-	else if (!ft_strcmp(token->cmd, "."))
+	char	*tmp;
+
+	tmp = token->cmd;
+	if (!ft_strcmp(token->cmd, "."))
 	{
 		putstr_fd("starshell: dot sourcing not supported.\n", 2);
 		exit (2);
@@ -75,14 +75,23 @@ static void	execute_cmd(char *tmp, t_token *token, t_shell *data)
 		putstr_fd("starshell: ..: command not found\n", 2);
 		exit (127);
 	}
+	else if (!ft_strcmp(token->cmd, ""))
+	{
+		putstr_fd("starshell: : command not found\n", 2);
+		exit (127);
+	}
+	else
+		tmp = check_command(token->cmd, data->paths, data);
 	token->args = mz_arr(token->args, NULL, token->cmd, 3, data);
-	execve(token->cmd, token->args, data->envp);
-	if (token->cmd)
-		check_ifdir(token);
+	execve(tmp, token->args, data->envp);
 	putstr_fd("starshell: ", 2);
 	putstr_fd(tmp, 2);
 	putstr_fd(": command not found\n", 2);
-	exit(127);
+	improved_exit(127, data);
+	// free before exit
+	/*
+	if check_command fails in case of '/' found, perror("No such file or directory");
+	*/
 }
 
 static void	ft_expand_in_cmd(t_token *token, t_shell *data)
@@ -94,7 +103,7 @@ static void	ft_expand_in_cmd(t_token *token, t_shell *data)
 	{
 		if (!data->show_err)
 			putstr_fd("starshell: ambiguous redirect\n", 2);
-		exit(1);
+		improved_exit(1, data);
 	}
 }
 
@@ -109,15 +118,15 @@ void	ft_exec(t_token *token, t_shell *data)
 	if (token->before)
 	{
 		if (handle_redirs(token->before, data, 1) == -1)
-			exit(EXIT_FAILURE);
+			improved_exit(EXIT_FAILURE, data);
 	}
 	if (token->after)
 	{
 		if (handle_redirs(token->after, data, 1) == -1)
-			exit(EXIT_FAILURE);
+			improved_exit(EXIT_FAILURE, data);
 	}
 	if (is_a_builtin(token))
-		exit(execute_builtin(token, data));
+		improved_exit(execute_builtin(token, data), data);
 	else
-		execute_cmd(tmp, token, data);
+		execute_cmd(token, data);
 }

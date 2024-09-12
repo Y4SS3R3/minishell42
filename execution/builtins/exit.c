@@ -39,7 +39,7 @@ static void	nmr_arg_req(char *arg, t_shell *data)
 	exit (255);
 }
 
-static int	single_args(char **av, t_shell *data)
+static void	single_args(char **av, t_shell *data)
 {
 	int	exit_st;
 	int	j;
@@ -62,8 +62,7 @@ static int	single_args(char **av, t_shell *data)
 	}
 	exit_st = ft_atoi(&av[0][i]);
 	printf("exit\n");
-	clean(data);
-	exit(exit_st);
+	improved_exit(exit_st, data);
 }
 
 static int	multiple_args(char **av, t_shell *data)
@@ -92,11 +91,10 @@ int	exit_cmd(int ac, char **av, t_shell *data)
 	if (ac == 0)
 	{
 		printf("exit\n");
-		clean(data);
-		exit(data->status);
+		improved_exit(data->status, data);
 	}
 	else if (ac == 1)
-		return (single_args(av, data));
+		single_args(av, data);
 	else
 		return (multiple_args(av, data));
 	return (0);

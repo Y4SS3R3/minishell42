@@ -6,11 +6,12 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:02:44 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/12 00:12:34 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:31:49 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include <errno.h>
 
 void	ctrl_cmd(int sig)
 {
@@ -52,26 +53,27 @@ void	update_status(t_shell *data)
 		data->status = 128 + data->status;
 }
 
-void	check_ifdir(t_token *token)
+void	check_ifdir(char *input, t_shell *data)
 {
 	DIR		*ret;
 
-	ret = opendir(token->cmd);
+	if (input == NULL)
+		return ;
+	ret = opendir(input);
 	if (ret)
 	{
 		putstr_fd("starshell: ", 2);
-		putstr_fd(token->cmd, 2);
+		putstr_fd(input, 2);
 		putstr_fd(": is a directory\n", 2);
-		exit(126);
+		improved_exit(126, data);
 	}
 	else
 	{
 		putstr_fd("starshell: ", 2);
-		putstr_fd(token->cmd, 2);
+		putstr_fd(input, 2);
 		putstr_fd(": No such file or directory\n", 2);
-		exit(127);
+		improved_exit(127, data);
 	}
-	closedir(ret);
 }
 
 size_t	ft_strcmp_b(char *s1, char *s2)

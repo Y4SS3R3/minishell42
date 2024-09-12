@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:11:29 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/11 22:18:00 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:32:23 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_trash	*init_shell(t_shell *data, char **env)
 	if (global == NULL)
 	{
 		putstr_fd(GCFAILED_ERRMSG, 2);
-		exit(EXIT_FAILURE);
+		improved_exit(EXIT_FAILURE, data);
 	}
 	data->fork = 1;
 	data->exapp = 0;
@@ -60,7 +60,7 @@ void	init_shell_1(t_shell *data)
 	if (data->envp == NULL)
 	{
 		putstr_fd("Can't get shell environment\n", 2);
-		exit(EXIT_FAILURE);
+		improved_exit(EXIT_FAILURE, data);
 	}
 	data->envl = env_parse(data->envp, data);
 	update_shlvl(data);
