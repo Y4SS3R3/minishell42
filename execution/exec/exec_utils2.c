@@ -6,12 +6,11 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:02:44 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/12 18:31:49 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:29:32 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-#include <errno.h>
 
 void	ctrl_cmd(int sig)
 {
