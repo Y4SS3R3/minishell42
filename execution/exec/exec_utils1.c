@@ -68,30 +68,24 @@ static void	execute_cmd(t_token *token, t_shell *data)
 	if (!ft_strcmp(token->cmd, "."))
 	{
 		putstr_fd("starshell: dot sourcing not supported.\n", 2);
-		exit (2);
+		improved_exit(2, data);
 	}
 	else if (!ft_strcmp(token->cmd, ".."))
 	{
 		putstr_fd("starshell: ..: command not found\n", 2);
-		exit (127);
+		improved_exit(127, data);
 	}
 	else if (!ft_strcmp(token->cmd, ""))
 	{
 		putstr_fd("starshell: : command not found\n", 2);
-		exit (127);
+		improved_exit(127, data);
 	}
 	else
 		tmp = check_command(token->cmd, data->paths, data);
 	token->args = mz_arr(token->args, NULL, token->cmd, 3, data);
 	execve(tmp, token->args, data->envp);
-	putstr_fd("starshell: ", 2);
-	putstr_fd(tmp, 2);
-	putstr_fd(": command not found\n", 2);
+	exec_err(tmp);
 	improved_exit(127, data);
-	// free before exit
-	/*
-	if check_command fails in case of '/' found, perror("No such file or directory");
-	*/
 }
 
 static void	ft_expand_in_cmd(t_token *token, t_shell *data)

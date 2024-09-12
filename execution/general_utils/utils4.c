@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 15:07:51 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/11 21:13:31 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:29:48 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	words_count(const char *s, char c)
 	return (count);
 }
 
-static void	status_check(unsigned long long n, size_t i, char *str)
+static void	status_check(unsigned long long n, size_t i, char *str, t_shell *data)
 {
 	if (n > LLONG_MAX / 10
 		|| (n == LLONG_MAX / 10 && str[i] - '0' > LLONG_MAX % 10))
@@ -66,11 +66,11 @@ static void	status_check(unsigned long long n, size_t i, char *str)
 		putstr_fd("starshell: exit: ", 2);
 		putstr_fd(str, 2);
 		putstr_fd(": numeric argument required\n", 2);
-		exit (255);
+		improved_exit(255, data);
 	}
 }
 
-int	ft_atoi(char *str)
+int	ft_atoi(char *str, t_shell *data)
 {
 	size_t				i;
 	unsigned long long	n;
@@ -93,7 +93,7 @@ int	ft_atoi(char *str)
 		i++;
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		status_check(n, i, str);
+		status_check(n, i, str, data);
 		n = n * 10 + (str[i++] - 48);
 	}
 	return (n * s);

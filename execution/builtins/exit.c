@@ -35,8 +35,7 @@ static void	nmr_arg_req(char *arg, t_shell *data)
 	putstr_fd("starshell: exit: ", 2);
 	putstr_fd(arg, 2);
 	putstr_fd(": numeric argument required\n", 2);
-	clean(data);
-	exit (255);
+	improved_exit(255, data);
 }
 
 static void	single_args(char **av, t_shell *data)
@@ -60,7 +59,7 @@ static void	single_args(char **av, t_shell *data)
 			nmr_arg_req(av[0], data);
 		j++;
 	}
-	exit_st = ft_atoi(&av[0][i]);
+	exit_st = ft_atoi(&av[0][i], data);
 	printf("exit\n");
 	improved_exit(exit_st, data);
 }
@@ -80,7 +79,7 @@ static int	multiple_args(char **av, t_shell *data)
 			nmr_arg_req(av[0], data);
 		j++;
 	}
-	ft_atoi(av[0]);
+	ft_atoi(av[0], data);
 	putstr_fd("exit\n", 2);
 	putstr_fd("starshell: exit: too many arguments\n", 2);
 	return (1);

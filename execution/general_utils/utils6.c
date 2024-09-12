@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 15:28:22 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/11 14:21:51 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:38:16 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,11 @@ char	*randomize_file_name(t_shell *data)
 		i++;
 	}
 	return (NULL);
+}
+
+void	exec_err(char *str)
+{
+	putstr_fd("starshell: ", 2);
+	putstr_fd(str, 2);
+	putstr_fd(": command not found\n", 2);
 }
