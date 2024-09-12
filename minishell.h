@@ -80,6 +80,19 @@ typedef struct s_attrr
 	int		index;
 }	t_attrr;
 
+typedef struct s_infozm
+{
+	char	**a;
+	int		l;
+	int		i;
+}	t_infozm;
+
+typedef struct s_infomz
+{
+	char	c;
+	int		i;
+}	t_infomz;
+
 typedef struct s_info
 {
 	char	*final;
@@ -164,6 +177,7 @@ typedef struct s_shell
 	int				add_equal;
 	int				to_close;
 	int				exapp;
+	int				flag;
 	int				free_it;
 	int				unlink_it;
 	char			*key;
@@ -421,7 +435,7 @@ int		make_o_par(t_list **head, char *s, int i, t_shell *data);
 int		make_c_par(t_list **head, char *s, int i, t_shell *data);
 t_token	*mz_last_scan(t_list *head, t_shell *data);
 void	mz_make_cmd(t_token **list, t_list **head, t_shell *data);
-char	**mz_arr(char **org, char **arr, char *s, int flag, t_shell *data);
+char	**mz_arr(char **org, char **arr, char *s, t_shell *data);
 int		mz_syntax_handler(t_list *lst);
 int		mz_search(char *s, int i, char c);
 size_t	ft_strlen_mz(const char *s);

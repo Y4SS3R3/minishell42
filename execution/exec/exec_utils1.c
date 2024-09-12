@@ -82,7 +82,8 @@ static void	execute_cmd(t_token *token, t_shell *data)
 	}
 	else
 		tmp = check_command(token->cmd, data->paths, data);
-	token->args = mz_arr(token->args, NULL, token->cmd, 3, data);
+	data->flag = 3;
+	token->args = mz_arr(token->args, NULL, token->cmd, data);
 	execve(tmp, token->args, data->envp);
 	exec_err(tmp);
 	improved_exit(127, data);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+         #
+#    By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 09:40:06 by mzouine           #+#    #+#              #
-#    Updated: 2024/09/12 00:49:08 by ymassiou         ###   ########.fr        #
+#    Updated: 2024/09/12 20:56:22 by mzouine          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ SRC = 	minishell.c \
 		execution/expanding/ex_hec_key.c \
 		parsing/mz_key_assign.c \
 		parsing/mz_utils.c \
+		parsing/mz_utils2.c \
 		execution/wildcard/star_checkcmd.c \
 		execution/expanding/gnl_utils.c \
 		parsing/mz_joiner.c \
