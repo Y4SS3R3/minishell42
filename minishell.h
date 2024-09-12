@@ -230,6 +230,7 @@ void	pipe_line(t_token *token, t_shell *data);
 void	dfs_tree(t_token *root, t_shell *data);
 int		exec_child(t_token *token, t_shell *data);
 void	update_status(t_shell *data);
+void	exec_err1(char *str, t_shell *data);
 void	and_handler(t_token *token, t_shell *data);
 void	or_handler(t_token *token, t_shell *data);
 void	ft_exec(t_token *token, t_shell *data);

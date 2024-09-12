@@ -41,8 +41,5 @@ char	*check_command(char *command, char **paths, t_shell *data)
 	if (ft_strchr(command, '/') == NULL)
 		return (create_path(paths, command, data));
 	else
-	{
-		check_ifdir(command, data);
 		return (command);
-	}
 }
