@@ -162,7 +162,6 @@ typedef struct s_shell
 {
 	int				fork;
 	int				add_equal;
-	int				cd_flag;
 	int				to_close;
 	int				exapp;
 	int				free_it;
@@ -175,10 +174,8 @@ typedef struct s_shell
 	int				show_err;
 	int				rem1;
 	int				rem2;
-	int				errno_shell;
 	char			**envp;
 	char			*saved_path;
-	char			*last_arg;
 	char			*fildes;
 	char			*filcollect;
 	t_list			*envl;

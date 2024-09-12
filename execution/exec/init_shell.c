@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:11:29 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/12 19:34:05 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:21:49 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ t_trash	*init_shell(t_shell *data, char **env)
 	data->exapp = 0;
 	data->envp = env;
 	data->status = 0;
-	data->cd_flag = 0;
 	data->to_close = -1;
 	data->add_equal = 1;
 	data->fildes = NULL;
-	data->last_arg = NULL;
 	return (global);
 }
 

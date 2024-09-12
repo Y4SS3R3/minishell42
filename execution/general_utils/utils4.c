@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 15:07:51 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/12 19:29:48 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:15:04 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int	words_count(const char *s, char c)
 	return (count);
 }
 
-static void	status_check(unsigned long long n, size_t i, char *str, t_shell *data)
+static void	status_check(unsigned long long n,
+		size_t i, char *str, t_shell *data)
 {
 	if (n > LLONG_MAX / 10
 		|| (n == LLONG_MAX / 10 && str[i] - '0' > LLONG_MAX % 10))
