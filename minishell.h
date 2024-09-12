@@ -19,7 +19,6 @@
 # include <readline/history.h>
 # include <sys/types.h>
 # include <sys/stat.h>
-# include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <dirent.h>
@@ -242,11 +241,8 @@ t_redir	*redir(t_token **input, t_shell *data);
 char	*ft_strdup(const char *s1, int mode, t_shell *data);
 char	*ft_substr_s(t_sub *info, int mode, t_shell *data);
 t_list	*mz_lstnew(char *content, int mode, t_shell *data);
-void	mz_lstadd_back(t_list **lst, t_list *new);
-t_list	*mz_lstlast(t_list *lst);
 t_list	*env_parse(char **envp, t_shell *data);
 t_token	*mz_parser(char *s, int *status, t_shell *data);
-int		mz_is_space(char c);
 int		mz_is_special(char c);
 int		make_word_nd(t_list **head, char *s, int i, t_shell *data);
 int		make_out(t_list **head, char *s, int i, t_shell *data);
@@ -300,7 +296,6 @@ void	ex_checkargs(t_token *node, t_shell *data);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strncpy(char *s1, char *s2, int n);
 char	**ws_split(char *str, t_shell *data);
-char	*mz_joiner(char *s);
 t_fd	*generate_heredoc(t_token *infix, t_shell *data);
 void	print_fds(t_fd *head);
 char	*randomize_file_name(t_shell *data);
@@ -315,7 +310,6 @@ char	*ex_key_2_assign(char *s, char *key_s, t_shell *data);
 char	*ex_assign(char *str, char *flag, t_shell *data);
 char	*remove_quotes(char *input, t_shell *data);
 char	**ym_arr_in(t_arr *info, int *size, t_shell *data);
-char	**ym_arr_rem(char **array, int index, int *size, t_shell *data);
 void	free_list(t_list *head);
 int		keep_quotes(char *str);
 void	print_list(t_list *head);
@@ -352,7 +346,6 @@ t_trash	*gc_new(void *address, t_shell *data);
 void	handle_builtin(t_token *root, t_shell *data);
 int		redirs(t_token *root, t_shell *data);
 int		expand(t_token *root, t_shell *data);
-int		ft_isdigit(int c);
 int		get_len(char *str, char *milestone);
 char	*ex_assign(char *input, char *flag, t_shell *data);
 void	cpy_remain(char **input, char **final, t_shell *data);
@@ -411,7 +404,6 @@ t_list	*mz_lstnew_mz(char *content, t_shell *data);
 void	mz_lstadd_back(t_list **lst, t_list *new);
 t_list	*mz_lstlast(t_list *lst);
 int		mz_is_space(char c);
-int		mz_is_special(char c);
 int		make_space_nd(t_list **head, char *s, int i, t_shell *data);
 int		make_special_nd(t_list **head, char *s, int i, t_shell *data);
 int		make_pipe(t_list **head, char *s, int i, t_shell *data);
@@ -423,7 +415,6 @@ t_token	*mz_last_scan(t_list *head, t_shell *data);
 void	mz_make_cmd(t_token **list, t_list **head, t_shell *data);
 char	**mz_arr(char **org, char **arr, char *s, int flag, t_shell *data);
 int		mz_syntax_handler(t_list *lst);
-int		mz_search(char *s, int i, char c);
 size_t	ft_strlen_mz(const char *s);
 char	**mz_nl_sp(char const *s, char c, int n, t_shell *data);
 void	mz_make_redi(t_token **list, t_list **head, t_shell *data);
