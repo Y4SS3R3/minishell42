@@ -6,11 +6,12 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 13:20:10 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/04 20:07:31 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:48:02 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include <sys/wait.h>
 
 void	redir_exec(t_token *root, t_shell *data)
 {

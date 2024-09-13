@@ -27,7 +27,7 @@ static char	*create_path(char **paths, char *command, t_shell *data)
 		result = ft_strjoin(paths[i], result, GLOBAL, data);
 		if (result == NULL)
 			return (NULL);
-		if (access(result, X_OK) != -1)
+		if (access(result, F_OK) != -1)
 			return (result);
 		i++;
 	}

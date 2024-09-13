@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:02:44 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/13 16:59:03 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/13 20:47:28 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,13 @@ void	check_ifdir(char *input, t_shell *data)
 	}
 	else
 	{
-		putstr_fd("starshell: ", 2);
-		putstr_fd(input, 2);
-		putstr_fd(": No such file or directory\n", 2);
-		improved_exit(127, data);
+		if (access(input, X_OK))
+		{
+			putstr_fd("starshell: ", 2);
+			putstr_fd(input, 2);
+			putstr_fd(": No such file or directory\n", 2);
+			improved_exit(127, data);
+		}
 	}
 }
 
