@@ -64,24 +64,7 @@ static void	execute_cmd(t_token *token, t_shell *data)
 {
 	char	*tmp;
 
-	tmp = token->cmd;
-	if (!ft_strcmp(token->cmd, "."))
-	{
-		putstr_fd("starshell: dot sourcing not supported.\n", 2);
-		improved_exit(2, data);
-	}
-	else if (!ft_strcmp(token->cmd, ".."))
-	{
-		putstr_fd("starshell: ..: command not found\n", 2);
-		improved_exit(127, data);
-	}
-	else if (!ft_strcmp(token->cmd, ""))
-	{
-		putstr_fd("starshell: : command not found\n", 2);
-		improved_exit(127, data);
-	}
-	else
-		tmp = check_command(token->cmd, data->paths, data);
+	tmp = check_command(token->cmd, data->paths, data);
 	data->flag = 3;
 	token->args = mz_arr(token->args, NULL, tmp, data);
 	execve(tmp, token->args, data->envp);

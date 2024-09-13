@@ -36,8 +36,11 @@ static char	*create_path(char **paths, char *command, t_shell *data)
 
 char	*check_command(char *command, char **paths, t_shell *data)
 {
-	if (command == NULL)
-		return (NULL);
+	if (command == NULL
+		|| !ft_strcmp(command, ".")
+		|| !ft_strcmp(command, "")
+		|| !ft_strcmp(command, ".."))
+		return (command);
 	if (ft_strchr(command, '/') == NULL)
 		return (create_path(paths, command, data));
 	else

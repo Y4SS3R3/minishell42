@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 21:38:53 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/11 14:19:50 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/13 21:52:01 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ char	*get_entry_content(char *pattern, t_shell *data)
 {
 	DIR				*dir;
 	struct dirent	*entry;
-	char			*entry_content;
+	char			*ent;
 
 	dir = opendir(".");
-	entry_content = NULL;
+	ent = NULL;
 	if (dir == NULL)
 		return (perror("Unable to open directory"), NULL);
 	while (1)
@@ -27,16 +27,18 @@ char	*get_entry_content(char *pattern, t_shell *data)
 		entry = readdir(dir);
 		if (!entry)
 			break ;
-		if (entry && *entry->d_name != '.' && match_it(entry->d_name, pattern))
+		if (match_it(entry->d_name, pattern))
 		{
-			entry_content = ft_strjoin(entry_content,
-					entry->d_name, LOOP, data);
-			entry_content = ft_strjoin(entry_content, " ",
-					LOOP, data);
+			if (*entry->d_name != '.'
+				|| (*pattern == '.' && *entry->d_name == '.'))
+			{
+				ent = ft_strjoin(ent, entry->d_name, LOOP, data);
+				ent = ft_strjoin(ent, " ", LOOP, data);
+			}
 		}
 	}
 	closedir(dir);
-	return (entry_content);
+	return (ent);
 }
 
 char	*remove_ws(char *str, t_shell *data)
@@ -65,6 +67,20 @@ char	*remove_ws(char *str, t_shell *data)
 	return (res);
 }
 
+int	custom_compare(char *a, char *b)
+{
+	int	a_start;
+	int	b_start;
+
+	a_start = a[0] == '.' || (a[0] >= 'A' && a[0] <= 'Z');
+	b_start = b[0] == '.' || (b[0] >= 'A' && b[0] <= 'Z');
+	if (a_start && !b_start)
+		return (-1);
+	if (!a_start && b_start)
+		return (1);
+	return (ft_strcmp(a, b));
+}
+
 void	alpha_sort(char **arr, int size)
 {
 	int		i;
@@ -72,20 +88,16 @@ void	alpha_sort(char **arr, int size)
 	char	*tmp;
 
 	i = 0;
-	j = 0;
-	tmp = NULL;
 	while (i < size - 1)
 	{
-		j = 0;
-		while (j < size - i - 1)
+		j = i + 1;
+		while (j < size)
 		{
-			if (ft_strcmp(arr[j], arr[j + 1]) != 0
-				|| (arr[j][0] >= 'a' && arr[j][0] <= 'z' &&
-				arr[j + 1][0] >= 'A' && arr[j + 1][0] <= 'Z'))
+			if (custom_compare(arr[i], arr[j]) > 0)
 			{
-				tmp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = tmp;
+				tmp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = tmp;
 			}
 			j++;
 		}
