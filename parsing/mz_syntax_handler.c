@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 11:01:14 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/12 20:27:27 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/13 19:35:38 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	mz_syntax_handler(t_list *lst)
 {
 	if (mz_pip_handler(lst) || mz_redir_handler(lst) || mz_check_op(lst))
 	{
-		printf("starshell: syntax error\n");
+		putstr_fd("starshell: syntax error\n", 2);
 		return (-1);
 	}
 	else

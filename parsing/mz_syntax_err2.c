@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 09:45:10 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/12 20:26:42 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/13 19:35:32 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	mz_syntax_err2(char *s)
 	}
 	if (flag != 0)
 	{
-		printf("starshell: syntax error\n");
+		putstr_fd("starshell: syntax error\n", 2);
 		return (1);
 	}
 	return (0);
