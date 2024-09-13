@@ -1,2 +1,0 @@
-static int	mz_get_key(void)
-mem manage on error
