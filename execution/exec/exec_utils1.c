@@ -64,6 +64,8 @@ static void	execute_cmd(t_token *token, t_shell *data)
 {
 	char	*tmp;
 
+	if (!token->cmd)
+		exit(0);
 	tmp = check_command(token->cmd, data->paths, data);
 	data->flag = 3;
 	token->args = mz_arr(token->args, NULL, tmp, data);

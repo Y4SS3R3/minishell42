@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 15:24:58 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 16:43:33 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/14 17:59:51 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ int	execute_builtin(t_token *token, t_shell *data)
 	int	ret;
 
 	ret = 0;
+	if (token && !token->cmd)
+		return (0);
 	if (!ft_strcmp_b(token->cmd, "cd"))
 		ret = cd(get_length(token->args), token->args, data);
 	else if (!ft_strcmp_b(token->cmd, "pwd"))

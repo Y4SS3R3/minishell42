@@ -6,11 +6,12 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 15:28:22 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/12 19:38:16 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:03:28 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include <stdio.h>
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
