@@ -90,7 +90,11 @@ int	exit_cmd(int ac, char **av, t_shell *data)
 	if (ac == 0)
 	{
 		printf("exit\n");
-		improved_exit(data->status, data);
+		rl_clear_history();
+		close_fildes(data);
+		unlink_fil(data);
+		free_command(data, NULL);
+		exit(data->status);
 	}
 	else if (ac == 1)
 		single_args(av, data);
