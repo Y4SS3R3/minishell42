@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 21:38:53 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/13 21:52:01 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/14 13:09:39 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*remove_ws(char *str, t_shell *data)
 	return (res);
 }
 
-int	custom_compare(char *a, char *b)
+static int	custom_compare(char *a, char *b)
 {
 	int	a_start;
 	int	b_start;

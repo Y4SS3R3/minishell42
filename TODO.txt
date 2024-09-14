@@ -3,8 +3,6 @@ mem manage on error
 
 check for childs you waited for: all of them?
 
-cat after ctrl+C
-
 void	update_status(t_shell *data)
 {
 	if (WIFEXITED(data->status))
