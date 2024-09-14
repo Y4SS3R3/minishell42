@@ -1,6 +1,2 @@
 use errno
-remove type casted vars to void
-
-freed flag in gc is useless??
-
 mahmoud should remove unecessary malloc protections

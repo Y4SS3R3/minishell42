@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:03:52 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/02 13:32:20 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:15:24 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ void	free_programm(t_shell *data)
 	free_trash(data->g_gc);
 }
 
-void	free_command(t_shell *data, char *line)
+void	free_command(t_shell *data)
 {
-	(void)line;
 	if (!data->free_it)
 		return ;
 	gc_free(data, LOOP);

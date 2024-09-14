@@ -45,10 +45,9 @@ t_trash	*gc_new(void *address, t_shell *data)
 	if (!new)
 	{
 		data->free_it = 0;
-		free_command(data, NULL);
+		free_command(data);
 	}
 	new->to_free = address;
-	new->freed = 0;
 	new->next = NULL;
 	return (new);
 }
@@ -63,11 +62,10 @@ void	gc_free(t_shell *data, int mode)
 		head = data->g_gc;
 	while (head)
 	{
-		if (!head->freed && head->to_free)
+		if (head->to_free)
 		{
 			free(head->to_free);
 			head->to_free = NULL;
-			head->freed = 1;
 		}
 		head = head->next;
 	}

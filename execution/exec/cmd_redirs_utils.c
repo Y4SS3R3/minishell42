@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 18:08:55 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/12 00:12:37 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:14:18 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ int	redirs(t_token *root, t_shell *data)
 	return (0);
 }
 
-int	redir_in(t_redir *in, t_shell *data)
+int	redir_in(t_redir *in)
 {
 	int	fd_in;
 
-	(void)data;
 	fd_in = -44;
 	fd_in = open(in->file, O_RDONLY, 0644);
 	if (fd_in == -1)

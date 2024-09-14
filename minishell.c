@@ -33,7 +33,7 @@ static int	repeat(t_shell *data)
 	data->fork = 0;
 	close_fildes(data);
 	if (data->free_it)
-		free_command(data, line);
+		free_command(data);
 	free(line);
 	return (0);
 }

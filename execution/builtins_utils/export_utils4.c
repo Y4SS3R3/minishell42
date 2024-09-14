@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:59:03 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/10 11:28:41 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:13:58 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	add_equal(int flag, char **res, t_shell *data, char *name)
 
 void	append_to_env_util(t_shell *data, int flag, t_list	*new, char *name)
 {
-	(void)flag;
 	if (!flag)
 		new->hide = 1;
 	search_remove(&data->envl, name, data);

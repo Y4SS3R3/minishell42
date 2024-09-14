@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 17:50:44 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/11 23:48:24 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:14:34 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	in_redirs(t_redir *in, int *flag, char **file, t_shell *data)
 	fd_in = -44;
 	if (!ft_strcmp(in->type, "<"))
 	{
-		fd_in = redir_in(in, data);
+		fd_in = redir_in(in);
 		if (fd_in == -1)
 			return (-1);
 	}

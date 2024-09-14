@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:44:55 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/12 18:29:01 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:15:51 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	clean(t_shell *data)
 	rl_clear_history();
 	close_fildes(data);
 	unlink_fil(data);
-	free_command(data, NULL);
+	free_command(data);
 	free_programm(data);
 }
 
