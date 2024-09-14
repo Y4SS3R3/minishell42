@@ -71,11 +71,7 @@ static void	execute_cmd(t_token *token, t_shell *data)
 	token->args = mz_arr(token->args, NULL, tmp, data);
 	execve(tmp, token->args, data->envp);
 	exec_err1(tmp, data);
-	rl_clear_history();
-	close_fildes(data);
-	unlink_fil(data);
-	free_command(data, NULL);
-	exit(127);
+	improved_exit(127, data);
 }
 
 static void	ft_expand_in_cmd(t_token *token, t_shell *data)

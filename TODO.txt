@@ -1,3 +1,6 @@
 use errno
-check improved_exit, it causes double free if you're not in a child!
 remove type casted vars to void
+
+freed flag in gc is useless??
+
+mahmoud should remove unecessary malloc protections

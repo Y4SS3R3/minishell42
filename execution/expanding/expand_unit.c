@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 11:44:00 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/14 18:48:41 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:01:44 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ static char	*expand_name(char *name, t_shell *data)
 	{
 		value = ft_strchr(search_fetch_add(data->envp, name, data), '=');
 		if (value == NULL)
-		{
 			value = ft_strdup("", GLOBAL, data);
-			gc_add(&data->l_gc, gc_new(value, data));
-		}
 		else
 			value++;
 	}
