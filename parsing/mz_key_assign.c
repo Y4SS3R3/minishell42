@@ -6,27 +6,25 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:19:07 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/09 17:54:49 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/14 13:26:20 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	mz_get_key(void)
+static int	mz_get_key(t_shell *data)
 {
 	int	random;
 	int	key;
 	int	result;
 
 	random = open("/dev/urandom", O_RDONLY);
-	if (random < 0)
-		return (0);
+	if (random == -1)
+		stop_programm(data);
+	append_fdes(data, random);
 	result = read(random, &key, sizeof(key));
 	if (result < 0)
-	{
-		close(random);
-		return (0);
-	}
+		stop_programm(data);
 	close(random);
 	return (key);
 }
@@ -70,7 +68,7 @@ int	mz_key_assign(char **s, t_shell *data)
 	t_info	info;
 	char	*key_half;
 
-	key = mz_get_key();
+	key = mz_get_key(data);
 	if (key < 0)
 		key = key * -1;
 	key_s = ft_itoa_mz(key, data);
