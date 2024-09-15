@@ -6,13 +6,13 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:09:13 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/14 18:32:33 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/15 13:21:29 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ex_join(t_token *node, t_shell *data)
+static void	ex_join(t_token *node, t_shell *data)
 {
 	int	size;
 
@@ -24,11 +24,31 @@ void	ex_join(t_token *node, t_shell *data)
 	}
 }
 
+static void	remove_dollar(t_token *node, t_shell *data)
+{
+	int	size;
+
+	if (!node)
+		return ;
+	if (node->cmd
+		&& !ft_strcmp(node->cmd, "$")
+		&& node->args
+		&& node->args[0]
+		&& (**node->args == '"' || **node->args == '\''))
+	{
+		node->cmd = ft_strdup(node->args[0], LOOP, data);
+		size = get_length(node->args);
+		node->args = ym_arr_rem(node->args, 0, &size, data);
+		node->join = 0;
+	}
+}
+
 int	ft_expand(t_token *node, t_shell *data)
 {
 	int	ret;
 
 	ret = 0;
+	remove_dollar(node, data);
 	ex_join(node, data);
 	ex_remove_quotes(node, data);
 	ex_checkargs(node, data);
