@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 15:41:57 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/08 15:34:49 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/15 13:59:15 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ void	ex_remove_quotes(t_token *node, t_shell *data)
 	t_redir	*after;
 
 	i = 0;
-	node->cmd = star_check(node->cmd, data);
+	if (node->cmd)
+		node->cmd = star_check(node->cmd, data);
 	before = node->before;
 	after = node->after;
 	while (node->args && node->args[i])

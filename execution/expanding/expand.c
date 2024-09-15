@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:09:13 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/15 13:21:29 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/15 13:58:52 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ int	ft_expand(t_token *node, t_shell *data)
 	ret = 0;
 	remove_dollar(node, data);
 	ex_join(node, data);
-	ex_remove_quotes(node, data);
 	ex_checkargs(node, data);
 	ex_checkcmd(node, data);
 	ret = ex_checkredirs(node, data);
 	ret += ft_star(node, data);
+	ex_remove_quotes(node, data);
 	return (ret);
 }
