@@ -6,11 +6,39 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:09:13 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/15 13:58:52 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/15 15:17:12 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+static void	ex_remove_quotes(t_token *node, t_shell *data)
+{
+	int		i;
+	t_redir	*before;
+	t_redir	*after;
+
+	i = 0;
+	if (node->cmd)
+		node->cmd = remove_quotes(node->cmd, data);
+	before = node->before;
+	after = node->after;
+	while (node->args && node->args[i])
+	{
+		node->args[i] = remove_quotes(node->args[i], data);
+		i++;
+	}
+	while (before)
+	{
+		before->file = remove_quotes(before->file, data);
+		before = before->next;
+	}
+	while (after)
+	{
+		after->file = remove_quotes(after->file, data);
+		after = after->next;
+	}
+}
 
 static void	ex_join(t_token *node, t_shell *data)
 {
@@ -49,6 +77,7 @@ int	ft_expand(t_token *node, t_shell *data)
 
 	ret = 0;
 	remove_dollar(node, data);
+	ex_star_parse(node, data);
 	ex_join(node, data);
 	ex_checkargs(node, data);
 	ex_checkcmd(node, data);

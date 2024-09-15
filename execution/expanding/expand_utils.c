@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 15:41:57 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/15 13:59:15 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/15 15:16:29 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ char	*star_check(char *input, t_shell *data)
 	to_find = NULL;
 	replace_with = NULL;
 	generate_find_replace(&to_find, &replace_with, data->key2, data);
-	input = remove_quotes(input, data);
 	input = find_replace(input, to_find, replace_with, data);
 	to_find = NULL;
 	replace_with = NULL;
@@ -74,7 +73,7 @@ char	*star_check(char *input, t_shell *data)
 	return (input);
 }
 
-void	ex_remove_quotes(t_token *node, t_shell *data)
+void	ex_star_parse(t_token *node, t_shell *data)
 {
 	int		i;
 	t_redir	*before;

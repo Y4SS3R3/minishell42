@@ -367,7 +367,7 @@ void	cpy_remain(char **input, char **final, t_shell *data);
 void	cpy_incr(char **input, char **tmp, char **final, t_shell *data);
 int		extract_name(char **input, char **tmp, char **name, t_shell *data);
 void	join_remain(char **input, char **tmp, char **final, t_shell *data);
-void	ex_remove_quotes(t_token *node, t_shell *data);
+void	ex_star_parse(t_token *node, t_shell *data);
 void	ex_checkcmd(t_token *node, t_shell *data);
 char	*ws_strdup(char *src, int len, t_shell *data);
 int		ex_words_count(const char *s);
