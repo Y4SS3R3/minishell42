@@ -19,9 +19,9 @@ static int	ex_copy(t_fd *node, int tmp, t_shell *data)
 
 	line = NULL;
 	fd = node->fd;
-	data->using_hdc = 0;
-	line = get_next_line(fd, data);
 	data->using_hdc = 1;
+	line = get_next_line(fd, data);
+	data->using_hdc = 0;
 	if (line == NULL)
 		return (-1);
 	if (node->ex_flag)
