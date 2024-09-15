@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:08:26 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/08 16:38:41 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/15 16:45:49 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	make_word_nd(t_list **head, char *s, int i, t_shell *data)
 	new = NULL;
 	str = NULL;
 	n = i;
-	while (!mz_is_space(s[i]) && !mz_is_special(s[i]) && s[i])
+	while (s[i] && !mz_is_space(s[i]) && !mz_is_special(s[i]))
 		i++;
 	str = ft_substr_mz(s, n, i - n, data);
 	new = mz_lstnew_mz(str, data);

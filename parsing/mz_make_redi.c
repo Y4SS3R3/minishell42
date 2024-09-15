@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:46:10 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/12 21:01:33 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/15 17:59:05 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	mz_simple(t_token *list, t_list **head, t_shell *data)
 	char	*tmp;
 
 	s = NULL;
-	while ((*head) && ((*head)->nature == 32 || (*head)->nature == -1))
+	if ((*head) && ((*head)->nature == 32 || (*head)->nature == -1))
 	{
 		tmp = s;
 		if ((*head)->nature == 32)
@@ -71,15 +71,13 @@ static void	mz_simple(t_token *list, t_list **head, t_shell *data)
 			while ((*head) && (*head)->nature == 32)
 				(*head) = (*head)->next;
 		}
-		if ((*head) && ((*head)->nature == -1))
+		while ((*head) && ((*head)->nature == -1))
 		{
 			s = ft_strjoin_mz(s, (*head)->s, data);
 			(*head) = (*head)->next;
-			break ;
+			// if (!(s[mz_strlen(s) - 1] == '$' && ((*head)->s[0] == '\'' || (*head)->s[0] == '\"')))
+			// 	break ;
 		}
-		else
-			break ;
-		(*head) = (*head)->next;
 	}
 	data->flag = 1;
 	list->args = mz_arr(list->args, NULL, s, data);
