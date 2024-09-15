@@ -17,13 +17,10 @@
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <sys/types.h>
-# include <sys/stat.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <dirent.h>
 # include <limits.h>
-# include <sys/wait.h>
 # include <termios.h>
 
 enum e_token
@@ -177,6 +174,7 @@ typedef struct s_shell
 	int				to_close;
 	int				exapp;
 	int				flag;
+	int				using_hdc;
 	int				free_it;
 	int				unlink_it;
 	char			*key;
@@ -278,7 +276,6 @@ int		echo(int ac, char **av);
 int		env(t_shell *data);
 int		ft_atoi(char *str, t_shell *data);
 void	clean(t_shell *data);
-void	unlink_fil(t_shell *data);
 int		exit_cmd(int ac, char **av, t_shell *data);
 void	remove_token(t_list **head, t_list *to_remove);
 int		unset(int ac, char **av, t_shell *data);

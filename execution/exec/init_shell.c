@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:11:29 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/12 20:21:49 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:42:51 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_trash	*init_shell(t_shell *data, char **env)
 		improved_exit(EXIT_FAILURE, data);
 	}
 	data->fork = 1;
+	data->using_hdc = 0;
 	data->exapp = 0;
 	data->envp = env;
 	data->status = 0;

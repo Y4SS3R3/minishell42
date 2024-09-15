@@ -19,6 +19,7 @@ static int	repeat(t_shell *data)
 	data->exec = 1;
 	data->unlink_it = 0;
 	data->show_err = 0;
+	data->using_hdc = 0;
 	data->free_it = 1;
 	data->filcollect = NULL;
 	signal(SIGQUIT, SIG_IGN);
