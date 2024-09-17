@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_arr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:28 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/17 17:44:43 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/17 17:48:58 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char	**mz_arr(char **org, char **arr, char *s, t_shell *data)
 		return (ym_addstring(org, s, mz_arr_counter(org)));
 	else
 	{
-		printf("Error!\n mz_arr called with wrong flag!\n");
+		putstr_fd("Error!\n mz_arr called with wrong flag!\n", 2);
 		return (NULL);
 	}
 }

@@ -20,7 +20,7 @@ static char	*create_path(char **paths, char *command, t_shell *data)
 	i = 0;
 	result = NULL;
 	if (paths == NULL)
-		return (NULL);
+		return (command);
 	while (paths[i])
 	{
 		result = ft_strjoin("/", command, GLOBAL, data);

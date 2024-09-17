@@ -1,4 +1,0 @@
-mahmoud should remove unecessary malloc protections
-
-
-cat << $$'home'$$"lol"
