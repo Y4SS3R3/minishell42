@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mz_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:39:42 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/12 21:48:20 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:45:26 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ static char	*mz_word_finder(const char *s, char c, int *word, t_shell *data)
 	while (s[*word] && s[*word] != c)
 		(*word)++;
 	str = which_malloc(LOOP, (*word - i) + 1, data);
-	if (!str)
-		return (NULL);
 	j = 0;
 	while (i + j < *word)
 	{
@@ -66,8 +64,6 @@ char	**mz_split(char const *s, char c, t_shell *data)
 	word = 0;
 	i = 0;
 	final = which_malloc(LOOP, (mz_wrd_cnt(s, c) + 1) * sizeof(char *), data);
-	if (!final)
-		return (NULL);
 	while (i < mz_wrd_cnt(s, c))
 	{
 		final[i] = mz_word_finder(s, c, &word, data);

@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 20:25:44 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/12 20:27:55 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/17 17:44:57 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ char	*mz_key_assign2(char *s, char *key, t_shell *data)
 	j = 0;
 	flag = 0;
 	final = which_malloc(LOOP, mz_count_sz(s, key), data);
-	if (!final)
-		return (NULL);
 	while (s[i])
 	{
 		flag = mz_flag(s[i], flag);

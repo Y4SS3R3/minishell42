@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:28 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/12 20:58:37 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/17 17:44:43 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ static char	**mz_addstring(char **org, char *s, int size, t_shell *data)
 
 	i = 0;
 	new = which_malloc(LOOP, (size + 1 + 1) * sizeof(char *), data);
-	if (!new)
-		return (NULL);
 	while (i < size)
 	{
 		new[i] = org[i];

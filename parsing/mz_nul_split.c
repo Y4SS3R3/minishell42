@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:20:11 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/12 21:37:16 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/17 17:45:17 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ static char	*mz_word_finder(const char *s, t_infomz *mz,
 	while (*word < mz->i && s[*word] != mz->c)
 		(*word)++;
 	str = which_malloc(LOOP, (*word - i) + 1, data);
-	if (!str)
-		return (NULL);
 	j = 0;
 	while (i + j < *word)
 	{
@@ -68,8 +66,6 @@ char	**mz_nl_sp(char const *s, char c, int n, t_shell *data)
 	word = 0;
 	i = 0;
 	final = which_malloc(LOOP, (mz_wd_cnt(s, c, n) + 1) * sizeof(char *), data);
-	if (!final)
-		return (NULL);
 	while (i < mz_wd_cnt(s, c, n))
 	{
 		tmp.c = c;

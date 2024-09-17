@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:33:34 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/09 17:54:34 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:44:30 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ t_list	*mz_lstnew_mz(char *content, t_shell *data)
 	t_list	*new;
 
 	new = which_malloc(LOOP, sizeof(t_list), data);
-	if (!new)
-		return (NULL);
 	new -> s = ft_strdup_mz(content, data);
 	new -> next = NULL;
 	new->prev = NULL;
