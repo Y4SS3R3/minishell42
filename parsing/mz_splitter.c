@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 16:26:56 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/12 21:35:05 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/17 16:42:49 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,6 @@ static char	***mz_triple_init(t_token *head, t_shell *data)
 		tmp = tmp->next;
 	}
 	final = which_malloc(LOOP, (i + 1) * sizeof(char **), data);
-	if (!final)
-	{
-		printf("malloc fail in triple arr\n");
-		exit(1);
-	}
 	while (i >= 0)
 	{
 		final[i] = NULL;

@@ -6,7 +6,7 @@
 /*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 20:55:24 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/12 20:56:32 by mzouine          ###   ########.fr       */
+/*   Updated: 2024/09/17 16:43:34 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ t_token	*ft_lstnew_mz(char *cmd, t_shell *data)
 
 	head = NULL;
 	head = which_malloc(LOOP, sizeof(t_token), data);
-	if (head == NULL)
-		return (NULL);
 	head->args = NULL;
 	head->next = NULL;
 	head->previous = NULL;

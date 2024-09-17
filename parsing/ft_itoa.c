@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzouine <mzouine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:53:53 by mzouine           #+#    #+#             */
-/*   Updated: 2024/09/08 16:43:54 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:41:12 by mzouine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ char	*ft_itoa_mz(int n, t_shell *data)
 	sign = 0;
 	len = mz_int_counter(n);
 	str = which_malloc(LOOP, len + 1, data);
-	if (!str)
-		return (NULL);
 	if (n < 0)
 	{
 		n = -n;
