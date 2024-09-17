@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 17:12:45 by ymassiou          #+#    #+#             */
-/*   Updated: 2024/09/02 13:41:10 by ymassiou         ###   ########.fr       */
+/*   Updated: 2024/09/17 14:32:40 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	handle_no_match(t_replace_info *info, char *original)
 	info->result[info->res_i] = original[info->i];
 	info->res_i++;
 	info->i++;
+	info->first_occurrence = 1;
 }
 
 void	process_string(t_replace_info *info, char *original, char *to_remove)
@@ -64,8 +65,6 @@ char	*replace_key(char *original, char *to_remove, t_shell *data)
 		return (NULL);
 	new_len = ft_strlen(original);
 	info.result = which_malloc(LOOP, new_len + 1, data);
-	if (info.result == NULL)
-		return (NULL);
 	initialize_replace_info(&info, info.result, ft_strlen(to_remove));
 	process_string(&info, original, to_remove);
 	return (info.result);
