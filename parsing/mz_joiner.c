@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mz_joiner.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 11:32:02 by mzouine           #+#    #+#             */
-/*   Updated: 2024/08/31 21:13:44 by ymassiou         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../minishell.h"
 
@@ -48,47 +37,6 @@ static int	mz_swap_qt(char *s, int i, char c)
 	}
 	return (i + 1);
 }
-
-// static char	*mz_trimmer(char *s, int i, int j, int flag)
-// {
-// 	char	key;
-// 	char	close;
-// 	char	*final;
-
-// 	final = malloc(ft_strlen_mz(s) + 1);
-// 	while (s[i])
-// 	{
-// 		flag = mz_flag(s[i], flag);
-// 		if ((s[i] == '\"' || s[i] == '\'')
-// 			&& (s[i + 1] == '\"' || s[i + 1] == '\'') && flag == 0)
-// 		{
-// 			close = s[i];
-// 			key = s[i + 1];
-// 			i = i + 2;
-// 			while (s[i])
-// 			{
-// 				if (s[i] == key)
-// 				{
-// 					if (s[i + 1] == '\'' || s[i + 1] == '\"')
-// 					{
-// 						key = s[i + 1];
-// 						i = i + 2;
-// 						continue ;
-// 					}
-// 					final[j++] = close;
-// 					i++;
-// 					break ;
-// 				}
-// 				else
-// 					final[j++] = s[i++];
-// 			}
-// 		}
-// 		else
-// 			final[j++] = s[i++];
-// 	}
-// 	final[j] = '\0';
-// 	return (final);
-// }
 
 char	*mz_joiner(char *s)
 {
