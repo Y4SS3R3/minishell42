@@ -1,6 +1,6 @@
 # Minishell - As Beautiful as a Shell
 
-*This project was created as part of the 42 curriculum by ymassiou and twin.*
+*This project was created as part of the 42 curriculum by ymassiou.*
 
 ## Description
 Minishell is a minimalist implementation of a Bash-like command-line interpreter. The project focuses on core system programming concepts in C, including process creation, signal handling, and file descriptor manipulation. It transforms user input into an Abstract Syntax Tree (AST) to execute complex command pipelines.
